@@ -26,6 +26,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 module address_decode(
 
+		// Model B or Master
+		input     model,
+
 		input [15:0] cpu_a,
 		input [3:0]  romsel,
 		
@@ -56,6 +59,9 @@ module address_decode(
 		output     vidproc_enable, 
 		//  0xFE20-FE2F
 		output     romsel_enable,
+		output     acccon_enable,
+		output     intoff_enable,
+		output     inton_enable,
 		//  0xFE30-FE3F
 		output     sys_via_enable, 
 		//  0xFE40-FE5F
@@ -72,6 +78,8 @@ module address_decode(
 		output    mhz1_enable 
     );
 
+wire master = model;
+
 //  Set for access to any 1 MHz peripheral
 
 //  Address decoding
@@ -87,9 +95,9 @@ assign ddr_enable = (!romsel[3] & (cpu_a[15:14] === 2'b10));
 assign ram_enable = ~cpu_a[15]; 
 assign rom_enable = cpu_a[15] & ~cpu_a[14]; 
 assign mos_enable = cpu_a[15] & cpu_a[14] & ~(io_fred | io_jim | io_sheila); 
-assign io_fred = cpu_a[15:8] === 8'b 11111100 ? 1'b 1 : 1'b 0; 
-assign io_jim = cpu_a[15:8] === 8'b 11111101 ? 1'b 1 : 1'b 0; 
-assign io_sheila = cpu_a[15:8] === 8'b 11111110 ? 1'b 1 : 1'b 0; 
+assign io_fred = cpu_a[15:8] == 8'hFC;
+assign io_jim = cpu_a[15:8] == 8'hFD;
+assign io_sheila = cpu_a[15:8] == 8'hFE;
 
 //  The following IO regions are accessed at 1 MHz and hence will stall the
 //  CPU accordingly
@@ -113,16 +121,19 @@ assign mhz1_enable = io_fred | io_jim | adc_enable | sys_via_enable |
 assign crtc_enable = io_sheila & (cpu_a[7:3] === 'd0);
 assign acia_enable = io_sheila & (cpu_a[7:3] === 'd1);
 
-assign serproc_enable   = io_sheila & (cpu_a[7:4] === 'b0001);
+assign serproc_enable   = io_sheila & ((cpu_a[7:4] === 'b0001 && ~master) || (cpu_a[7:3] === 'b00010 && master));
 assign vidproc_enable   = io_sheila & (cpu_a[7:4] === 'b0010);
-assign romsel_enable    = io_sheila & (cpu_a[7:4] === 'b0011);
+assign romsel_enable    = io_sheila & ((cpu_a[7:4] === 'b0011 && ~master) || (cpu_a[7:2] === 'b001100 && master));
+assign acccon_enable    = io_sheila & master & cpu_a[7:2] === 'b001101;
+assign intoff_enable    = io_sheila & master & cpu_a[7:2] === 'b001110;
+assign inton_enable     = io_sheila & master & cpu_a[7:2] === 'b001111;
 
 assign sys_via_enable   = io_sheila & (cpu_a[7:5] === 'b010);
 assign user_via_enable  = io_sheila & (cpu_a[7:5] === 'b011);
 
 assign fddc_enable      = io_sheila & (cpu_a[7:5] === 'b100);
 assign adlc_enable      = io_sheila & (cpu_a[7:5] === 'b101);
-assign adc_enable       = io_sheila & (cpu_a[7:5] === 'b110);
+assign adc_enable       = io_sheila & ((cpu_a[7:5] === 'b110 && ~master) || (cpu_a[7:3] === 'b00011 && master));
 assign tube_enable      = io_sheila & (cpu_a[7:5] === 'b111);
 
 endmodule

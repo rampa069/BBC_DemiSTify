@@ -4,8 +4,9 @@ module bbc(
 
 	input		    CLK32M_I,
 	input       CLK24M_I,
-
 	input       RESET_I,
+
+	input       MODEL_I,
 
 	output      HSYNC,
 	output      VSYNC,
@@ -21,7 +22,10 @@ module bbc(
 	output        MEM_WE,
 	output [7:0]  MEM_DO,
 	input  [7:0]  MEM_DI,
-	output [3:0]  ROMSEL,
+	output [7:0]  ROMSEL,
+	output        SHADOW_RAM,
+	output        SHADOW_VID,
+	output        ACC_Y,
 
 	output        MEM_SYNC,   // signal to synchronite sdram state machine
 	output        PHI0,
@@ -53,16 +57,20 @@ module bbc(
 	input [7:0]		DIP_SWITCH
 );
 
+wire   master = MODEL_I;
+
 // let sdram state machine synchronize to cpu
 assign MEM_SYNC = cpu_clken;
 assign ROMSEL = romsel;
+assign ACC_Y = acc_y;
 assign PHI0 = cpu_phi0;
 assign VIDEO_DE = crtc_de;
+assign SHADOW_VID = acc_d;
 
 wire 		  ram_we;
 
 //  ROM select latch
-reg  [3:0] romsel;
+reg  [7:0] romsel;
 
 // clock enable signals
 
@@ -95,6 +103,7 @@ wire     acia_enable;
 wire     serproc_enable; 
 wire     vidproc_enable; 
 wire     romsel_enable; 
+wire     acccon_enable; 
 wire     sys_via_enable; 
 wire     user_via_enable; 
 wire     fddc_enable; 
@@ -113,6 +122,7 @@ wire    cpu_so_n = 1'b 1;
 wire    cpu_irq_n;
 wire    cpu_r_nw; 
 wire    cpu_we; 
+wire    cpu_sync;
 
 wire    [23:0] cpu_a; 
 wire    [7:0] cpu_di; 
@@ -213,6 +223,27 @@ wire     [7:0] user_via_pb_in;
 wire     [7:0] user_via_pb_out;
 wire     [7:0] user_via_pb_oe;
 
+// 0xFE34 Access Control (Master)
+wire     [7:0] acccon = { acc_irr, acc_tst, acc_ifj, acc_itu, acc_y, acc_x, acc_e, acc_d };
+reg      acc_irr;
+reg      acc_tst;
+reg      acc_ifj;
+reg      acc_itu;
+reg      acc_y;
+reg      acc_x;
+reg      acc_e;
+reg      acc_d;
+
+reg      vdu_op; // last opcode was 0xC000-0xDFFF
+
+// Master Real Time Clock / CMOS RAM
+wire     [7:0] rtc_adi;
+wire     [7:0] rtc_do;
+wire     rtc_ce;
+wire     rtc_r_nw;
+wire     rtc_as;
+wire     rtc_ds;
+
 // MMC
 // SDCLK is driven from either PB1 or CB1 depending on the SR Mode
 wire   sdclk_int = user_via_pb_oe[1] ? user_via_pb_out[1] : 
@@ -256,6 +287,7 @@ clocks CLOCKS(
 );
 
 address_decode ADDRDECODE(
+	.model(MODEL_I),
 	.cpu_a(cpu_a),
 	.romsel(romsel),
 	.ddr_enable(ddr_enable),
@@ -270,8 +302,9 @@ address_decode ADDRDECODE(
 	.serproc_enable(serproc_enable),
 	.vidproc_enable(vidproc_enable),     
 	.romsel_enable(romsel_enable),
+	.acccon_enable(acccon_enable),
 	.sys_via_enable(sys_via_enable),
-	.user_via_enable(user_via_enable), 
+	.user_via_enable(user_via_enable),
 	.fddc_enable(fddc_enable),
 	.adlc_enable(adlc_enable),
 	.adc_enable(adc_enable),
@@ -279,7 +312,12 @@ address_decode ADDRDECODE(
 	.mhz1_enable(mhz1_enable)
 );
 
-T65 CPU (
+wire  [7:0] cpu6502_do;
+wire [15:0] cpu6502_a;
+wire        cpu6502_r_nw;
+wire        cpu6502_sync;
+
+T65 CPU6502 (
 	.Mode   (CPU_MODE),
 	.Res_n  (reset_n),
 	.Enable (cpu_clken),
@@ -289,12 +327,37 @@ T65 CPU (
 	.NMI_n  (cpu_nmi_n),
 	.IRQ_n  (cpu_irq_n),
 	.SO_n   (cpu_so_n),
-	.R_W_n  (cpu_r_nw),
+	.R_W_n  (cpu6502_r_nw),
+	.Sync   (cpu6502_sync),
 
 	.DI     (cpu_di),
-	.DO     (cpu_do),
-	.A      (cpu_a)
+	.DO     (cpu6502_do),
+	.A      (cpu6502_a)
 );
+
+wire  [7:0] cpu65c02_do;
+wire [15:0] cpu65c02_a;
+wire        cpu65c02_r_nw;
+wire        cpu65c02_sync;
+
+R65C02 CPU65C02 (
+	.reset  (reset_n),
+	.enable (cpu_clken),
+	.clk    (CLK32M_I),
+	.nmi_n  (cpu_nmi_n),
+	.irq_n  (cpu_irq_n),
+	.nwe    (cpu65c02_r_nw),
+	.sync   (cpu65c02_sync),
+
+	.di     (cpu_di),
+	.do     (cpu65c02_do),
+	.addr   (cpu65c02_a)
+);
+
+assign cpu_r_nw = master ? cpu65c02_r_nw : cpu6502_r_nw;
+assign cpu_do = master ? cpu65c02_do : cpu6502_do;
+assign cpu_a = master ? cpu65c02_a : cpu6502_a;
+assign cpu_sync = master ? cpu65c02_sync : cpu6502_sync;
 
 via6522 SYS_VIA (
 	 .clock       (CLK32M_I),
@@ -496,35 +559,81 @@ end
 // rom select latch
 always @(posedge CLK32M_I) begin 
 
-	if (reset_n === 1'b 0) begin
-	
-		romsel <= {4{1'b 0}};   
-		ic32 <= {8{1'b 0}};  
-		
+	if (!reset_n) begin
+		romsel <= 0;
+		ic32 <= 0;
 	end else begin
-		
+
 		case (sys_via_pb_out[2:0])
-		
-				0: ic32[0] <= sys_via_pb_out[3];
-				1: ic32[1] <= sys_via_pb_out[3];
-				2: ic32[2] <= sys_via_pb_out[3];
-				3: ic32[3] <= sys_via_pb_out[3];
-				4: ic32[4] <= sys_via_pb_out[3];
-				5: ic32[5] <= sys_via_pb_out[3];
-				6: ic32[6] <= sys_via_pb_out[3];
-				7: ic32[7] <= sys_via_pb_out[3];
-				
+
+			0: ic32[0] <= sys_via_pb_out[3];
+			1: ic32[1] <= sys_via_pb_out[3];
+			2: ic32[2] <= sys_via_pb_out[3];
+			3: ic32[3] <= sys_via_pb_out[3];
+			4: ic32[4] <= sys_via_pb_out[3];
+			5: ic32[5] <= sys_via_pb_out[3];
+			6: ic32[6] <= sys_via_pb_out[3];
+			7: ic32[7] <= sys_via_pb_out[3];
+
 		endcase 
-		
-		if (romsel_enable === 1'b 1 & cpu_r_nw === 1'b 0) begin
-		
-				romsel <= cpu_do[3:0];
-				
+
+		if (romsel_enable & !cpu_r_nw) begin
+			romsel <= cpu_do;
+			if (!master) romsel[7] <= 0;
 		end
-		
+
 	end
 end
-	
+
+// RTC/CMOS (Master)
+// RTC/CMOS is controlled from the system
+// PB7 -> address strobe (AS) active high
+// PB6 -> chip enable (CE) active high
+// PB3..0 drives IC32 (4-16 line decoder)
+// IC32(2) -> data strobe (active high)
+// IC32(1) -> read (1) / write (0)
+
+rtc RTC (
+	.clk(CLK32M_I),
+	.cpu_clken(cpu_clken),
+	.hard_reset_n(reset_n),
+	.reset_n(reset_n),
+	.ce(rtc_ce),
+	.as(rtc_as),
+	.ds(rtc_ds),
+	.r_nw(rtc_r_nw),
+	.adi(rtc_adi),
+	.do(rtc_do),
+	.keyb_dip(keyb_dip)
+);
+
+assign rtc_adi = sys_via_pa_out;
+assign rtc_as  = sys_via_pb_out[7];
+assign rtc_ce  = sys_via_pb_out[6];
+assign rtc_ds  = ic32[2];
+assign rtc_r_nw  = ic32[1];
+
+// Access Control Register (Master)
+always @(posedge CLK32M_I) begin 
+
+	if (!reset_n) begin
+		{ acc_irr, acc_tst, acc_ifj, acc_itu, acc_y, acc_x, acc_e, acc_d } <= 0;
+		vdu_op <= 0;
+	end else if (cpu_clken) begin
+    // Access Control Register 0xFE34
+		if (acccon_enable & ~cpu_r_nw) { acc_irr, acc_tst, acc_ifj, acc_itu, acc_y, acc_x, acc_e, acc_d } <= cpu_do;
+		// vdu op indicates the last opcode fetch in 0xC000-0xDFFF
+		if (cpu_sync) begin
+			if (cpu_a[15:13] == 3'b110)
+				vdu_op <= 1;
+			else
+				vdu_op <= 0;
+		end
+	end
+end
+
+// Shadow RAM (Master): 0x3000-0x7fff
+assign SHADOW_RAM = (cpu_a[15:12] == 4'h3 || cpu_a[15:14] == 2'b01) && (acc_x | (acc_e & vdu_op & ~cpu_sync));
 
 //  Address translation logic for calculation of display address
 always @(crtc_ma or crtc_ra or disp_addr_offs)
@@ -610,21 +719,23 @@ assign shift_lock_led_n = ic32[7];
 wire himem_enable = rom_enable && (romsel[3] === 1'b0);
 
 //  All regions normally de-selected
-assign cpu_di = ram_enable === 1'b 1 ? MEM_DI : 
-  	himem_enable === 1'b 1 ? MEM_DI :
-	rom_enable === 1'b 1 ? MEM_DI : 
-	mos_enable === 1'b 1 ? MEM_DI :
-	crtc_enable === 1'b 1 ? crtc_do : 
-	acia_enable === 1'b 1 ? 8'b 00000010 : 
-	sys_via_enable === 1'b 1 ? sys_via_do : 
-	user_via_enable === 1'b 1 ? user_via_do : 
-	adc_enable === 1'b 1 ? adc_do : 
+assign cpu_di = ram_enable ? MEM_DI : 
+	himem_enable ? MEM_DI :
+	rom_enable ? MEM_DI : 
+	mos_enable ? MEM_DI :
+	crtc_enable ? crtc_do : 
+	acia_enable ? 8'b 00000010 : 
+	sys_via_enable ? sys_via_do : 
+	user_via_enable ? user_via_do : 
+	adc_enable ? adc_do : 
+	acccon_enable ? acccon :
+	(romsel & master) ? romsel :
 	//tube_enable === 1'b 1 ? tube_do : 
 	//adlc_enable === 1'b 1 ? bbcddr_out :
 	8'd0;
-	
+
 //  un-decoded locations are pulled down by RP1
-assign cpu_irq_n = ~sys_via_irq & ~user_via_irq; // & tube_irq_n;
+assign cpu_irq_n = ~sys_via_irq & ~user_via_irq & ~acc_irr; // & tube_irq_n;
 
 // can we write to ram? Further decodig happens on top-level to deal with sideways ram etc
 assign ram_we = ~RESET_I & ~cpu_r_nw;
@@ -635,8 +746,8 @@ assign sys_via_ca2_in = keyb_int;
 assign sys_via_cb1_in = 1'b1;
 assign sys_via_cb2_in = crtc_lpstb;
 
-assign sys_via_pa_in[7] = keyb_out; 
-assign sys_via_pa_in[6:0] = sys_via_pa_out[6:0]; 
+assign sys_via_pa_in = (master & rtc_ce & rtc_ds & rtc_r_nw) ? rtc_do : { keyb_out, sys_via_pa_out[6:0] };
+//assign sys_via_pa_in = { keyb_out, sys_via_pa_out[6:0] };
 
 //  Sound
 assign sound_di = sys_via_pa_out; 

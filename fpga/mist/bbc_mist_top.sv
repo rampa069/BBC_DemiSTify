@@ -49,16 +49,18 @@ assign LED = 1'b0;
 parameter CONF_STR = {
         "BBC;ROM;",
         "O12,Scanlines,Off,25%,50%,75%;",
-				"O3,Joystick Swap,Off,On;",
-        "O4,ROM mapping,High,Low;",
-        "O5,Auto boot,Off,On;",
+        "O3,Joystick Swap,Off,On;",
+        "O4,Mode,Model B,Master;",
+        "O5,ROM mapping,High,Low;",
+        "O6,Auto boot,Off,On;",
         "T0,Reset;"
 };
 
 wire [1:0] scanlines = status[2:1];
 wire       joyswap = status[3];
-wire       rommap = status[4];
-wire       autoboot = status[5];
+wire       model = status[4];
+wire       rommap = status[5];
+wire       autoboot = status[6];
 
 // generated clocks
 wire clk_32m /* synthesis keep */ ;
@@ -72,7 +74,10 @@ wire			core_clken;
 
 // memory bus signals.
 wire [15:0] mem_adr;
-wire [3:0]  mem_romsel;
+wire [7:0]  mem_romsel;
+wire        shadow_ram;
+wire        shadow_vid;
+wire        mem_acc_y;
 
 wire [7:0]  mem_di;
 wire [7:0]  rom_do;
@@ -211,6 +216,7 @@ wire        loader_active;
 wire        loader_we, ioctl_we;
 wire [24:0]	loader_addr, ioctl_addr;
 wire  [7:0] loader_data, ioctl_data;
+wire  [7:0] ioctl_index;
 
 always @(posedge clk_32m) begin
 	reg we_int = 0;
@@ -219,21 +225,37 @@ always @(posedge clk_32m) begin
 		we_int <= 0;
 		loader_we <= we_int;
 		if (we_int) begin
-			loader_addr <= ioctl_addr;
+			loader_addr <= ioctl_addr + (ioctl_index == 0 ? 20'h80000 : { 7'b0000001, 4'ha, 14'h0 });
 			loader_data <= ioctl_data;
 		end
 	end
 
 	if (ioctl_we) we_int <= 1;
 end
+/*
+ROM structure:
+Model B:
+00000 - 03FFF OS12 (Model B)
+04000 - 07FFF MOS  (Master)
+08000 - 0FFFF empty
+10000 - 1FFFF Pages C-D-E-F (or 0-1-2-3)
+ BASIC, empty, MMFS, empty
+Master:
+20000 - 2FFFF Pages 0-1-2-3
+ empty, empty, ADFS1-57, MAMMFS
+30000 - 3FFFF empty (RAM area)
+40000 - 5FFFF Pages 8-9-A-B-C-D-E-F
+ empty, DFS, VIEWSHT, EDIT, BASIC4, ADFS, VIEW, TERMINAL
+*/
 
-data_io #(.START_ADDR({ 7'b0000001, 4'ha, 14'h0 })) DATA_IO  (
+data_io DATA_IO (
 	.clk_sys    ( clk_32m ),
 	.SPI_SCK    ( SPI_SCK ),
 	.SPI_SS2    ( SPI_SS2 ),
 	.SPI_DI     ( SPI_DI  ),
 
 	.ioctl_download ( loader_active ),
+	.ioctl_index( ioctl_index  ),
 
    // ram interface
 	.ioctl_wr   ( ioctl_we     ),
@@ -246,12 +268,13 @@ wire user_via_cb1_in;
 wire user_via_cb2_in;
 
 // reset core whenever the user changes the rom mapping
-reg last_rom_map;
+reg last_rom_map, last_model;
 reg [11:0] rom_map_counter = 12'h0;
 always @(posedge clk_32m) begin
 	last_rom_map <= rommap;
+	last_model <= model;
 
-	if(last_rom_map != rommap)
+	if(last_rom_map != rommap || last_model != model)
 		rom_map_counter <= 12'hfff;
 	else if(rom_map_counter != 0)
 		rom_map_counter <= rom_map_counter - 12'd1;
@@ -287,6 +310,8 @@ bbc BBC(
 	.CLK24M_I   ( clk_24m       ),
 	.RESET_I    ( reset         ),
 
+	.MODEL_I    ( model         ),
+
 	.HSYNC      ( core_hs       ),
 	.VSYNC      ( core_vs       ),
 
@@ -303,6 +328,9 @@ bbc BBC(
 	.MEM_DI     ( mem_di        ),
 	.MEM_SYNC   ( mem_sync      ),
 	.ROMSEL     ( mem_romsel    ),
+	.ACC_Y      ( mem_acc_y     ),
+	.SHADOW_RAM ( shadow_ram    ),
+	.SHADOW_VID ( shadow_vid    ),
 	.PHI0       ( phi0          ),
 
 	.SHIFT      ( autoboot_shift ),
@@ -330,17 +358,44 @@ bbc BBC(
 assign SDRAM_CKE = 1'b1;
 wire sdram_ready;
 
-// cpu is accessing built-in core rom (mos or basic)
+// CPU address mapping
 wire cpu_ram = (mem_adr[15] == 1'b0);
 wire mos_rom = (mem_adr[15:14] == 2'b11);
+wire sideways = (mem_adr[15:14] == 2'b10);
+wire mos_ram = sideways & (mem_adr[13:12] == 2'b00) & mem_romsel[7];
+wire filing_ram = (mem_adr[15:13] == 3'b110) & mem_acc_y;
+
+// map 64k sideways ram to bank 4,5,6 and 7
+wire sideways_ram = sideways & (mem_romsel[3:2] == 2'b01);
+
+// Master: pages 0-3, 8-F
+// Model B: rommap is '1' of low mapping is selected in the menu
+wire sideways_rom = sideways &
+                    model  ? (mem_romsel[3:2] == 2'b00 || mem_romsel[3]) :
+                             rommap?(mem_romsel[3:2] == 2'b00):(mem_romsel[3:2] == 2'b11);
+
+/*
+ SDRAM map
+ 00000-07FFF Main RAM
+ 08000-08FFF MOS private RAM (Master)
+ 0A000-0BFFF Filing system RAM (Master)
+ 13000-17FFF Shadow RAM (Master)
+ 40000-7FFFF sideways ram access
+ 80000-DFFFF ROMs
+*/
 
 wire [24:0] sdram_adr =
-	loader_active?loader_addr:
-	cpu_ram?{ 9'b000000000, mem_adr }:          // ordinary ram access
-	{ 7'b0000001, mem_romsel, mem_adr[13:0] };  // sideways ram/rom access
+	loader_active ? loader_addr:
+	~phi0 ? { shadow_vid, mem_adr }:                    // video access
+	(cpu_ram | mos_ram) ? { shadow_ram, mem_adr }:      // ordinary RAM access: 0000-7FFF + 8000-8FFF (MOS Private RAM)
+	filing_ram ? { 3'b101, mem_adr[12:0] }:             // Filing system RAM: A000-BFFF
+	mos_rom ? { 4'h8, 1'b0, model, mem_adr[13:0] }:     // OS12 or MOS: 80000-87FFF
+	(sideways_rom && ~model) ? { 4'h9, mem_romsel[1:0], mem_adr[13:0] }: // Model B ROMs: 9xxxx
+	(sideways_rom &&  model) ? { 4'hA + mem_romsel[3:2], mem_romsel[1:0], mem_adr[13:0] }: // Master ROMs: A0000-DFFFF
+	{ 1'b1, mem_romsel[3:0], mem_adr[13:0] };          // sideways RAM access (page 4-5-6-7)
 
-wire sdram_we = loader_active?loader_we:(mem_we && (cpu_ram || sideways_ram));
-	
+wire sdram_we = loader_active?loader_we:(mem_we && (cpu_ram || sideways_ram || mos_ram || filing_ram));
+
 wire [7:0] sdram_di = 
 	loader_active?loader_data:mem_do;
 
@@ -372,44 +427,7 @@ sdram sdram (
 	.vid_blnk       ( !video_de                ) // for refresh
 );
 
-wire [7:0] os_do;
-os12 os12 (
-	.clock   ( clk_32m       ),
-	.address ( mem_adr[13:0] ),
-	.q       ( os_do         )
-);
-
-wire [7:0] basic_do;
-basic2 basic2 (
-	.clock   ( clk_32m       ),
-	.address ( mem_adr[13:0] ),
-	.q       ( basic_do      )
-);
-
-wire [7:0] mmfs_do;
-mmfs mmfs (
-	.clock   ( clk_32m			 ),
-	.address ( mem_adr[13:0] ),
-	.q       ( mmfs_do       )
-);
-
-// map 64k sideways ram to bank 4,5,6 and 7
-wire sideways_ram = 
-	(mem_adr[15:14] == 2'b10) && (mem_romsel[3:2] == 2'b01);
-
-// rommap is '1' of low mapping is selected in the menu
-wire basic_map = rommap?(mem_romsel == 4'h0):(mem_romsel == 4'he);
-wire mmfs_map = rommap?(mem_romsel == 4'h2):(mem_romsel == 4'hc);
-
-assign mem_di = 
-	~phi0 ? ram_do :
-	((mem_adr[15:14] == 2'b10) && basic_map) ? basic_do : 
-	((mem_adr[15:14] == 2'b10) && mmfs_map) ? mmfs_do :
-	((mem_adr[15:14] == 2'b10) && (mem_romsel == 4'ha)) ? ram_do :
-	mos_rom ? os_do : 
-	cpu_ram ? ram_do :
-	sideways_ram ? ram_do :
-	8'hff;
+assign mem_di = ram_do;
 
 audio	AUDIO	(
 	.clk         ( clk_24m    ),
