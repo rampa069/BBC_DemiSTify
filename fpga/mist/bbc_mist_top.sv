@@ -48,6 +48,7 @@ assign LED = 1'b0;
 // it to control the menu on the OSD 
 parameter CONF_STR = {
         "BBC;ROM;",
+        "S1,SSDDSD,Mount Disk;",
         "O12,Scanlines,Off,25%,50%,75%;",
         "O3,Joystick Swap,Off,On;",
         "O4,Mode,Model B,Master;",
@@ -112,19 +113,19 @@ clockgen CLOCKS(
 
 // conections between user_io (implementing the SPI communication 
 // to the io controller) and the legacy 
-wire [31:0] sd_lba;
-wire sd_rd;
-wire sd_wr;
+wire sd_busy;
+wire [31:0] sd_lba = sd_busy ? sd_lba_mmfs : sd_lba_fdc;
+wire [1:0] sd_rd;
+wire [1:0] sd_wr;
 wire sd_ack;
 wire sd_conf;
 wire sd_sdhc; 
 wire [7:0] sd_dout;
 wire sd_dout_strobe;
-wire [7:0] sd_din;
-wire sd_din_strobe;
+wire [7:0] sd_din = sd_busy ? sd_din_mmfs : sd_din_fdc;
 wire [8:0] sd_buff_addr;
 wire sd_ack_conf;
-wire img_mounted;
+wire [1:0] img_mounted;
 wire [31:0] img_size;
 
 wire [7:0] joystick_0;
@@ -169,7 +170,6 @@ user_io #(.STRLEN($size(CONF_STR)>>3)) user_io(
 	.sd_dout    	  ( sd_dout       ),
 	.sd_dout_strobe ( sd_dout_strobe),
 	.sd_din     	  ( sd_din        ),
-	.sd_din_strobe  ( sd_din_strobe ),
 	.sd_buff_addr   ( sd_buff_addr  ),
 	.sd_ack_conf    ( sd_ack_conf   ),
 
@@ -185,30 +185,33 @@ wire sd_sck;
 wire sd_cs;
 wire sd_sdi;
 wire sd_sdo;
+wire [31:0] sd_lba_mmfs;
+wire  [7:0] sd_din_mmfs;
 
 sd_card sd_card (
 	// connection to io controller
-	.clk_sys(clk_32m),
-	.sd_lba (sd_lba ),
-	.sd_rd  (sd_rd),
-	.sd_wr  (sd_wr),
-	.sd_ack (sd_ack),
-	.sd_ack_conf (sd_ack_conf      ),
-	.sd_conf (sd_conf),
-	.sd_sdhc (sd_sdhc),
-	.sd_buff_dout (sd_dout),
-	.sd_buff_wr (sd_dout_strobe),
-	.sd_buff_din (sd_din),
-	.sd_buff_addr  (sd_buff_addr     ),
-	.img_mounted (img_mounted),
-	.img_size (img_size),
-	.allow_sdhc ( 1'b1),
+	.clk_sys      ( clk_32m        ),
+	.sd_lba       ( sd_lba_mmfs    ),
+	.sd_rd        ( sd_rd[0]       ),
+	.sd_wr        ( sd_wr[0]       ),
+	.sd_ack       ( sd_ack         ),
+	.sd_ack_conf  ( sd_ack_conf    ),
+	.sd_conf      ( sd_conf        ),
+	.sd_sdhc      ( sd_sdhc        ),
+	.sd_buff_dout ( sd_dout        ),
+	.sd_buff_wr   ( sd_dout_strobe ),
+	.sd_buff_din  ( sd_din_mmfs    ),
+	.sd_buff_addr ( sd_buff_addr   ),
+	.img_mounted  ( img_mounted[0] ),
+	.img_size     ( img_size       ),
+	.allow_sdhc   ( 1'b1           ),
+	.sd_busy      ( sd_busy        ),
  
 	// connection to local CPU
-	.sd_cs   ( sd_cs          ),
-	.sd_sck  ( sd_sck         ),
-	.sd_sdi  ( sd_sdi         ),
-	.sd_sdo  ( sd_sdo         )
+	.sd_cs        ( sd_cs          ),
+	.sd_sck       ( sd_sck         ),
+	.sd_sdi       ( sd_sdi         ),
+	.sd_sdo       ( sd_sdo         )
 );
 
 // data loading 
@@ -304,6 +307,9 @@ always @(posedge clk_32m) begin
 		autoboot_counter <= autoboot_counter - 25'd1;
 end
 
+wire [31:0] sd_lba_fdc;
+wire  [7:0] sd_din_fdc;
+
 bbc BBC(
 
 	.CLK32M_I   ( clk_32m       ),
@@ -352,7 +358,19 @@ bbc BBC(
 	.PS2_DAT	( ps2_dat       ),
 
 	.AUDIO_L	( coreaud_l     ),
-	.AUDIO_R	( coreaud_r     )
+	.AUDIO_R	( coreaud_r     ),
+
+	// FDC connection
+	.img_mounted    ( img_mounted[1] ),
+	.img_size       ( img_size       ),
+	.sd_lba         ( sd_lba_fdc     ),
+	.sd_rd          ( sd_rd[1]       ),
+	.sd_wr          ( sd_wr[1]       ),
+	.sd_ack         ( sd_ack         ),
+	.sd_buff_addr   ( sd_buff_addr   ),
+	.sd_dout        ( sd_dout        ),
+	.sd_din         ( sd_din_fdc     ),
+	.sd_dout_strobe ( sd_dout_strobe )
 );
 
 assign SDRAM_CKE = 1'b1;

@@ -68,6 +68,8 @@ module address_decode(
 		output     user_via_enable, 
 		//  0xFE60-FE7F
 		output     fddc_enable,
+		output     fdc_enable,
+		output     fdcon_enable,
 		//  0xFE80-FE9F
 		output     adlc_enable, 
 		//  0xFEA0-FEBF (Econet)
@@ -122,7 +124,7 @@ assign crtc_enable = io_sheila & (cpu_a[7:3] === 'd0);
 assign acia_enable = io_sheila & (cpu_a[7:3] === 'd1);
 
 assign serproc_enable   = io_sheila & ((cpu_a[7:4] === 'b0001 && ~master) || (cpu_a[7:3] === 'b00010 && master));
-assign vidproc_enable   = io_sheila & (cpu_a[7:4] === 'b0010);
+assign vidproc_enable   = io_sheila & (cpu_a[7:4] === 'b0010) & (~master || cpu_a[3:2] == 'b00);
 assign romsel_enable    = io_sheila & ((cpu_a[7:4] === 'b0011 && ~master) || (cpu_a[7:2] === 'b001100 && master));
 assign acccon_enable    = io_sheila & master & cpu_a[7:2] === 'b001101;
 assign intoff_enable    = io_sheila & master & cpu_a[7:2] === 'b001110;
@@ -131,7 +133,10 @@ assign inton_enable     = io_sheila & master & cpu_a[7:2] === 'b001111;
 assign sys_via_enable   = io_sheila & (cpu_a[7:5] === 'b010);
 assign user_via_enable  = io_sheila & (cpu_a[7:5] === 'b011);
 
-assign fddc_enable      = io_sheila & (cpu_a[7:5] === 'b100);
+assign fddc_enable      = io_sheila & ~master & (cpu_a[7:5] === 'b100);
+assign fdc_enable       = io_sheila & master & (cpu_a[7:3] === 'b00101);
+assign fdcon_enable     = io_sheila & master & (cpu_a[7:2] === 'b001001);
+
 assign adlc_enable      = io_sheila & (cpu_a[7:5] === 'b101);
 assign adc_enable       = io_sheila & ((cpu_a[7:5] === 'b110 && ~master) || (cpu_a[7:3] === 'b00011 && master));
 assign tube_enable      = io_sheila & (cpu_a[7:5] === 'b111);

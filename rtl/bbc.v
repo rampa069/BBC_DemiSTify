@@ -54,7 +54,19 @@ module bbc(
 	input [7:0] 	joy1_axis1,
 
 	// boot settings
-	input [7:0]		DIP_SWITCH
+	input [7:0]		DIP_SWITCH,
+
+	//FDC signals
+	input         img_mounted, // signaling that new image has been mounted
+	input  [31:0] img_size,    // size of image in bytes
+	output [31:0] sd_lba,
+	output        sd_rd,
+	output        sd_wr,
+	input         sd_ack,
+	input   [8:0] sd_buff_addr,
+	input   [7:0] sd_dout,
+	output  [7:0] sd_din,
+	input         sd_dout_strobe
 );
 
 wire   master = MODEL_I;
@@ -106,7 +118,9 @@ wire     romsel_enable;
 wire     acccon_enable; 
 wire     sys_via_enable; 
 wire     user_via_enable; 
-wire     fddc_enable; 
+wire     fddc_enable;
+wire     fdc_enable;
+wire     fdcon_enable; 
 wire     adlc_enable; 
 wire     adc_enable; 
 wire     tube_enable;
@@ -117,7 +131,7 @@ wire 	   mhz1_enable;
 localparam CPU_MODE = 2'd0; 
 wire    cpu_ready = 1'b 1;
 wire    cpu_abort_n = 1'b 1;
-wire    cpu_nmi_n  = 1'b 1; 
+wire    cpu_nmi_n;
 wire    cpu_so_n = 1'b 1; 
 wire    cpu_irq_n;
 wire    cpu_r_nw; 
@@ -244,6 +258,15 @@ wire     rtc_r_nw;
 wire     rtc_as;
 wire     rtc_ds;
 
+// FDC1770
+wire     fdc_irq;
+wire     fdc_drq;
+wire     [7:0] fdc_do;
+reg      [3:0] floppy_drive;
+reg      floppy_side;
+reg      floppy_density;
+reg      floppy_reset;
+
 // MMC
 // SDCLK is driven from either PB1 or CB1 depending on the SR Mode
 wire   sdclk_int = user_via_pb_oe[1] ? user_via_pb_out[1] : 
@@ -306,6 +329,8 @@ address_decode ADDRDECODE(
 	.sys_via_enable(sys_via_enable),
 	.user_via_enable(user_via_enable),
 	.fddc_enable(fddc_enable),
+	.fdc_enable(fdc_enable),
+	.fdcon_enable(fdcon_enable),
 	.adlc_enable(adlc_enable),
 	.adc_enable(adc_enable),
 	.tube_enable(tube_enable),
@@ -635,6 +660,58 @@ end
 // Shadow RAM (Master): 0x3000-0x7fff
 assign SHADOW_RAM = (cpu_a[15:12] == 4'h3 || cpu_a[15:14] == 2'b01) && (acc_x | (acc_e & vdu_op & ~cpu_sync));
 
+// FDC (Master)
+fdc1772 #(.SECTOR_SIZE_CODE(2'd1)) FDC1772 (
+
+	.clkcpu         ( CLK32M_I         ),
+	.clk8m_en       ( mhz4_clken       ),
+
+	.cpu_sel        ( fdc_enable       ),
+	.cpu_rw         ( cpu_r_nw         ),
+	.cpu_addr       ( cpu_a[1:0]       ),
+	.cpu_dout       ( fdc_do           ),
+	.cpu_din        ( cpu_do           ),
+
+	.irq            ( fdc_irq          ),
+	.drq            ( fdc_drq          ),
+
+	.img_mounted    ( img_mounted      ),
+	.img_size       ( img_size         ),
+	.img_wp         ( 0                ),
+	.sd_lba         ( sd_lba           ),
+	.sd_rd          ( sd_rd            ),
+	.sd_wr          ( sd_wr            ),
+	.sd_ack         ( sd_ack           ),
+	.sd_buff_addr   ( sd_buff_addr     ),
+	.sd_dout        ( sd_dout          ),
+	.sd_din         ( sd_din           ),
+	.sd_dout_strobe ( sd_dout_strobe   ),
+
+	.floppy_drive   ( floppy_drive     ),
+//.floppy_motor<->( floppy_motor     ),
+//.floppy_inuse<->( floppy_inuse     ),
+	.floppy_side    ( floppy_side      ),
+//.floppy_density ( floppy_density   ),
+	.floppy_reset   ( floppy_reset     )
+);
+
+// FDC Control Register (Master)
+always @(posedge CLK32M_I) begin 
+
+	if (!reset_n) begin
+		floppy_drive <= 4'b1111;
+		{ floppy_side, floppy_reset, floppy_density } <= 0;
+	end else if (cpu_clken) begin
+    // Access Control Register 0xFE34
+		if (fdcon_enable & ~cpu_r_nw) begin
+			floppy_drive <= { 3'b111, ~cpu_do[0] };
+			floppy_reset <= cpu_do[2];
+			floppy_side <= ~cpu_do[4];
+			floppy_density <= cpu_do[5];
+		end
+	end
+end
+
 //  Address translation logic for calculation of display address
 always @(crtc_ma or crtc_ra or disp_addr_offs)
    begin : process_3
@@ -729,13 +806,15 @@ assign cpu_di = ram_enable ? MEM_DI :
 	user_via_enable ? user_via_do : 
 	adc_enable ? adc_do : 
 	acccon_enable ? acccon :
-	(romsel & master) ? romsel :
+	(romsel_enable & master) ? romsel :
+	fdc_enable ? fdc_do :
 	//tube_enable === 1'b 1 ? tube_do : 
 	//adlc_enable === 1'b 1 ? bbcddr_out :
 	8'd0;
 
 //  un-decoded locations are pulled down by RP1
 assign cpu_irq_n = ~sys_via_irq & ~user_via_irq & ~acc_irr; // & tube_irq_n;
+assign cpu_nmi_n = ~fdc_irq & ~fdc_drq;
 
 // can we write to ram? Further decodig happens on top-level to deal with sideways ram etc
 assign ram_we = ~RESET_I & ~cpu_r_nw;
