@@ -755,18 +755,10 @@ always @(crtc_ma or crtc_ra or disp_addr_offs)
          ;
       endcase
       end
-   if (crtc_ma[13] === 1'b 0)
-      begin
 
-//  HI RES
-      display_a <= {process_3_aa[3:0], crtc_ma[7:0], crtc_ra[2:0]};   
-
-//  TTX VDU
-      end
-   else
-      begin
-      display_a <= {process_3_aa[3], 4'b 1111, crtc_ma[9:0]};   
-      end
+      display_a = crtc_ma[13] ? 
+        {process_3_aa[3], 4'b 1111, crtc_ma[9:0]} :       // TTX VDU
+        {process_3_aa[3:0], crtc_ma[7:0], crtc_ra[2:0]};  // HI RES
    end
 
 // SOUND 
