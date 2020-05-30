@@ -310,6 +310,8 @@ end
 wire [31:0] sd_lba_fdc;
 wire  [7:0] sd_din_fdc;
 
+wire img_ds = ioctl_index[7:6] == 1;
+
 bbc BBC(
 
 	.CLK32M_I   ( clk_32m       ),
@@ -363,6 +365,7 @@ bbc BBC(
 	// FDC connection
 	.img_mounted    ( img_mounted[1] ),
 	.img_size       ( img_size       ),
+	.img_ds         ( img_ds         ),
 	.sd_lba         ( sd_lba_fdc     ),
 	.sd_rd          ( sd_rd[1]       ),
 	.sd_wr          ( sd_wr[1]       ),

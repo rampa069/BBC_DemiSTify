@@ -59,6 +59,7 @@ module bbc(
 	//FDC signals
 	input         img_mounted, // signaling that new image has been mounted
 	input  [31:0] img_size,    // size of image in bytes
+	input         img_ds,      // SSD/DSD file
 	output [31:0] sd_lba,
 	output        sd_rd,
 	output        sd_wr,
@@ -661,7 +662,7 @@ end
 assign SHADOW_RAM = (cpu_a[15:12] == 4'h3 || cpu_a[15:14] == 2'b01) && (acc_x | (acc_e & vdu_op & ~cpu_sync));
 
 // FDC (Master)
-fdc1772 #(.SECTOR_SIZE_CODE(2'd1)) FDC1772 (
+fdc1772 #(.SECTOR_SIZE_CODE(2'd1), .CLK_EN(16'd4000)) FDC1772 (
 
 	.clkcpu         ( CLK32M_I         ),
 	.clk8m_en       ( mhz4_clken       ),
@@ -678,6 +679,7 @@ fdc1772 #(.SECTOR_SIZE_CODE(2'd1)) FDC1772 (
 	.img_mounted    ( img_mounted      ),
 	.img_size       ( img_size         ),
 	.img_wp         ( 0                ),
+	.img_ds         ( img_ds           ),
 	.sd_lba         ( sd_lba           ),
 	.sd_rd          ( sd_rd            ),
 	.sd_wr          ( sd_wr            ),
