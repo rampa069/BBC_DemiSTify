@@ -178,10 +178,11 @@ wire [3:0] keyb_column = sys_via_pa_out[3:0];
 wire [2:0] keyb_row = sys_via_pa_out[6:4]; 
 wire    keyb_out; 
 wire    keyb_int; 
-wire    keyb_break; 
+wire    keyb_break;
+reg     keyb_reset;
 
 // internal reset signals
-wire reset_n = ~RESET_I & ~keyb_break;
+wire    reset_n = ~RESET_I & ~keyb_reset;
 
 //  IC32 latch on System VIA
 reg     [7:0] ic32; 
@@ -467,7 +468,7 @@ via6522 USER_VIA (
 keyboard KEYB (	
 
 	 .CLOCK			( CLK32M_I		),
-	 .nRESET			( reset_n		),
+	 .nRESET			( ~RESET_I		),
 	 .CLKEN_1MHZ	( mhz1_clken	),
 	 .PS2_CLK		( PS2_CLK		),
 	 .PS2_DATA		( PS2_DAT		),
@@ -480,6 +481,10 @@ keyboard KEYB (
 	 .BREAK_OUT		( keyb_break	),
 	 .DIP_SWITCH	( DIP_SWITCH	)
 );
+
+// sync keyboard reset
+always @(posedge CLK32M_I)
+	if (cpu_clken) keyb_reset <= keyb_break;
 
 adc ADC (
 	 .CLOCK(CLK32M_I),
