@@ -42,7 +42,7 @@ module bbc_mist_top(
   input          CONF_DATA0  // SPI_SS for user_io
 );
 
-assign LED = 1'b0;
+assign LED = ~loader_active;
 
 // the configuration string is returned to the io controller to allow
 // it to control the menu on the OSD 

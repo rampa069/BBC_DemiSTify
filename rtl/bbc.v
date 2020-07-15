@@ -664,7 +664,7 @@ end
 assign SHADOW_RAM = (cpu_a[15:12] == 4'h3 || cpu_a[15:14] == 2'b01) && (acc_x | (acc_e & vdu_op & ~cpu_sync));
 
 // FDC (Master)
-fdc1772 #(.SECTOR_SIZE_CODE(2'd1), .CLK_EN(16'd4000)) FDC1772 (
+fdc1772 #(.SECTOR_SIZE_CODE(2'd1), .CLK(48000000), .CLK_EN(16'd4000)) FDC1772 (
 
 	.clkcpu         ( CLK48M_I         ),
 	.clk8m_en       ( mhz4_clken       ),
