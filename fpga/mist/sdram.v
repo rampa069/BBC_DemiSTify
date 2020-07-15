@@ -60,24 +60,32 @@ localparam MODE = { 3'b000, NO_WRITE_BURST, OP_MODE, CAS_LATENCY, ACCESS_TYPE, B
 // ------------------------ cycle state machine ------------------------
 // ---------------------------------------------------------------------
 
-localparam STATE_IDLE      = 3'd0;   // first state in cycle
-localparam STATE_CMD_START = 3'd1;   // state in which a new command can be started
+localparam STATE_IDLE      = 4'd0;   // first state in cycle
+localparam STATE_CMD_START = 4'd1;   // state in which a new command can be started
 localparam STATE_CMD_CONT  = STATE_CMD_START  + RASCAS_DELAY - 3'd1; // 4 command can be continued
-localparam STATE_LAST      = 3'd7;   // last state in cycle
+localparam STATE_LAST      = 4'd11;   // last state in cycle
 
 // the state counter runs through four full memory cycles @ 8 clocks each. It synchronizes 
 // itself to the cpu cycle. The first fill memory cycle is used for the CPU and the second
 // and fourth is used for video. The third cycle is refresh
 
 reg [3:0] q;
-always @(posedge clk) begin
-	// 32Mhz counter synchronous to cpu
-	if( sync ) q <= 0;
-	else  	  q <= q + 1'd1;
-end
+reg       vid_cyc;
+reg       cpu_cyc;
 
-wire cpu_cyc = q[3];
-wire vid_cyc = ~q[3];
+always @(posedge clk) begin
+	// 48Mhz counter synchronous to cpu
+	if( sync ) begin
+		vid_cyc <= 1;
+		cpu_cyc <= 0;
+		q <= 0;
+	end else if (q == STATE_LAST) begin
+		vid_cyc <= 0;
+		cpu_cyc <= 1;
+		q <= 0;
+	end
+	else q <= q + 1'd1;
+end
 
 // switch between video and cpu address
 wire [24:0] addr = cpu_adr;
@@ -93,7 +101,7 @@ assign ready = (reset == 0);
 reg [4:0] reset;
 always @(posedge clk) begin
 	if(init)	reset <= 5'h1f;
-	else if((q[2:0] == STATE_LAST) && (reset != 0))
+	else if((q == STATE_LAST) && (reset != 0))
 		reset <= reset - 5'd1;
 end
 
@@ -132,15 +140,15 @@ always @(posedge clk) begin
 		if(reset == 13) sd_addr <= 13'b0010000000000;
 		else   			 sd_addr <= MODE;
 
-		if(q[2:0] == STATE_IDLE) begin
+		if(q == STATE_IDLE) begin
 			if(reset == 13)  sd_cmd <= CMD_PRECHARGE;
 			if(reset ==  2)  sd_cmd <= CMD_LOAD_MODE;
 		end
 	end else begin
 
-		if(q[2:0] == STATE_IDLE) begin
+		if(q == STATE_IDLE) begin
 			sd_cmd <= CMD_AUTO_REFRESH;
-			
+
 			if(cpu_cyc || (vid_cyc && !vid_blnk)) begin// CPU or video transfers data
 				sd_cmd <= CMD_ACTIVE;
 				sd_addr <= addr[21:9];
@@ -148,7 +156,7 @@ always @(posedge clk) begin
 				sd_dqm <= { addr[0], !addr[0] };
 			end
 
-		end else if(q[2:0] == STATE_CMD_CONT) begin
+		end else if(q == STATE_CMD_CONT) begin
 			sd_addr <= { 4'b0010, addr[24], addr[8:1]};
 			if(cpu_cyc) begin  			// CPU reads or writes
 				if(cpu_we) begin
@@ -158,7 +166,7 @@ always @(posedge clk) begin
 				else 			 sd_cmd <= CMD_READ;
 			end else if(vid_cyc && !vid_blnk)      // video always reads
 								 sd_cmd <= CMD_READ;
-		end else if (q[2:0] == 5) begin
+		end else if (q == 5) begin
 			cpu_do <= addr[0]?sd_data[7:0]:sd_data[15:8];
 		end
 	end

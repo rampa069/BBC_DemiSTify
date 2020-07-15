@@ -2,8 +2,7 @@
 
 module bbc(
 
-	input		    CLK32M_I,
-	input       CLK24M_I,
+	input		    CLK48M_I,
 	input       RESET_I,
 
 	input       MODEL_I,
@@ -289,8 +288,7 @@ reg     [3:0]  process_3_aa;
 
 clocks CLOCKS(
 
-	.clk_32m			( CLK32M_I	), // master clock
-	.clk_24m			( CLK24M_I	),
+	.clk_48m			( CLK48M_I	), // master clock
 	.reset_n			( reset_n	),
 	
 	.vid_clken		( VIDEO_CLKEN		),
@@ -298,13 +296,13 @@ clocks CLOCKS(
 	.mhz4_clken		( mhz4_clken	),
 	.mhz2_clken		( mhz2_clken	),
 	.mhz1_clken		( mhz1_clken	),
-	
+
 	.mhz1_enable	( mhz1_enable	),
-	
+
 	.cpu_cycle		( cpu_cycle		),
 	.cpu_clken		( cpu_clken		),
 	.cpu_phi0     ( cpu_phi0    ),
-	
+
 	.ttxt_clken		( ttxt_clken	),
 	.ttxt_clkenx2	( ttxt_clkenx2	),
 
@@ -348,7 +346,7 @@ T65 CPU6502 (
 	.Mode   (CPU_MODE),
 	.Res_n  (reset_n),
 	.Enable (cpu_clken),
-	.Clk    (CLK32M_I),
+	.Clk    (CLK48M_I),
 	.Rdy    (cpu_ready),
 	.Abort_n(cpu_abort_n),
 	.NMI_n  (cpu_nmi_n),
@@ -370,7 +368,7 @@ wire        cpu65c02_sync;
 R65C02 CPU65C02 (
 	.reset  (reset_n),
 	.enable (cpu_clken),
-	.clk    (CLK32M_I),
+	.clk    (CLK48M_I),
 	.nmi_n  (cpu_nmi_n),
 	.irq_n  (cpu_irq_n),
 	.nwe    (cpu65c02_r_nw),
@@ -387,7 +385,7 @@ assign cpu_a = master ? cpu65c02_a : cpu6502_a;
 assign cpu_sync = master ? cpu65c02_sync : cpu6502_sync;
 
 via6522 SYS_VIA (
-	 .clock       (CLK32M_I),
+	 .clock       (CLK48M_I),
 	 .rising      (mhz2_clken &  mhz1_clken),
 	 .falling     (mhz2_clken & ~mhz1_clken),
 	 .reset       (~reset_n),
@@ -426,7 +424,7 @@ via6522 SYS_VIA (
 );
 
 via6522 USER_VIA (
-	 .clock       (CLK32M_I),
+	 .clock       (CLK48M_I),
 	 .rising      (mhz2_clken &  mhz1_clken),
 	 .falling     (mhz2_clken & ~mhz1_clken),
 	 .reset       (~reset_n),
@@ -467,7 +465,7 @@ via6522 USER_VIA (
 //  Keyboard	
 keyboard KEYB (	
 
-	 .CLOCK			( CLK32M_I		),
+	 .CLOCK			( CLK48M_I		),
 	 .nRESET			( ~RESET_I		),
 	 .CLKEN_1MHZ	( mhz1_clken	),
 	 .PS2_CLK		( PS2_CLK		),
@@ -483,11 +481,11 @@ keyboard KEYB (
 );
 
 // sync keyboard reset
-always @(posedge CLK32M_I)
+always @(posedge CLK48M_I)
 	if (cpu_clken) keyb_reset <= keyb_break;
 
 adc ADC (
-	 .CLOCK(CLK32M_I),
+	 .CLOCK(CLK48M_I),
 	 .CLKEN(crtc_clken),
 	 .nRESET(reset_n),
 	 .ENABLE(adc_enable),
@@ -504,7 +502,7 @@ adc ADC (
 );
 
 mc6845 CRTC (
-	 .CLOCK(CLK32M_I),
+	 .CLOCK(CLK48M_I),
 	 .CLKEN(crtc_clken),
 	 .nRESET(reset_n),
 	 .ENABLE(crtc_enable),
@@ -524,7 +522,7 @@ mc6845 CRTC (
 // no sound in the simulator.
 `ifndef SIM
 sn76489_top SOUND (
-		 .clock_i		( CLK32M_I		),
+		 .clock_i		( CLK48M_I		),
 		 .clock_en_i	( mhz4_clken	),
 		 .res_n_i		( reset_n		),
 		 .ce_n_i			( 1'b 0			),
@@ -536,7 +534,7 @@ sn76489_top SOUND (
 `endif
 
 vidproc VIDEO_ULA (
-		.CLOCK(CLK32M_I),
+		.CLOCK(CLK48M_I),
 		.CLKEN(VIDEO_CLKEN),
 		.nRESET(reset_n),
 		.CLKEN_CRTC(crtc_clken),
@@ -559,14 +557,13 @@ vidproc VIDEO_ULA (
 
 saa5050 TELETEXT (
 
-	//  This runs at 6 MHz, which we can't derive from the 32 MHz clock
-	.CLOCK    ( CLK24M_I     ),
+	.CLOCK    ( CLK48M_I     ),
 	.CLKEN    ( ttxt_clkenx2 ),
 	.nRESET   ( reset_n      ),
 
 	//  Data input is synchronised to the main cpu bus clock.
-	.DI_CLOCK ( CLK32M_I     ),
-	.DI_CLKEN ( VIDEO_CLKEN & mhz4_clken & ~mhz2_clken ),
+	.DI_CLOCK ( CLK48M_I     ),
+	.DI_CLKEN ( mhz4_clken & ~mhz2_clken ),
 	.DI       ( MEM_DI[6:0]  ),
 
 	.GLR      ( ttxt_glr     ),
@@ -588,7 +585,7 @@ initial begin : via_init
 end
 
 // rom select latch
-always @(posedge CLK32M_I) begin 
+always @(posedge CLK48M_I) begin 
 
 	if (!reset_n) begin
 		romsel <= 0;
@@ -625,7 +622,7 @@ end
 // IC32(1) -> read (1) / write (0)
 
 rtc RTC (
-	.clk(CLK32M_I),
+	.clk(CLK48M_I),
 	.cpu_clken(cpu_clken),
 	.hard_reset_n(reset_n),
 	.reset_n(reset_n),
@@ -645,7 +642,7 @@ assign rtc_ds  = ic32[2];
 assign rtc_r_nw  = ic32[1];
 
 // Access Control Register (Master)
-always @(posedge CLK32M_I) begin 
+always @(posedge CLK48M_I) begin 
 
 	if (!reset_n) begin
 		{ acc_irr, acc_tst, acc_ifj, acc_itu, acc_y, acc_x, acc_e, acc_d } <= 0;
@@ -669,7 +666,7 @@ assign SHADOW_RAM = (cpu_a[15:12] == 4'h3 || cpu_a[15:14] == 2'b01) && (acc_x | 
 // FDC (Master)
 fdc1772 #(.SECTOR_SIZE_CODE(2'd1), .CLK_EN(16'd4000)) FDC1772 (
 
-	.clkcpu         ( CLK32M_I         ),
+	.clkcpu         ( CLK48M_I         ),
 	.clk8m_en       ( mhz4_clken       ),
 
 	.cpu_sel        ( fdc_enable       ),
@@ -703,7 +700,7 @@ fdc1772 #(.SECTOR_SIZE_CODE(2'd1), .CLK_EN(16'd4000)) FDC1772 (
 );
 
 // FDC Control Register (Master)
-always @(posedge CLK32M_I) begin 
+always @(posedge CLK48M_I) begin 
 
 	if (!reset_n) begin
 		floppy_drive <= 4'b1111;

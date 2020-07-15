@@ -64,8 +64,7 @@ wire       rommap = status[5];
 wire       autoboot = status[6];
 
 // generated clocks
-wire clk_32m /* synthesis keep */ ;
-wire clk_24m /* synthesis keep */ ;
+wire clk_48m /* synthesis keep */ ;
 
 wire pll_ready;
 
@@ -102,12 +101,11 @@ wire        ps2_dat;
 
 // the top file should generate the correct clocks for the machine
 
-assign SDRAM_CLK = clk_32m;
+assign SDRAM_CLK = clk_48m;
 
 clockgen CLOCKS(
 	.inclk0	(CLOCK_27[0]),
-	.c0		(clk_32m),
-	.c1 		(clk_24m),
+	.c0		(clk_48m),
 	.locked	(pll_ready)  // pll locked output
 );
 
@@ -139,8 +137,8 @@ wire no_csync;
 
 user_io #(.STRLEN($size(CONF_STR)>>3)) user_io(
 	.conf_str      ( CONF_STR       ),
-	.clk_sys       ( clk_32m        ),
-	.clk_sd        ( clk_32m        ),
+	.clk_sys       ( clk_48m        ),
+	.clk_sd        ( clk_48m        ),
 
 	// the spi interface
 	.SPI_CLK        ( SPI_SCK       ),
@@ -190,7 +188,7 @@ wire  [7:0] sd_din_mmfs;
 
 sd_card sd_card (
 	// connection to io controller
-	.clk_sys      ( clk_32m        ),
+	.clk_sys      ( clk_48m        ),
 	.sd_lba       ( sd_lba_mmfs    ),
 	.sd_rd        ( sd_rd[0]       ),
 	.sd_wr        ( sd_wr[0]       ),
@@ -221,7 +219,7 @@ wire [24:0]	loader_addr, ioctl_addr;
 wire  [7:0] loader_data, ioctl_data;
 wire  [7:0] ioctl_index;
 
-always @(posedge clk_32m) begin
+always @(posedge clk_48m) begin
 	reg we_int = 0;
 
 	if (mem_sync) begin
@@ -252,7 +250,7 @@ Master:
 */
 
 data_io DATA_IO (
-	.clk_sys    ( clk_32m ),
+	.clk_sys    ( clk_48m ),
 	.SPI_SCK    ( SPI_SCK ),
 	.SPI_SS2    ( SPI_SS2 ),
 	.SPI_DI     ( SPI_DI  ),
@@ -273,7 +271,7 @@ wire user_via_cb2_in;
 // reset core whenever the user changes the rom mapping
 reg last_rom_map, last_model;
 reg [11:0] rom_map_counter = 12'h0;
-always @(posedge clk_32m) begin
+always @(posedge clk_48m) begin
 	last_rom_map <= rommap;
 	last_model <= model;
 
@@ -293,14 +291,14 @@ wire reset_in = ~pll_ready || ~sdram_ready || status[0] ||
 
 // synchronize reset with memory state machine
 reg reset;
-always @(posedge clk_32m)
+always @(posedge clk_48m)
 	if (mem_sync) reset <= reset_in;
 
 // the autoboot feature simply works by pressing shift for 2 seconds after 
 // the bbc has been reset
 wire autoboot_shift = autoboot && (autoboot_counter != 0 );
 reg [24:0] autoboot_counter;
-always @(posedge clk_32m) begin
+always @(posedge clk_48m) begin
 	if(reset) 
 		autoboot_counter <= 25'd32000000;
 	else if(autoboot_counter != 0)
@@ -314,8 +312,7 @@ wire img_ds = ioctl_index[7:6] == 1;
 
 bbc BBC(
 
-	.CLK32M_I   ( clk_32m       ),
-	.CLK24M_I   ( clk_24m       ),
+	.CLK48M_I   ( clk_48m       ),
 	.RESET_I    ( reset         ),
 
 	.MODEL_I    ( model         ),
@@ -434,7 +431,7 @@ sdram sdram (
 	.sd_cas         ( SDRAM_nCAS               ),
 
 	// system interface
-	.clk            ( clk_32m                  ),
+	.clk            ( clk_48m                  ),
 	.sync           ( mem_sync                 ),
 	.init           ( !pll_ready               ),
 	.ready          ( sdram_ready              ),
@@ -451,7 +448,7 @@ sdram sdram (
 assign mem_di = ram_do;
 
 audio	AUDIO	(
-	.clk         ( clk_24m    ),
+	.clk         ( clk_48m    ),
 	.rst         ( ~pll_ready ),
 	.audio_data_l( coreaud_l  ),
 	.audio_data_r( coreaud_r  ),
@@ -460,7 +457,7 @@ audio	AUDIO	(
 );
 
 mist_video #(.COLOR_DEPTH(1), .SD_HCNT_WIDTH(10), .SYNC_AND(1)) mist_video (
-	.clk_sys     ( clk_32m    ),
+	.clk_sys     ( clk_48m    ),
 
 	// OSD SPI interface
 	.SPI_SCK     ( SPI_SCK    ),

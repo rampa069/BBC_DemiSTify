@@ -27,8 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 module clocks(
 
-		input clk_32m,
-		input clk_24m,
+		input clk_48m,
 		
 		input reset_n,
 		input mhz1_enable,
@@ -48,47 +47,55 @@ module clocks(
 		output wire tube_clken
     );
 
-reg     [4:0] clken_counter; 
+reg     [5:0] clken_counter; 
 reg     [1:0] cpu_cycle_mask; 
 
-//  SAA5050 needs a 6 MHz clock enable relative to a 24 MHz clock
-reg     [1:0] ttxt_clken_counter; 
-
-//  Clock enable generation - 32 MHz clock split into 32 cycles^M
-//  CPU is on 0 and 16 (but can be masked by 1 MHz bus accesses)^M
-//  Video is on all odd cycles (16 MHz)^M
-//  1 MHz cycles are on cycle 31 (1 MHz)        ^M
-assign vid_clken = clken_counter[0]; // & ~vsync_latch & ~hsync_latch;
-//  1,3,5...^M
-assign mhz4_clken = clken_counter[0] & clken_counter[1] & clken_counter[2];
-//  7/15/23/31^M
-assign mhz2_clken = mhz4_clken & clken_counter[3];
-// 1/17
-assign tube_clken = clken_counter[0] & !clken_counter[1] & !clken_counter[2];
-//  15/31^M
-assign mhz1_clken = mhz2_clken & clken_counter[4];
-//  31^M
-assign cpu_cycle = ~(clken_counter[0] | clken_counter[1] | clken_counter[2] | clken_counter[3]);
-//  0/16^M
+//  Clock enable generation - 48 MHz clock split into 48 cycles
+//  CPU is on 0 and 24 (but can be masked by 1 MHz bus accesses)
+//  Video is on all third cycles (16 MHz)
+//  1 MHz cycles are on cycle 47 (1 MHz)
+assign vid_clken =
+	clken_counter == 1 ||
+	clken_counter == 4 ||
+	clken_counter == 7 ||
+	clken_counter == 10 ||
+	clken_counter == 13 ||
+	clken_counter == 16 ||
+	clken_counter == 19 ||
+	clken_counter == 22 ||
+	clken_counter == 25 ||
+	clken_counter == 28 ||
+	clken_counter == 31 ||
+	clken_counter == 34 ||
+	clken_counter == 37 ||
+	clken_counter == 40 ||
+	clken_counter == 43 ||
+	clken_counter == 46;
+//  1,3,5...
+assign mhz4_clken = clken_counter == 11 || clken_counter == 23 || clken_counter == 35 || clken_counter == 47;
+//  15/31
+assign mhz2_clken = clken_counter == 23 || clken_counter == 47;
+// 23/47
+assign tube_clken = clken_counter == 1 || clken_counter == 25;
+// 1/25
+assign mhz1_clken = clken_counter == 47;
+// 47
+assign cpu_cycle = clken_counter == 0 || clken_counter == 24;
+// 0/24
 assign cpu_clken = cpu_cycle & ~cpu_cycle_mask[1] & ~cpu_cycle_mask[0];
 
-wire [4:0] clken_counter_next = clken_counter - 1'd1;
-assign cpu_phi0 = clken_counter_next[3];
+assign cpu_phi0 = clken_counter == 0 || clken_counter >= 36 || (clken_counter > 12 && clken_counter <= 24);
 
-always @(posedge clk_32m)
-   begin : clk_gen
-//   if (reset_n === 1'b 0)
-//      begin
-//      clken_counter <= {5{1'b 0}};   
-//      end
-//   else
-//      begin
-      clken_counter <= clken_counter + 5'd1;   
-//      end
-   end
-	
+always @(posedge clk_48m)
+	begin : clk_gen
+		if (clken_counter == 47)
+			clken_counter <= 0;
+		else
+			clken_counter <= clken_counter + 1'd1;
+	end
 
-always @(posedge clk_32m)
+
+always @(posedge clk_48m)
    begin : cycle_stretch
    if (reset_n === 1'b 0) begin
       cpu_cycle_mask <= 2'b 00;   
@@ -108,17 +115,8 @@ always @(posedge clk_32m)
 		end
    end
 
-always @(posedge clk_24m)
-begin : ttxt_clk_gen
-   if (reset_n === 1'b 0) begin
-		ttxt_clken_counter <= {2{1'b 0}};  
-   end else begin
-		ttxt_clken_counter <= ttxt_clken_counter + 1'd1;
-   end
-end
-
 //  6 MHz clock enable for SAA5050
-assign ttxt_clken = ttxt_clken_counter === 0 ? 1'b 1 : 1'b 0; 
-assign ttxt_clkenx2 = !ttxt_clken_counter[0]; 
+assign ttxt_clken = clken_counter[2:0] == 0; 
+assign ttxt_clkenx2 = clken_counter[1:0] == 0;
 
 endmodule
