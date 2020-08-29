@@ -95,6 +95,8 @@ begin
     elsif clock_i'event and clock_i = '1' then
       if clk_en_i then
         we_n_d <= we_n_i;
+      elsif we_n_i = '1' then
+        we_n_d <= '1';
       end if;
 
       -- READY Flag Output ----------------------------------------------------
