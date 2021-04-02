@@ -48,7 +48,7 @@ assign LED = ~loader_active;
 // it to control the menu on the OSD 
 parameter CONF_STR = {
         "BBC;ROM;",
-        "S1,SSDDSD,Mount Disk;",
+        "S1U,SSDDSD,Mount Disk;",
         "O12,Scanlines,Off,25%,50%,75%;",
         "O3,Joystick Swap,Off,On;",
         "O4,Mode,Model B,Master;",
