@@ -19,7 +19,14 @@ entity rtc is
         adi          : in  std_logic_vector(7 downto 0); -- address/data in
         do           : out std_logic_vector(7 downto 0); -- data out
         -- bits 0..3 set mode; bit 4 sets autoboot
-        keyb_dip     : in  std_logic_vector(7 downto 0)  -- keyboard DIP
+        keyb_dip     : in  std_logic_vector(7 downto 0); -- keyboard DIP
+
+        -- external data IO
+        RTC          : in  std_logic_vector(63 downto 0);
+        ext_addr     : in  std_logic_vector(5 downto 0);
+        ext_we       : in  std_logic;
+        ext_di       : in  std_logic_vector(7 downto 0);
+        ext_do       : out std_logic_vector(7 downto 0)
     );
 end entity;
 
@@ -182,6 +189,11 @@ begin
     begin
         if rising_edge(clk) then
 
+            ext_do <= rtc_ram(to_integer(unsigned(ext_addr)));
+            if ext_we = '1' then
+                rtc_ram(to_integer(unsigned(ext_addr))) <= ext_di;
+            end if;
+
             if hard_reset_n = '0' then
                 rtc_state <= INIT;
 
@@ -231,7 +243,28 @@ begin
                             end if;
 
                             -- Read Data
-                            do <= rtc_ram(to_integer(unsigned(addr)));
+                            if addr <= 9 and RTC /= 0 then
+                               case addr(3 downto 0) is
+                                  when x"0" => do <= RTC(7 downto 0); -- RTC Seconds
+                                  when x"1" => do <= rtc_ram(to_integer(unsigned(addr)));-- RTC Seconds Alarm
+                                  when x"2" => do <= RTC(15 downto 8); -- RTC Minutes
+                                  when x"3" => do <= rtc_ram(to_integer(unsigned(addr)));-- RTC Minutes Alarm
+                                  when x"4" => do <= RTC(23 downto 16); -- RTC Hours
+                                  when x"5" => do <= rtc_ram(to_integer(unsigned(addr)));-- RTC Hours Alarm
+                                  when x"6" => -- RTC Day of Week (1-Sun, 7-Sat)
+                                     if RTC(55 downto 48) = 7 then
+                                        do <= x"01";
+                                     else
+                                        do <= RTC(55 downto 48) + 1;
+                                     end if;
+                                  when x"7" => do <= RTC(31 downto 24); -- RTC Date of Month
+                                  when x"8" => do <= RTC(39 downto 32); -- RTC Month
+                                  when x"9" => do <= RTC(47 downto 40); -- RTC Year
+                                  when others => null;
+                               end case;
+                            else
+                                do <= rtc_ram(to_integer(unsigned(addr)));
+                            end if;
                         end if;
                 end case;
             end if;

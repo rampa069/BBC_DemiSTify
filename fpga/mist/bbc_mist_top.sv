@@ -54,6 +54,7 @@ parameter CONF_STR = {
         "O4,Mode,Model B,Master;",
         "O5,ROM mapping,High,Low;",
         "O6,Auto boot,Off,On;",
+        "R64,Save CMOS;",
         "T0,Reset;"
 };
 
@@ -134,6 +135,7 @@ wire [15:0] joystick_analog_1;
 wire scandoubler_disable;
 wire ypbpr;
 wire no_csync;
+wire [63:0] RTC;
 
 user_io #(.STRLEN($size(CONF_STR)>>3)) user_io(
 	.conf_str      ( CONF_STR       ),
@@ -157,6 +159,7 @@ user_io #(.STRLEN($size(CONF_STR)>>3)) user_io(
 	.scandoubler_disable ( scandoubler_disable ),
 	.ypbpr          ( ypbpr         ),
 	.no_csync       ( no_csync      ),
+	.rtc            ( RTC           ),
 
    // interface to embedded legacy sd card wrapper
 	.sd_lba     	  ( sd_lba        ),
@@ -213,10 +216,10 @@ sd_card sd_card (
 );
 
 // data loading 
-wire        loader_active;
+wire        loader_active, upload_active;
 wire        loader_we, ioctl_we;
 wire [24:0]	loader_addr, ioctl_addr;
-wire  [7:0] loader_data, ioctl_data;
+wire  [7:0] loader_data, ioctl_data, ioctl_din;
 wire  [7:0] ioctl_index;
 
 always @(posedge clk_48m) begin
@@ -231,7 +234,7 @@ always @(posedge clk_48m) begin
 		end
 	end
 
-	if (ioctl_we) we_int <= 1;
+	if (ioctl_we && loader_active && ioctl_index != 8'hff) we_int <= 1;
 end
 /*
 ROM structure:
@@ -254,14 +257,17 @@ data_io DATA_IO (
 	.SPI_SCK    ( SPI_SCK ),
 	.SPI_SS2    ( SPI_SS2 ),
 	.SPI_DI     ( SPI_DI  ),
+	.SPI_DO     ( SPI_DO  ),
 
 	.ioctl_download ( loader_active ),
+	.ioctl_upload   ( upload_active  ),
 	.ioctl_index( ioctl_index  ),
 
    // ram interface
 	.ioctl_wr   ( ioctl_we     ),
 	.ioctl_addr ( ioctl_addr   ),
-	.ioctl_dout ( ioctl_data   )
+	.ioctl_dout ( ioctl_data   ),
+	.ioctl_din  ( ioctl_din    )
 );
 
 wire [7:0] user_via_pb_out;
@@ -370,7 +376,13 @@ bbc BBC(
 	.sd_buff_addr   ( sd_buff_addr   ),
 	.sd_dout        ( sd_dout        ),
 	.sd_din         ( sd_din_fdc     ),
-	.sd_dout_strobe ( sd_dout_strobe )
+	.sd_dout_strobe ( sd_dout_strobe ),
+	// CMOS RAM
+	.RTC            ( RTC            ),
+	.cmos_addr      ( ioctl_addr[6:0]),
+	.cmos_we        ( ioctl_we & loader_active & ioctl_index == 8'hff ),
+	.cmos_di        ( ioctl_data     ),
+	.cmos_do        ( ioctl_din      )
 );
 
 assign SDRAM_CKE = 1'b1;

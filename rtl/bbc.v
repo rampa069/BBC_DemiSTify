@@ -66,7 +66,14 @@ module bbc(
 	input   [8:0] sd_buff_addr,
 	input   [7:0] sd_dout,
 	output  [7:0] sd_din,
-	input         sd_dout_strobe
+	input         sd_dout_strobe,
+
+	//CMOS RAM
+	input  [63:0] RTC,
+	input   [5:0] cmos_addr,
+	input         cmos_we,
+	input   [7:0] cmos_di,
+	output  [7:0] cmos_do
 );
 
 wire   master = MODEL_I;
@@ -621,7 +628,7 @@ end
 // IC32(2) -> data strobe (active high)
 // IC32(1) -> read (1) / write (0)
 
-rtc RTC (
+rtc RTC_i (
 	.clk(CLK48M_I),
 	.cpu_clken(cpu_clken),
 	.hard_reset_n(reset_n),
@@ -632,7 +639,13 @@ rtc RTC (
 	.r_nw(rtc_r_nw),
 	.adi(rtc_adi),
 	.do(rtc_do),
-	.keyb_dip(keyb_dip)
+	.keyb_dip(keyb_dip),
+	// ext IO
+	.RTC(RTC),
+	.ext_addr(cmos_addr),
+	.ext_we(cmos_we),
+	.ext_di(cmos_di),
+	.ext_do(cmos_do)
 );
 
 assign rtc_adi = sys_via_pa_out;
