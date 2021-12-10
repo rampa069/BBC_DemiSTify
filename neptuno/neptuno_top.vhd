@@ -358,7 +358,7 @@ controller : entity work.substitute_mcu
 		spi_toguest => spi_toguest,
 		spi_ss2 => spi_ss2,
 		spi_ss3 => spi_ss3,
-		spi_ss4 => spi_ss4,
+		--spi_ss4 => spi_ss4,
 		conf_data0 => conf_data0,
 		
 		-- PS/2 signals
