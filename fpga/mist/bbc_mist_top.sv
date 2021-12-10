@@ -3,8 +3,12 @@
 module bbc_mist_top(
 
   // clock inputs
+`ifdef DEMISTIFY
   input wire  	CLOCK_27, // 27 MHz
-  
+`else
+  input wire [1:0] 	CLOCK_27,
+`endif
+
   // LED outputs
   output wire	LED, // LED Yellow
   
@@ -31,17 +35,21 @@ module bbc_mist_top(
    output [1:0]    SDRAM_BA,       // SDRAM Bank Address
    output          SDRAM_CLK,      // SDRAM Clock
    output          SDRAM_CKE,      // SDRAM Clock Enable
-	
-  
+
+`ifdef DEMISTIFY
+  output [15:0]  DAC_L,
+  output [15:0]  DAC_R,
+  input         PS2_CLK_IN,
+  input         PS2_DAT_IN,
+`endif
+
   // SPI
   output         SPI_DO,
   input          SPI_DI,
   input          SPI_SCK,
   input          SPI_SS2,    // data_io
   input          SPI_SS3,    // OSD
-  input          CONF_DATA0,  // SPI_SS for user_io
-  output [15:0]  DAC_L,
-  output [15:0]  DAC_R
+  input          CONF_DATA0  // SPI_SS for user_io
 );
 
 assign LED = ~loader_active;
@@ -107,7 +115,11 @@ wire        ps2_dat;
 assign SDRAM_CLK = clk_48m;
 
 clockgen CLOCKS(
+`ifdef DEMISTIFY
 	.inclk0	(CLOCK_27),
+`else	
+    .inclk0	(CLOCK_27[0]),
+`endif
 	.c0		(clk_48m),
 	.locked	(pll_ready)  // pll locked output
 );
@@ -360,10 +372,13 @@ bbc BBC(
 	.joy1_axis1 ( joyswap ? joystick_analog_0[15:8] : joystick_analog_1[ 7:0] ),
 
 	.DIP_SWITCH ( 8'b00000000 ),
-
+`ifdef DEMISTIFY
+	.PS2_CLK	( PS2_CLK_IN    ),
+	.PS2_DAT	( PS2_DAT_IN    ),
+`else
 	.PS2_CLK	( ps2_clk       ),
 	.PS2_DAT	( ps2_dat       ),
-
+`endif
 	.AUDIO_L	( coreaud_l     ),
 	.AUDIO_R	( coreaud_r     ),
 	
@@ -470,8 +485,10 @@ audio	AUDIO	(
 	.audio_r     ( AUDIO_R    )
 );
 
+`ifdef DEMISTIFY
 assign DAC_L = coreaud_l;
 assign DAC_R = coreaud_r;
+`endif
 
 mist_video #(.COLOR_DEPTH(1), .SD_HCNT_WIDTH(10), .SYNC_AND(1)) mist_video (
 	.clk_sys     ( clk_48m    ),

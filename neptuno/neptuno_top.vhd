@@ -159,8 +159,8 @@ COMPONENT  bbc_mist_top
 		AUDIO_L  : out std_logic;
 		AUDIO_R  : out std_logic;
 		LED      : out std_logic;
-		--PS2_CLK_IN : in std_logic;
-		--PS2_DAT_IN : in std_logic;
+		PS2_CLK_IN : in std_logic;
+		PS2_DAT_IN : in std_logic;
 		--C64_KEYS   : in std_logic_vector(64 downto 0);
 		--TAPE_BUTTON_N : in std_logic;
 		DAC_L    : out std_logic_vector(15 downto 0);
@@ -333,8 +333,8 @@ guest: COMPONENT  bbc_mist_top
 		AUDIO_L => sigma_l,
 		AUDIO_R => sigma_r,
 		LED     => LED,
-		--PS2_CLK_IN => ps2_keyboard_clk_in or intercept, -- Block keyboard when OSD is active
-		--PS2_DAT_IN => ps2_keyboard_dat_in or intercept,
+		PS2_CLK_IN => ps2_keyboard_clk_in or intercept, -- Block keyboard when OSD is active
+		PS2_DAT_IN => ps2_keyboard_dat_in or intercept,
 		--C64_KEYS => (others=>'1'),
 		--TAPE_BUTTON_N => '1',
 		DAC_L   => DAC_L,
