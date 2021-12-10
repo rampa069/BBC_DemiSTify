@@ -3,11 +3,7 @@
 module bbc_mist_top(
 
   // clock inputs
-`ifdef DEMISTIFY
-  input wire  	CLOCK_27, // 27 MHz
-`else
   input wire [1:0] 	CLOCK_27,
-`endif
 
   // LED outputs
   output wire	LED, // LED Yellow
@@ -36,12 +32,8 @@ module bbc_mist_top(
    output          SDRAM_CLK,      // SDRAM Clock
    output          SDRAM_CKE,      // SDRAM Clock Enable
 
-`ifdef DEMISTIFY
   output [15:0]  DAC_L,
   output [15:0]  DAC_R,
-  input         PS2_CLK_IN,
-  input         PS2_DAT_IN,
-`endif
 
   // SPI
   output         SPI_DO,
@@ -58,7 +50,8 @@ assign LED = ~loader_active;
 // it to control the menu on the OSD 
 parameter CONF_STR = {
         "BBC;ROM;",
-        "S1U,SSDDSD,Mount Disk;",
+		  "S0,VHD,Mount VHD;",
+        "S1,SSDDSD,Mount Disk;",
         "O12,Scanlines,Off,25%,50%,75%;",
         "O3,Joystick Swap,Off,On;",
         "O4,Mode,Model B,Master;",
@@ -115,11 +108,8 @@ wire        ps2_dat;
 assign SDRAM_CLK = clk_48m;
 
 clockgen CLOCKS(
-`ifdef DEMISTIFY
-	.inclk0	(CLOCK_27),
-`else	
-    .inclk0	(CLOCK_27[0]),
-`endif
+
+   .inclk0	(CLOCK_27[0]),
 	.c0		(clk_48m),
 	.locked	(pll_ready)  // pll locked output
 );
@@ -372,13 +362,10 @@ bbc BBC(
 	.joy1_axis1 ( joyswap ? joystick_analog_0[15:8] : joystick_analog_1[ 7:0] ),
 
 	.DIP_SWITCH ( 8'b00000000 ),
-`ifdef DEMISTIFY
-	.PS2_CLK	( PS2_CLK_IN    ),
-	.PS2_DAT	( PS2_DAT_IN    ),
-`else
+
 	.PS2_CLK	( ps2_clk       ),
 	.PS2_DAT	( ps2_dat       ),
-`endif
+
 	.AUDIO_L	( coreaud_l     ),
 	.AUDIO_R	( coreaud_r     ),
 	

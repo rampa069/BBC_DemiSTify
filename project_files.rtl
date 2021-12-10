@@ -1,6 +1,5 @@
 # files inherited from the guest core:
-vic20.qip
-
+files.qip
 # The controller module
 DeMiSTify/controller/controller.qip
 

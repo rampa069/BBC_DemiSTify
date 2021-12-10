@@ -127,7 +127,7 @@ architecture RTL of neptuno_top is
 COMPONENT  bbc_mist_top
 	PORT
 	(
-		CLOCK_27 :	IN STD_LOGIC;
+		CLOCK_27 :	IN STD_LOGIC_VECTOR(1 downto 0);
 		--RESET_N :   IN std_logic;
 		SDRAM_DQ		:	 INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 		SDRAM_A		:	 OUT STD_LOGIC_VECTOR(12 DOWNTO 0);
@@ -159,12 +159,8 @@ COMPONENT  bbc_mist_top
 		AUDIO_L  : out std_logic;
 		AUDIO_R  : out std_logic;
 		LED      : out std_logic;
-		PS2_CLK_IN : in std_logic;
-		PS2_DAT_IN : in std_logic;
-		--C64_KEYS   : in std_logic_vector(64 downto 0);
-		--TAPE_BUTTON_N : in std_logic;
 		DAC_L    : out std_logic_vector(15 downto 0);
-	    DAC_R    : out std_logic_vector(15 downto 0)
+      DAC_R    : out std_logic_vector(15 downto 0)
 
 	);
 END COMPONENT;
@@ -297,7 +293,7 @@ joy: joydecoder
 guest: COMPONENT  bbc_mist_top
 	PORT map
 	(
-		CLOCK_27 => clock_50_i,
+		CLOCK_27 => clock_50_i & clock_50_i,
 		--RESET_N => reset_n,
 		-- clocks
 		SDRAM_DQ => DRAM_DQ,
@@ -333,10 +329,6 @@ guest: COMPONENT  bbc_mist_top
 		AUDIO_L => sigma_l,
 		AUDIO_R => sigma_r,
 		LED     => LED,
-		PS2_CLK_IN => ps2_keyboard_clk_in or intercept, -- Block keyboard when OSD is active
-		PS2_DAT_IN => ps2_keyboard_dat_in or intercept,
-		--C64_KEYS => (others=>'1'),
-		--TAPE_BUTTON_N => '1',
 		DAC_L   => DAC_L,
 		DAC_R   => DAC_R
 );
