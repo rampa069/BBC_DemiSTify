@@ -1,0 +1,1583 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Shell
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Copyright (C) 2017  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and its AMPP partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details.
+    Info: Processing started: Tue Nov 30 14:52:50 2021
+Info: Command: quartus_sh -t ..//DeMiSTify/Scripts/compile.tcl -project VIC20 -board neptuno
+Info: Quartus(args): -project VIC20 -board neptuno
+Project: VIC20_neptuno
+Target: neptuno
+Info (293032): Detected changes in source files.
+    Info (293027): Source file: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/vic20.sv has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/firmware/controller_rom1_byte.vhd has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/firmware/controller_rom2_byte.vhd has changed.
+Info (293032): Detected changes in source files.
+    Info (293027): Source file: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/vic20.sv has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/firmware/controller_rom1_byte.vhd has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/firmware/controller_rom2_byte.vhd has changed.
+Info (293032): Detected changes in source files.
+    Info (293027): Source file: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/vic20.sv has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/firmware/controller_rom1_byte.vhd has changed.
+    Info (293027): Source file: /home/user/VIC20_MiST/firmware/controller_rom2_byte.vhd has changed.
+Info: *******************************************************************
+Info: Running Quartus Prime Shell
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Tue Nov 30 14:52:58 2021
+Info: Command: quartus_sh -t ../build_id_verilog.tcl compile VIC20_neptuno VIC20_neptuno
+Info: Quartus(args): compile VIC20_neptuno VIC20_neptuno
+Info: Generated build identification Verilog module: /home/user/VIC20_MiST/neptuno/build_id.v
+Info: Date:             211130
+Info: Time:             145258
+Info (23030): Evaluation of Tcl script ../build_id_verilog.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 757 megabytes
+    Info: Processing ended: Tue Nov 30 14:52:58 2021
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:00
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Tue Nov 30 14:53:04 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off VIC20_neptuno -c VIC20_neptuno
+Info (20029): Only one processor detected - disabling parallel compilation
+Info (12021): Found 1 design units, including 1 entities, in source file rtl/joydecoder.v
+    Info (12023): Found entity 1: joydecoder File: /home/user/VIC20_MiST/neptuno/rtl/joydecoder.v Line: 24
+Info (12021): Found 4 design units, including 2 entities, in source file rtl/audio_i2s.vhd
+    Info (12022): Found design unit 1: dac_if-Behavioral File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 34
+    Info (12022): Found design unit 2: audio_top-Behavioral File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 97
+    Info (12023): Found entity 1: dac_if File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 24
+    Info (12023): Found entity 2: audio_top File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 85
+Info (12021): Found 2 design units, including 1 entities, in source file neptuno_top.vhd
+    Info (12022): Found design unit 1: neptuno_top-RTL File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 63
+    Info (12023): Found entity 1: neptuno_top File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file pll27.v
+    Info (12023): Found entity 1: pll27 File: /home/user/VIC20_MiST/neptuno/pll27.v Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file pll_vic20.v
+    Info (12023): Found entity 1: pll_vic20 File: /home/user/VIC20_MiST/neptuno/pll_vic20.v Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file rom_reconfig_pal.v
+    Info (12023): Found entity 1: rom_reconfig_pal File: /home/user/VIC20_MiST/neptuno/rom_reconfig_pal.v Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file rom_reconfig_ntsc.v
+    Info (12023): Found entity 1: rom_reconfig_ntsc File: /home/user/VIC20_MiST/neptuno/rom_reconfig_ntsc.v Line: 39
+Info (12021): Found 2 design units, including 0 entities, in source file /home/user/VIC20_MiST/T65/T65_Pack.vhd
+    Info (12022): Found design unit 1: T65_Pack File: /home/user/VIC20_MiST/T65/T65_Pack.vhd Line: 55
+    Info (12022): Found design unit 2: T65_Pack-body File: /home/user/VIC20_MiST/T65/T65_Pack.vhd Line: 154
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/T65/T65_ALU.vhd
+    Info (12022): Found design unit 1: T65_ALU-rtl File: /home/user/VIC20_MiST/T65/T65_ALU.vhd Line: 70
+    Info (12023): Found entity 1: T65_ALU File: /home/user/VIC20_MiST/T65/T65_ALU.vhd Line: 57
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/T65/T65_MCode.vhd
+    Info (12022): Found design unit 1: T65_MCode-rtl File: /home/user/VIC20_MiST/T65/T65_MCode.vhd Line: 94
+    Info (12023): Found entity 1: T65_MCode File: /home/user/VIC20_MiST/T65/T65_MCode.vhd Line: 58
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/T65/T65.vhd
+    Info (12022): Found design unit 1: T65-rtl File: /home/user/VIC20_MiST/T65/T65.vhd Line: 166
+    Info (12023): Found entity 1: T65 File: /home/user/VIC20_MiST/T65/T65.vhd Line: 134
+Info (12021): Found 1 design units, including 0 entities, in source file /home/user/VIC20_MiST/mist-modules/mist.vhd
+    Info (12022): Found design unit 1: mist File: /home/user/VIC20_MiST/mist-modules/mist.vhd Line: 12
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/user_io.v
+    Info (12023): Found entity 1: user_io File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/data_io.v
+    Info (12023): Found entity 1: data_io File: /home/user/VIC20_MiST/mist-modules/data_io.v Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/mist_video.v
+    Info (12023): Found entity 1: mist_video File: /home/user/VIC20_MiST/mist-modules/mist_video.v Line: 4
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/scandoubler.v
+    Info (12023): Found entity 1: scandoubler File: /home/user/VIC20_MiST/mist-modules/scandoubler.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/osd.v
+    Info (12023): Found entity 1: osd File: /home/user/VIC20_MiST/mist-modules/osd.v Line: 4
+Info (12021): Found 3 design units, including 3 entities, in source file /home/user/VIC20_MiST/mist-modules/arcade_inputs.v
+    Info (12023): Found entity 1: arcade_inputs File: /home/user/VIC20_MiST/mist-modules/arcade_inputs.v Line: 4
+    Info (12023): Found entity 2: control_rotator File: /home/user/VIC20_MiST/mist-modules/arcade_inputs.v Line: 152
+    Info (12023): Found entity 3: input_toggle File: /home/user/VIC20_MiST/mist-modules/arcade_inputs.v Line: 170
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/rgb2ypbpr.sv
+    Info (12023): Found entity 1: rgb2ypbpr File: /home/user/VIC20_MiST/mist-modules/rgb2ypbpr.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/cofi.sv
+    Info (12023): Found entity 1: cofi File: /home/user/VIC20_MiST/mist-modules/cofi.sv Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/mist-modules/dac.vhd
+    Info (12022): Found design unit 1: dac-rtl File: /home/user/VIC20_MiST/mist-modules/dac.vhd Line: 33
+    Info (12023): Found entity 1: dac File: /home/user/VIC20_MiST/mist-modules/dac.vhd Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/vic20.sv
+    Info (12023): Found entity 1: vic20_mist File: /home/user/VIC20_MiST/vic20.sv Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/keyboard.v
+    Info (12023): Found entity 1: keyboard File: /home/user/VIC20_MiST/keyboard.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/sdram.sv
+    Info (12023): Found entity 1: sdram File: /home/user/VIC20_MiST/sdram.sv Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/sigma_delta_dac.v
+    Info (12023): Found entity 1: sigma_delta_dac File: /home/user/VIC20_MiST/sigma_delta_dac.v Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/c1530.vhd
+    Info (12022): Found design unit 1: c1530-struct File: /home/user/VIC20_MiST/c1530.vhd Line: 40
+    Info (12023): Found entity 1: c1530 File: /home/user/VIC20_MiST/c1530.vhd Line: 15
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/tap_fifo.vhd
+    Info (12022): Found design unit 1: tap_fifo-SYN File: /home/user/VIC20_MiST/tap_fifo.vhd Line: 57
+    Info (12023): Found entity 1: tap_fifo File: /home/user/VIC20_MiST/tap_fifo.vhd Line: 42
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/vic20/vic20_clocks.vhd
+    Info (12022): Found design unit 1: VIC20_CLOCKS-RTL File: /home/user/VIC20_MiST/vic20/vic20_clocks.vhd Line: 65
+    Info (12023): Found entity 1: VIC20_CLOCKS File: /home/user/VIC20_MiST/vic20/vic20_clocks.vhd Line: 53
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/vic20/vic20.vhd
+    Info (12022): Found design unit 1: VIC20-RTL File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 125
+    Info (12023): Found entity 1: VIC20 File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 57
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd
+    Info (12022): Found design unit 1: rc_filter_1o-RTL File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 79
+    Info (12023): Found entity 1: rc_filter_1o File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 63
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/vic20/m6561.vhd
+    Info (12022): Found design unit 1: M6561-RTL File: /home/user/VIC20_MiST/vic20/m6561.vhd Line: 107
+    Info (12023): Found entity 1: M6561 File: /home/user/VIC20_MiST/vic20/m6561.vhd Line: 69
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/c1541/via6522.vhd
+    Info (12022): Found design unit 1: via6522-Gideon File: /home/user/VIC20_MiST/c1541/via6522.vhd Line: 62
+    Info (12023): Found entity 1: via6522 File: /home/user/VIC20_MiST/c1541/via6522.vhd Line: 19
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/c1541/spram.vhd
+    Info (12022): Found design unit 1: spram-SYN File: /home/user/VIC20_MiST/c1541/spram.vhd Line: 26
+    Info (12023): Found entity 1: spram File: /home/user/VIC20_MiST/c1541/spram.vhd Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file /home/user/VIC20_MiST/c1541/mist_sd_card.sv
+    Info (12023): Found entity 1: mist_sd_card File: /home/user/VIC20_MiST/c1541/mist_sd_card.sv Line: 22
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/c1541/gcr_floppy.vhd
+    Info (12022): Found design unit 1: gcr_floppy-struct File: /home/user/VIC20_MiST/c1541/gcr_floppy.vhd Line: 44
+    Info (12023): Found entity 1: gcr_floppy File: /home/user/VIC20_MiST/c1541/gcr_floppy.vhd Line: 19
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/c1541/c1541_sd.vhd
+    Info (12022): Found design unit 1: c1541_sd-struct File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 73
+    Info (12023): Found entity 1: c1541_sd File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 28
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/c1541/c1541_logic.vhd
+    Info (12022): Found design unit 1: c1541_logic-SYN File: /home/user/VIC20_MiST/c1541/c1541_logic.vhd Line: 51
+    Info (12023): Found entity 1: c1541_logic File: /home/user/VIC20_MiST/c1541/c1541_logic.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/memories/ram_conf_8192x8.vhd
+    Info (12022): Found design unit 1: ram_conf_8192x8-RTL File: /home/user/VIC20_MiST/memories/ram_conf_8192x8.vhd Line: 75
+    Info (12023): Found entity 1: ram_conf_8192x8 File: /home/user/VIC20_MiST/memories/ram_conf_8192x8.vhd Line: 55
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/memories/ram_conf_2048x8.vhd
+    Info (12022): Found design unit 1: ram_conf_2048x8-RTL File: /home/user/VIC20_MiST/memories/ram_conf_2048x8.vhd Line: 76
+    Info (12023): Found entity 1: ram_conf_2048x8 File: /home/user/VIC20_MiST/memories/ram_conf_2048x8.vhd Line: 55
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/memories/ram_conf_1024x8.vhd
+    Info (12022): Found design unit 1: ram_conf_1024x8-RTL File: /home/user/VIC20_MiST/memories/ram_conf_1024x8.vhd Line: 75
+    Info (12023): Found entity 1: ram_conf_1024x8 File: /home/user/VIC20_MiST/memories/ram_conf_1024x8.vhd Line: 55
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/memories/ram_conf_1024x4.vhd
+    Info (12022): Found design unit 1: ram_conf_1024x4-RTL File: /home/user/VIC20_MiST/memories/ram_conf_1024x4.vhd Line: 75
+    Info (12023): Found entity 1: ram_conf_1024x4 File: /home/user/VIC20_MiST/memories/ram_conf_1024x4.vhd Line: 55
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/memories/gen_rom.vhd
+    Info (12022): Found design unit 1: gen_rom-rtl File: /home/user/VIC20_MiST/memories/gen_rom.vhd Line: 32
+    Info (12023): Found entity 1: gen_rom File: /home/user/VIC20_MiST/memories/gen_rom.vhd Line: 8
+Warning (12136): Clear box output file /home/user/VIC20_MiST/pll_reconfig.v is not compatible with the current compile. Used regenerated output file /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v for elaboration
+Info (12021): Found 2 design units, including 2 entities, in source file db/pll_reconfig.v
+    Info (12023): Found entity 1: pll_reconfig_pllrcfg_fj11 File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 47
+    Info (12023): Found entity 2: pll_reconfig File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1452
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd
+    Info (12022): Found design unit 1: substitute_mcu-rtl File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 81
+    Info (12023): Found entity 1: substitute_mcu File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 24
+Info (12021): Found 1 design units, including 0 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_pkg.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_pkg File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_pkg.vhd Line: 22
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_alu-rtl File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd Line: 50
+    Info (12023): Found entity 1: eightthirtytwo_alu File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd Line: 27
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_shifter.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_shifter-rtl File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_shifter.vhd Line: 45
+    Info (12023): Found entity 1: eightthirtytwo_shifter File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_shifter.vhd Line: 27
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_aligner-rtl File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner.vhd Line: 36
+    Info (12023): Found entity 1: eightthirtytwo_aligner File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner.vhd Line: 23
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner_le.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_aligner_le-rtl File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner_le.vhd Line: 38
+    Info (12023): Found entity 1: eightthirtytwo_aligner_le File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner_le.vhd Line: 25
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_decode.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_decode-behavoural File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_decode.vhd Line: 38
+    Info (12023): Found entity 1: eightthirtytwo_decode File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_decode.vhd Line: 26
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_fetchloadstore-behavioural File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd Line: 79
+    Info (12023): Found entity 1: eightthirtytwo_fetchloadstore File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd Line: 28
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_hazard.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_hazard-rtl File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_hazard.vhd Line: 60
+    Info (12023): Found entity 1: eightthirtytwo_hazard File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_hazard.vhd Line: 26
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_debug.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_debug-rtl File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_debug.vhd Line: 53
+    Info (12023): Found entity 1: eightthirtytwo_debug File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_debug.vhd Line: 26
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd
+    Info (12022): Found design unit 1: eightthirtytwo_cpu-behavoural File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 59
+    Info (12023): Found entity 1: eightthirtytwo_cpu File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 27
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_bridge_jtag.vhd
+    Info (12022): Found design unit 1: debug_bridge_jtag-rtl File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_bridge_jtag.vhd Line: 39
+    Info (12023): Found entity 1: debug_bridge_jtag File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_bridge_jtag.vhd Line: 24
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_virtualjtag.vhd
+    Info (12022): Found design unit 1: debug_virtualjtag-SYN File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_virtualjtag.vhd Line: 62
+    Info (12023): Found entity 1: debug_virtualjtag File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_virtualjtag.vhd Line: 42
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_fifo_altera.vhd
+    Info (12022): Found design unit 1: debug_fifo_altera-SYN File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_fifo_altera.vhd Line: 58
+    Info (12023): Found entity 1: debug_fifo_altera File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/debug_fifo_altera.vhd Line: 42
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/firmware/controller_rom.vhd
+    Info (12022): Found design unit 1: controller_rom-arch File: /home/user/VIC20_MiST/DeMiSTify/firmware/controller_rom.vhd Line: 23
+    Info (12023): Found entity 1: controller_rom File: /home/user/VIC20_MiST/DeMiSTify/firmware/controller_rom.vhd Line: 11
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/controller/simple_uart.vhd
+    Info (12022): Found design unit 1: simple_uart-rtl File: /home/user/VIC20_MiST/DeMiSTify/controller/simple_uart.vhd Line: 53
+    Info (12023): Found entity 1: simple_uart File: /home/user/VIC20_MiST/DeMiSTify/controller/simple_uart.vhd Line: 25
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/controller/jtag_uart.vhd
+    Info (12022): Found design unit 1: jtag_uart-rtl File: /home/user/VIC20_MiST/DeMiSTify/controller/jtag_uart.vhd Line: 35
+    Info (12023): Found entity 1: jtag_uart File: /home/user/VIC20_MiST/DeMiSTify/controller/jtag_uart.vhd Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/controller/io_ps2_com.vhd
+    Info (12022): Found design unit 1: io_ps2_com-rtl File: /home/user/VIC20_MiST/DeMiSTify/controller/io_ps2_com.vhd Line: 80
+    Info (12023): Found entity 1: io_ps2_com File: /home/user/VIC20_MiST/DeMiSTify/controller/io_ps2_com.vhd Line: 54
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/controller/interrupt_controller.vhd
+    Info (12022): Found design unit 1: interrupt_controller-rtl File: /home/user/VIC20_MiST/DeMiSTify/controller/interrupt_controller.vhd Line: 35
+    Info (12023): Found entity 1: interrupt_controller File: /home/user/VIC20_MiST/DeMiSTify/controller/interrupt_controller.vhd Line: 21
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/controller/timer_controller.vhd
+    Info (12022): Found design unit 1: timer_controller-rtl File: /home/user/VIC20_MiST/DeMiSTify/controller/timer_controller.vhd Line: 43
+    Info (12023): Found entity 1: timer_controller File: /home/user/VIC20_MiST/DeMiSTify/controller/timer_controller.vhd Line: 25
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd
+    Info (12022): Found design unit 1: spi_controller-rtl File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 43
+    Info (12023): Found entity 1: spi_controller File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 23
+Info (12021): Found 1 design units, including 0 entities, in source file /home/user/VIC20_MiST/demistify_config_pkg.vhd
+    Info (12022): Found design unit 1: demistify_config_pkg File: /home/user/VIC20_MiST/demistify_config_pkg.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/firmware/controller_rom1_byte.vhd
+    Info (12022): Found design unit 1: controller_rom1-rtl File: /home/user/VIC20_MiST/firmware/controller_rom1_byte.vhd Line: 23
+    Info (12023): Found entity 1: controller_rom1 File: /home/user/VIC20_MiST/firmware/controller_rom1_byte.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file /home/user/VIC20_MiST/firmware/controller_rom2_byte.vhd
+    Info (12022): Found design unit 1: controller_rom2-rtl File: /home/user/VIC20_MiST/firmware/controller_rom2_byte.vhd Line: 23
+    Info (12023): Found entity 1: controller_rom2 File: /home/user/VIC20_MiST/firmware/controller_rom2_byte.vhd Line: 6
+Info (12127): Elaborating entity "neptuno_top" for the top level hierarchy
+Warning (10540): VHDL Signal Declaration warning at neptuno_top.vhd(40): used explicit default value for signal "joyP7_o" because signal was never assigned a value File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 40
+Warning (10540): VHDL Signal Declaration warning at neptuno_top.vhd(50): used explicit default value for signal "stm_rx_o" because signal was never assigned a value File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 50
+Warning (10036): Verilog HDL or VHDL warning at neptuno_top.vhd(69): object "reset_n" assigned a value but never read File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 69
+Warning (10036): Verilog HDL or VHDL warning at neptuno_top.vhd(86): object "spi_ss4" assigned a value but never read File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 86
+Warning (10541): VHDL Signal Declaration warning at neptuno_top.vhd(112): used implicit default value for signal "rs232_rxd" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 112
+Warning (10036): Verilog HDL or VHDL warning at neptuno_top.vhd(113): object "rs232_txd" assigned a value but never read File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 113
+Warning (10036): Verilog HDL or VHDL warning at neptuno_top.vhd(219): object "i2s_mclk" assigned a value but never read File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 219
+Info (12128): Elaborating entity "audio_top" for hierarchy "audio_top:audio_i2s" File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 265
+Info (12128): Elaborating entity "dac_if" for hierarchy "audio_top:audio_i2s|dac_if:dac" File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 147
+Info (12128): Elaborating entity "joydecoder" for hierarchy "joydecoder:joy" File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 277
+Info (12128): Elaborating entity "vic20_mist" for hierarchy "vic20_mist:guest" File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 297
+Info (12128): Elaborating entity "rom_reconfig_pal" for hierarchy "vic20_mist:guest|rom_reconfig_pal:rom_reconfig_pal" File: /home/user/VIC20_MiST/vic20.sv Line: 147
+Info (12128): Elaborating entity "altsyncram" for hierarchy "vic20_mist:guest|rom_reconfig_pal:rom_reconfig_pal|altsyncram:altsyncram_component" File: /home/user/VIC20_MiST/neptuno/rom_reconfig_pal.v Line: 84
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|rom_reconfig_pal:rom_reconfig_pal|altsyncram:altsyncram_component" File: /home/user/VIC20_MiST/neptuno/rom_reconfig_pal.v Line: 84
+Info (12133): Instantiated megafunction "vic20_mist:guest|rom_reconfig_pal:rom_reconfig_pal|altsyncram:altsyncram_component" with the following parameter: File: /home/user/VIC20_MiST/neptuno/rom_reconfig_pal.v Line: 84
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "pll_vic20_pal.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone III"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "256"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "widthad_a" = "8"
+    Info (12134): Parameter "width_a" = "1"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_9fa1.tdf
+    Info (12023): Found entity 1: altsyncram_9fa1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_9fa1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_9fa1" for hierarchy "vic20_mist:guest|rom_reconfig_pal:rom_reconfig_pal|altsyncram:altsyncram_component|altsyncram_9fa1:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Info (12128): Elaborating entity "rom_reconfig_ntsc" for hierarchy "vic20_mist:guest|rom_reconfig_ntsc:rom_reconfig_ntsc" File: /home/user/VIC20_MiST/vic20.sv Line: 155
+Info (12128): Elaborating entity "altsyncram" for hierarchy "vic20_mist:guest|rom_reconfig_ntsc:rom_reconfig_ntsc|altsyncram:altsyncram_component" File: /home/user/VIC20_MiST/neptuno/rom_reconfig_ntsc.v Line: 84
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|rom_reconfig_ntsc:rom_reconfig_ntsc|altsyncram:altsyncram_component" File: /home/user/VIC20_MiST/neptuno/rom_reconfig_ntsc.v Line: 84
+Info (12133): Instantiated megafunction "vic20_mist:guest|rom_reconfig_ntsc:rom_reconfig_ntsc|altsyncram:altsyncram_component" with the following parameter: File: /home/user/VIC20_MiST/neptuno/rom_reconfig_ntsc.v Line: 84
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "pll_vic20_ntsc.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone III"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "256"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "widthad_a" = "8"
+    Info (12134): Parameter "width_a" = "1"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_4ja1.tdf
+    Info (12023): Found entity 1: altsyncram_4ja1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_4ja1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_4ja1" for hierarchy "vic20_mist:guest|rom_reconfig_ntsc:rom_reconfig_ntsc|altsyncram:altsyncram_component|altsyncram_4ja1:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Info (12128): Elaborating entity "pll_reconfig" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst" File: /home/user/VIC20_MiST/vic20.sv Line: 183
+Info (12128): Elaborating entity "pll_reconfig_pllrcfg_fj11" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1553
+Info (12128): Elaborating entity "altsyncram" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|altsyncram:altsyncram4" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 359
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|altsyncram:altsyncram4" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 359
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|altsyncram:altsyncram4" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 359
+    Info (12134): Parameter "numwords_a" = "144"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "width_a" = "1"
+    Info (12134): Parameter "width_byteena_a" = "1"
+    Info (12134): Parameter "widthad_a" = "8"
+    Info (12134): Parameter "intended_device_family" = "Cyclone IV E"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "lpm_hint" = "CYCLONEII_M4K_COMPATIBILITY=ON, LOW_POWER_MODE=AUTO"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_d7r.tdf
+    Info (12023): Found entity 1: altsyncram_d7r File: /home/user/VIC20_MiST/neptuno/db/altsyncram_d7r.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_d7r" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|altsyncram:altsyncram4|altsyncram_d7r:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Info (12128): Elaborating entity "lpm_add_sub" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub5" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1033
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub5" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1033
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub5" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1033
+    Info (12134): Parameter "lpm_width" = "9"
+    Info (12134): Parameter "lpm_type" = "lpm_add_sub"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_qqa.tdf
+    Info (12023): Found entity 1: add_sub_qqa File: /home/user/VIC20_MiST/neptuno/db/add_sub_qqa.tdf Line: 22
+Info (12128): Elaborating entity "add_sub_qqa" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub5|add_sub_qqa:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_add_sub.tdf Line: 118
+Info (12128): Elaborating entity "lpm_add_sub" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub6" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1056
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub6" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1056
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub6" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1056
+    Info (12134): Parameter "lpm_width" = "8"
+    Info (12134): Parameter "lpm_type" = "lpm_add_sub"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_t9a.tdf
+    Info (12023): Found entity 1: add_sub_t9a File: /home/user/VIC20_MiST/neptuno/db/add_sub_t9a.tdf Line: 22
+Info (12128): Elaborating entity "add_sub_t9a" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_add_sub:add_sub6|add_sub_t9a:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_add_sub.tdf Line: 118
+Info (12128): Elaborating entity "lpm_compare" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_compare:cmpr7" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1080
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_compare:cmpr7" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1080
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_compare:cmpr7" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1080
+    Info (12134): Parameter "lpm_width" = "8"
+    Info (12134): Parameter "lpm_type" = "lpm_compare"
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_6pd.tdf
+    Info (12023): Found entity 1: cmpr_6pd File: /home/user/VIC20_MiST/neptuno/db/cmpr_6pd.tdf Line: 22
+Info (12128): Elaborating entity "cmpr_6pd" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_compare:cmpr7|cmpr_6pd:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_compare.tdf Line: 280
+Info (12128): Elaborating entity "lpm_counter" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr1" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1108
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr1" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1108
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr1" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1108
+    Info (12134): Parameter "lpm_direction" = "DOWN"
+    Info (12134): Parameter "lpm_modulus" = "144"
+    Info (12134): Parameter "lpm_port_updown" = "PORT_UNUSED"
+    Info (12134): Parameter "lpm_width" = "8"
+    Info (12134): Parameter "lpm_type" = "lpm_counter"
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_c1l.tdf
+    Info (12023): Found entity 1: cntr_c1l File: /home/user/VIC20_MiST/neptuno/db/cntr_c1l.tdf Line: 25
+Info (12128): Elaborating entity "cntr_c1l" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr1|cntr_c1l:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_counter.tdf Line: 258
+Info (12128): Elaborating entity "lpm_counter" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr13" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1170
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr13" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1170
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr13" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1170
+    Info (12134): Parameter "lpm_direction" = "DOWN"
+    Info (12134): Parameter "lpm_port_updown" = "PORT_UNUSED"
+    Info (12134): Parameter "lpm_width" = "6"
+    Info (12134): Parameter "lpm_type" = "lpm_counter"
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_3kj.tdf
+    Info (12023): Found entity 1: cntr_3kj File: /home/user/VIC20_MiST/neptuno/db/cntr_3kj.tdf Line: 25
+Info (12128): Elaborating entity "cntr_3kj" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr13|cntr_3kj:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_counter.tdf Line: 258
+Info (12128): Elaborating entity "lpm_counter" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr14" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1200
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr14" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1200
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr14" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1200
+    Info (12134): Parameter "lpm_direction" = "DOWN"
+    Info (12134): Parameter "lpm_port_updown" = "PORT_UNUSED"
+    Info (12134): Parameter "lpm_width" = "8"
+    Info (12134): Parameter "lpm_type" = "lpm_counter"
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_5kj.tdf
+    Info (12023): Found entity 1: cntr_5kj File: /home/user/VIC20_MiST/neptuno/db/cntr_5kj.tdf Line: 25
+Info (12128): Elaborating entity "cntr_5kj" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr14|cntr_5kj:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_counter.tdf Line: 258
+Info (12128): Elaborating entity "lpm_counter" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr15" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1230
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr15" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1230
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr15" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1230
+    Info (12134): Parameter "lpm_direction" = "DOWN"
+    Info (12134): Parameter "lpm_port_updown" = "PORT_UNUSED"
+    Info (12134): Parameter "lpm_width" = "5"
+    Info (12134): Parameter "lpm_type" = "lpm_counter"
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_2kj.tdf
+    Info (12023): Found entity 1: cntr_2kj File: /home/user/VIC20_MiST/neptuno/db/cntr_2kj.tdf Line: 25
+Info (12128): Elaborating entity "cntr_2kj" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr15|cntr_2kj:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_counter.tdf Line: 258
+Info (12128): Elaborating entity "lpm_counter" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr2" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1291
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr2" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1291
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr2" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1291
+    Info (12134): Parameter "lpm_direction" = "UP"
+    Info (12134): Parameter "lpm_port_updown" = "PORT_UNUSED"
+    Info (12134): Parameter "lpm_width" = "8"
+    Info (12134): Parameter "lpm_type" = "lpm_counter"
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_idj.tdf
+    Info (12023): Found entity 1: cntr_idj File: /home/user/VIC20_MiST/neptuno/db/cntr_idj.tdf Line: 25
+Info (12128): Elaborating entity "cntr_idj" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_counter:cntr2|cntr_idj:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_counter.tdf Line: 258
+Info (12128): Elaborating entity "lpm_decode" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_decode:decode11" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1342
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_decode:decode11" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1342
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_decode:decode11" with the following parameter: File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 1342
+    Info (12134): Parameter "lpm_decodes" = "5"
+    Info (12134): Parameter "lpm_width" = "3"
+    Info (12134): Parameter "lpm_type" = "lpm_decode"
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_bbf.tdf
+    Info (12023): Found entity 1: decode_bbf File: /home/user/VIC20_MiST/neptuno/db/decode_bbf.tdf Line: 22
+Info (12128): Elaborating entity "decode_bbf" for hierarchy "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|lpm_decode:decode11|decode_bbf:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_decode.tdf Line: 76
+Info (12128): Elaborating entity "pll_vic20" for hierarchy "vic20_mist:guest|pll_vic20:pll_vic20" File: /home/user/VIC20_MiST/vic20.sv Line: 197
+Info (12128): Elaborating entity "altpll" for hierarchy "vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component" File: /home/user/VIC20_MiST/neptuno/pll_vic20.v Line: 122
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component" File: /home/user/VIC20_MiST/neptuno/pll_vic20.v Line: 122
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component" with the following parameter: File: /home/user/VIC20_MiST/neptuno/pll_vic20.v Line: 122
+    Info (12134): Parameter "bandwidth_type" = "AUTO"
+    Info (12134): Parameter "clk0_divide_by" = "1250"
+    Info (12134): Parameter "clk0_duty_cycle" = "50"
+    Info (12134): Parameter "clk0_multiply_by" = "887"
+    Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "compensate_clock" = "CLK0"
+    Info (12134): Parameter "inclk0_input_frequency" = "20000"
+    Info (12134): Parameter "intended_device_family" = "MAX 10"
+    Info (12134): Parameter "lpm_hint" = "CBX_MODULE_PREFIX=pll_vic20"
+    Info (12134): Parameter "lpm_type" = "altpll"
+    Info (12134): Parameter "operation_mode" = "NORMAL"
+    Info (12134): Parameter "pll_type" = "AUTO"
+    Info (12134): Parameter "port_activeclock" = "PORT_UNUSED"
+    Info (12134): Parameter "port_areset" = "PORT_USED"
+    Info (12134): Parameter "port_clkbad0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkbad1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkloss" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkswitch" = "PORT_UNUSED"
+    Info (12134): Parameter "port_configupdate" = "PORT_USED"
+    Info (12134): Parameter "port_fbin" = "PORT_UNUSED"
+    Info (12134): Parameter "port_inclk0" = "PORT_USED"
+    Info (12134): Parameter "port_inclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_locked" = "PORT_USED"
+    Info (12134): Parameter "port_pfdena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasecounterselect" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasedone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasestep" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phaseupdown" = "PORT_UNUSED"
+    Info (12134): Parameter "port_pllena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanaclr" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclk" = "PORT_USED"
+    Info (12134): Parameter "port_scanclkena" = "PORT_USED"
+    Info (12134): Parameter "port_scandata" = "PORT_USED"
+    Info (12134): Parameter "port_scandataout" = "PORT_USED"
+    Info (12134): Parameter "port_scandone" = "PORT_USED"
+    Info (12134): Parameter "port_scanread" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanwrite" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk0" = "PORT_USED"
+    Info (12134): Parameter "port_clk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
+    Info (12134): Parameter "self_reset_on_loss_lock" = "OFF"
+    Info (12134): Parameter "width_clock" = "5"
+    Info (12134): Parameter "scan_chain_mif_file" = "pll_vic20_pal.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/pll_vic20_altpll.v
+    Info (12023): Found entity 1: pll_vic20_altpll File: /home/user/VIC20_MiST/neptuno/db/pll_vic20_altpll.v Line: 30
+Info (12128): Elaborating entity "pll_vic20_altpll" for hierarchy "vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component|pll_vic20_altpll:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/altpll.tdf Line: 897
+Info (12128): Elaborating entity "pll27" for hierarchy "vic20_mist:guest|pll27:pll" File: /home/user/VIC20_MiST/vic20.sv Line: 245
+Info (12128): Elaborating entity "altpll" for hierarchy "vic20_mist:guest|pll27:pll|altpll:altpll_component" File: /home/user/VIC20_MiST/neptuno/pll27.v Line: 103
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|pll27:pll|altpll:altpll_component" File: /home/user/VIC20_MiST/neptuno/pll27.v Line: 103
+Info (12133): Instantiated megafunction "vic20_mist:guest|pll27:pll|altpll:altpll_component" with the following parameter: File: /home/user/VIC20_MiST/neptuno/pll27.v Line: 103
+    Info (12134): Parameter "bandwidth_type" = "AUTO"
+    Info (12134): Parameter "clk0_divide_by" = "25"
+    Info (12134): Parameter "clk0_duty_cycle" = "50"
+    Info (12134): Parameter "clk0_multiply_by" = "16"
+    Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "compensate_clock" = "CLK0"
+    Info (12134): Parameter "inclk0_input_frequency" = "20000"
+    Info (12134): Parameter "intended_device_family" = "MAX 10"
+    Info (12134): Parameter "lpm_hint" = "CBX_MODULE_PREFIX=pll27"
+    Info (12134): Parameter "lpm_type" = "altpll"
+    Info (12134): Parameter "operation_mode" = "NORMAL"
+    Info (12134): Parameter "pll_type" = "AUTO"
+    Info (12134): Parameter "port_activeclock" = "PORT_UNUSED"
+    Info (12134): Parameter "port_areset" = "PORT_USED"
+    Info (12134): Parameter "port_clkbad0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkbad1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkloss" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkswitch" = "PORT_UNUSED"
+    Info (12134): Parameter "port_configupdate" = "PORT_UNUSED"
+    Info (12134): Parameter "port_fbin" = "PORT_UNUSED"
+    Info (12134): Parameter "port_inclk0" = "PORT_USED"
+    Info (12134): Parameter "port_inclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_locked" = "PORT_USED"
+    Info (12134): Parameter "port_pfdena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasecounterselect" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasedone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasestep" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phaseupdown" = "PORT_UNUSED"
+    Info (12134): Parameter "port_pllena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanaclr" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclk" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclkena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandata" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandataout" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanread" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanwrite" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk0" = "PORT_USED"
+    Info (12134): Parameter "port_clk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
+    Info (12134): Parameter "self_reset_on_loss_lock" = "OFF"
+    Info (12134): Parameter "width_clock" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/pll27_altpll.v
+    Info (12023): Found entity 1: pll27_altpll File: /home/user/VIC20_MiST/neptuno/db/pll27_altpll.v Line: 30
+Info (12128): Elaborating entity "pll27_altpll" for hierarchy "vic20_mist:guest|pll27:pll|altpll:altpll_component|pll27_altpll:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/altpll.tdf Line: 897
+Info (12128): Elaborating entity "user_io" for hierarchy "vic20_mist:guest|user_io:user_io" File: /home/user/VIC20_MiST/vic20.sv Line: 330
+Info (12128): Elaborating entity "keyboard" for hierarchy "vic20_mist:guest|keyboard:keyboard" File: /home/user/VIC20_MiST/vic20.sv Line: 358
+Info (12128): Elaborating entity "VIC20" for hierarchy "vic20_mist:guest|VIC20:VIC20" File: /home/user/VIC20_MiST/vic20.sv Line: 421
+Warning (10036): Verilog HDL or VHDL warning at vic20.vhd(265): object "csync" assigned a value but never read File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 265
+Info (12128): Elaborating entity "VIC20_CLOCKS" for hierarchy "vic20_mist:guest|VIC20:VIC20|VIC20_CLOCKS:u_clocks" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 315
+Info (12128): Elaborating entity "T65" for hierarchy "vic20_mist:guest|VIC20:VIC20|T65:cpu" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 329
+Info (12128): Elaborating entity "T65_MCode" for hierarchy "vic20_mist:guest|VIC20:VIC20|T65:cpu|T65_MCode:mcode" File: /home/user/VIC20_MiST/T65/T65.vhd Line: 275
+Info (12128): Elaborating entity "T65_ALU" for hierarchy "vic20_mist:guest|VIC20:VIC20|T65:cpu|T65_ALU:alu" File: /home/user/VIC20_MiST/T65/T65.vhd Line: 312
+Info (12128): Elaborating entity "M6561" for hierarchy "vic20_mist:guest|VIC20:VIC20|M6561:vic" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 354
+Warning (10036): Verilog HDL or VHDL warning at m6561.vhd(251): object "char_loadD5" assigned a value but never read File: /home/user/VIC20_MiST/vic20/m6561.vhd Line: 251
+Warning (10492): VHDL Process Statement warning at m6561.vhd(754): signal "border_n" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/user/VIC20_MiST/vic20/m6561.vhd Line: 754
+Info (12128): Elaborating entity "rc_filter_1o" for hierarchy "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 404
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(96): assertion is false - report "Using alpha: 46 (= 0.01123046875)" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 96
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(97): assertion is false - report "Alpha error: 0.731908293344976%" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 97
+Info (12128): Elaborating entity "rc_filter_1o" for hierarchy "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:audio_RC_lp_PAL" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 422
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(96): assertion is false - report "Using alpha: 18 (= 0.0010986328125)" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 96
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(97): assertion is false - report "Alpha error: 2.5025025025025%" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 97
+Warning (10631): VHDL Process Statement warning at rc_filter_1o.vhd(100): inferring latch(es) for signal or variable "dlocal_s", which holds its previous value in one or more paths through the process File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 100
+Info (12128): Elaborating entity "rc_filter_1o" for hierarchy "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:audio_RC_hp_PAL" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 440
+Warning (10639): VHDL warning at rc_filter_1o.vhd(82): constant value overflow File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 82
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(96): assertion is false - report "Using alpha: 5 (= 7.62939453125E-05)" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 96
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(97): assertion is false - report "Alpha error: 4.78818688860404%" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 97
+Info (12128): Elaborating entity "rc_filter_1o" for hierarchy "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_NTSC" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 460
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(96): assertion is false - report "Using alpha: 56 (= 0.013671875)" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 96
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(97): assertion is false - report "Alpha error: 0.782441808966094%" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 97
+Warning (10631): VHDL Process Statement warning at rc_filter_1o.vhd(100): inferring latch(es) for signal or variable "dlocal_s", which holds its previous value in one or more paths through the process File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 100
+Info (10041): Inferred latch for "dlocal_s[2]" at rc_filter_1o.vhd(100) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 100
+Info (12128): Elaborating entity "rc_filter_1o" for hierarchy "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:audio_RC_lp_NTSC" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 478
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(96): assertion is false - report "Using alpha: 23 (= 0.00140380859375)" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 96
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(97): assertion is false - report "Alpha error: 0.614185408167909%" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 97
+Info (12128): Elaborating entity "rc_filter_1o" for hierarchy "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:audio_RC_hp_NTSC" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 496
+Warning (10639): VHDL warning at rc_filter_1o.vhd(82): constant value overflow File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 82
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(96): assertion is false - report "Using alpha: 6 (= 9.1552734375E-05)" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 96
+Info (10544): VHDL Assertion Statement at rc_filter_1o.vhd(97): assertion is false - report "Alpha error: 8.21439504391708%" (NOTE) File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 97
+Warning (10631): VHDL Process Statement warning at rc_filter_1o.vhd(100): inferring latch(es) for signal or variable "dlocal_s", which holds its previous value in one or more paths through the process File: /home/user/VIC20_MiST/vic20/rc_filter_1o.vhd Line: 100
+Info (12128): Elaborating entity "via6522" for hierarchy "vic20_mist:guest|VIC20:VIC20|via6522:via1" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 518
+Warning (10036): Verilog HDL or VHDL warning at via6522.vhd(75): object "last_data" assigned a value but never read File: /home/user/VIC20_MiST/c1541/via6522.vhd Line: 75
+Info (12128): Elaborating entity "ram_conf_1024x8" for hierarchy "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x8:rams0" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 774
+Info (12128): Elaborating entity "ram_conf_2048x8" for hierarchy "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams45" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 790
+Info (12128): Elaborating entity "ram_conf_2048x8" for hierarchy "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams67" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 807
+Info (12128): Elaborating entity "ram_conf_1024x4" for hierarchy "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x4:col_ram" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 824
+Info (12128): Elaborating entity "gen_rom" for hierarchy "vic20_mist:guest|VIC20:VIC20|gen_rom:char_rom" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 893
+Info (12128): Elaborating entity "gen_rom" for hierarchy "vic20_mist:guest|VIC20:VIC20|gen_rom:basic_rom" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 911
+Info (12128): Elaborating entity "gen_rom" for hierarchy "vic20_mist:guest|VIC20:VIC20|gen_rom:kernal_rom_pal" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 936
+Info (12128): Elaborating entity "gen_rom" for hierarchy "vic20_mist:guest|VIC20:VIC20|gen_rom:kernal_rom_ntsc" File: /home/user/VIC20_MiST/vic20/vic20.vhd Line: 955
+Info (12128): Elaborating entity "sdram" for hierarchy "vic20_mist:guest|sdram:ram" File: /home/user/VIC20_MiST/vic20.sv Line: 460
+Info (12128): Elaborating entity "data_io" for hierarchy "vic20_mist:guest|data_io:data_io" File: /home/user/VIC20_MiST/vic20.sv Line: 493
+Info (12128): Elaborating entity "c1530" for hierarchy "vic20_mist:guest|c1530:c1530" File: /home/user/VIC20_MiST/vic20.sv Line: 629
+Info (12128): Elaborating entity "tap_fifo" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst" File: /home/user/VIC20_MiST/c1530.vhd Line: 69
+Info (12128): Elaborating entity "scfifo" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component" File: /home/user/VIC20_MiST/tap_fifo.vhd Line: 95
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component" File: /home/user/VIC20_MiST/tap_fifo.vhd Line: 95
+Info (12133): Instantiated megafunction "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component" with the following parameter: File: /home/user/VIC20_MiST/tap_fifo.vhd Line: 95
+    Info (12134): Parameter "add_ram_output_register" = "OFF"
+    Info (12134): Parameter "intended_device_family" = "Cyclone III"
+    Info (12134): Parameter "lpm_numwords" = "64"
+    Info (12134): Parameter "lpm_showahead" = "OFF"
+    Info (12134): Parameter "lpm_type" = "scfifo"
+    Info (12134): Parameter "lpm_width" = "8"
+    Info (12134): Parameter "lpm_widthu" = "6"
+    Info (12134): Parameter "overflow_checking" = "ON"
+    Info (12134): Parameter "underflow_checking" = "ON"
+    Info (12134): Parameter "use_eab" = "ON"
+Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_9f31.tdf
+    Info (12023): Found entity 1: scfifo_9f31 File: /home/user/VIC20_MiST/neptuno/db/scfifo_9f31.tdf Line: 24
+Info (12128): Elaborating entity "scfifo_9f31" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component|scfifo_9f31:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/scfifo.tdf Line: 299
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_gl31.tdf
+    Info (12023): Found entity 1: a_dpfifo_gl31 File: /home/user/VIC20_MiST/neptuno/db/a_dpfifo_gl31.tdf Line: 28
+Info (12128): Elaborating entity "a_dpfifo_gl31" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component|scfifo_9f31:auto_generated|a_dpfifo_gl31:dpfifo" File: /home/user/VIC20_MiST/neptuno/db/scfifo_9f31.tdf Line: 36
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_fefifo_c6e.tdf
+    Info (12023): Found entity 1: a_fefifo_c6e File: /home/user/VIC20_MiST/neptuno/db/a_fefifo_c6e.tdf Line: 24
+Info (12128): Elaborating entity "a_fefifo_c6e" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component|scfifo_9f31:auto_generated|a_dpfifo_gl31:dpfifo|a_fefifo_c6e:fifo_state" File: /home/user/VIC20_MiST/neptuno/db/a_dpfifo_gl31.tdf Line: 41
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_do7.tdf
+    Info (12023): Found entity 1: cntr_do7 File: /home/user/VIC20_MiST/neptuno/db/cntr_do7.tdf Line: 25
+Info (12128): Elaborating entity "cntr_do7" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component|scfifo_9f31:auto_generated|a_dpfifo_gl31:dpfifo|a_fefifo_c6e:fifo_state|cntr_do7:count_usedw" File: /home/user/VIC20_MiST/neptuno/db/a_fefifo_c6e.tdf Line: 37
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ihm1.tdf
+    Info (12023): Found entity 1: altsyncram_ihm1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_ihm1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_ihm1" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component|scfifo_9f31:auto_generated|a_dpfifo_gl31:dpfifo|altsyncram_ihm1:FIFOram" File: /home/user/VIC20_MiST/neptuno/db/a_dpfifo_gl31.tdf Line: 42
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_1ob.tdf
+    Info (12023): Found entity 1: cntr_1ob File: /home/user/VIC20_MiST/neptuno/db/cntr_1ob.tdf Line: 25
+Info (12128): Elaborating entity "cntr_1ob" for hierarchy "vic20_mist:guest|c1530:c1530|tap_fifo:tap_fifo_inst|scfifo:scfifo_component|scfifo_9f31:auto_generated|a_dpfifo_gl31:dpfifo|cntr_1ob:rd_ptr_count" File: /home/user/VIC20_MiST/neptuno/db/a_dpfifo_gl31.tdf Line: 43
+Info (12128): Elaborating entity "sigma_delta_dac" for hierarchy "vic20_mist:guest|sigma_delta_dac:dac_l" File: /home/user/VIC20_MiST/vic20.sv Line: 646
+Info (12128): Elaborating entity "mist_video" for hierarchy "vic20_mist:guest|mist_video:mist_video" File: /home/user/VIC20_MiST/vic20.sv Line: 704
+Info (12128): Elaborating entity "scandoubler" for hierarchy "vic20_mist:guest|mist_video:mist_video|scandoubler:scandoubler" File: /home/user/VIC20_MiST/mist-modules/mist_video.v Line: 125
+Info (12128): Elaborating entity "osd" for hierarchy "vic20_mist:guest|mist_video:mist_video|osd:osd" File: /home/user/VIC20_MiST/mist-modules/mist_video.v Line: 147
+Info (12128): Elaborating entity "cofi" for hierarchy "vic20_mist:guest|mist_video:mist_video|cofi:cofi" File: /home/user/VIC20_MiST/mist-modules/mist_video.v Line: 167
+Info (12128): Elaborating entity "rgb2ypbpr" for hierarchy "vic20_mist:guest|mist_video:mist_video|rgb2ypbpr:rgb2ypbpr" File: /home/user/VIC20_MiST/mist-modules/mist_video.v Line: 179
+Info (12128): Elaborating entity "c1541_sd" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd" File: /home/user/VIC20_MiST/vic20.sv Line: 783
+Warning (10036): Verilog HDL or VHDL warning at c1541_sd.vhd(118): object "dbg_sector" assigned a value but never read File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 118
+Info (12128): Elaborating entity "c1541_logic" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541" File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 152
+Warning (10036): Verilog HDL or VHDL warning at c1541_logic.vhd(66): object "cpu_sync" assigned a value but never read File: /home/user/VIC20_MiST/c1541/c1541_logic.vhd Line: 66
+Info (12128): Elaborating entity "gen_rom" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|gen_rom:rom_inst" File: /home/user/VIC20_MiST/c1541/c1541_logic.vhd Line: 251
+Info (12128): Elaborating entity "spram" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|spram:ram_inst" File: /home/user/VIC20_MiST/c1541/c1541_logic.vhd Line: 276
+Warning (10296): VHDL warning at spram.vhd(10): ignored assignment of value to null range File: /home/user/VIC20_MiST/c1541/spram.vhd Line: 10
+Warning (10296): VHDL warning at spram.vhd(63): ignored assignment of value to null range File: /home/user/VIC20_MiST/c1541/spram.vhd Line: 63
+Info (12128): Elaborating entity "altsyncram" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|spram:ram_inst|altsyncram:altsyncram_component" File: /home/user/VIC20_MiST/c1541/spram.vhd Line: 59
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|spram:ram_inst|altsyncram:altsyncram_component" File: /home/user/VIC20_MiST/c1541/spram.vhd Line: 59
+Info (12133): Instantiated megafunction "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|spram:ram_inst|altsyncram:altsyncram_component" with the following parameter: File: /home/user/VIC20_MiST/c1541/spram.vhd Line: 59
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = ""
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "2048"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "widthad_a" = "11"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_t2b1.tdf
+    Info (12023): Found entity 1: altsyncram_t2b1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_t2b1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_t2b1" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|spram:ram_inst|altsyncram:altsyncram_component|altsyncram_t2b1:auto_generated" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Info (12128): Elaborating entity "gcr_floppy" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd|gcr_floppy:floppy" File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 191
+Info (12128): Elaborating entity "mist_sd_card" for hierarchy "vic20_mist:guest|c1541_sd:c1541_sd|mist_sd_card:sd" File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 219
+Info (12128): Elaborating entity "substitute_mcu" for hierarchy "substitute_mcu:controller" File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 347
+Warning (10036): Verilog HDL or VHDL warning at substitute_mcu.vhd(114): object "spi_active_d" assigned a value but never read File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 114
+Warning (10036): Verilog HDL or VHDL warning at substitute_mcu.vhd(191): object "flushcaches" assigned a value but never read File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 191
+Warning (10036): Verilog HDL or VHDL warning at substitute_mcu.vhd(194): object "debug_req" assigned a value but never read File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 194
+Warning (10036): Verilog HDL or VHDL warning at substitute_mcu.vhd(196): object "debug_fromcpu" assigned a value but never read File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 196
+Warning (10036): Verilog HDL or VHDL warning at substitute_mcu.vhd(198): object "debug_wr" assigned a value but never read File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 198
+Warning (10873): Using initial value X (don't care) for net "cpu_addr[1..0]" at substitute_mcu.vhd(177) File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 177
+Info (12128): Elaborating entity "simple_uart" for hierarchy "substitute_mcu:controller|simple_uart:\genuart:myuart" File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 276
+Info (12128): Elaborating entity "io_ps2_com" for hierarchy "substitute_mcu:controller|io_ps2_com:mykeyboard" File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 299
+Info (12128): Elaborating entity "spi_controller" for hierarchy "substitute_mcu:controller|spi_controller:spi" File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 370
+Info (12128): Elaborating entity "timer_controller" for hierarchy "substitute_mcu:controller|timer_controller:mytimer" File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 395
+Info (12128): Elaborating entity "interrupt_controller" for hierarchy "substitute_mcu:controller|interrupt_controller:intcontroller" File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 415
+Info (12128): Elaborating entity "controller_rom" for hierarchy "substitute_mcu:controller|controller_rom:rom" File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 433
+Info (12128): Elaborating entity "controller_rom1" for hierarchy "substitute_mcu:controller|controller_rom:rom|controller_rom1:rom1" File: /home/user/VIC20_MiST/DeMiSTify/firmware/controller_rom.vhd Line: 41
+Info (12128): Elaborating entity "controller_rom2" for hierarchy "substitute_mcu:controller|controller_rom:rom|controller_rom2:rom2" File: /home/user/VIC20_MiST/DeMiSTify/firmware/controller_rom.vhd Line: 56
+Info (12128): Elaborating entity "eightthirtytwo_cpu" for hierarchy "substitute_mcu:controller|eightthirtytwo_cpu:cpu" File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 476
+Warning (10631): VHDL Process Statement warning at eightthirtytwo_cpu.vhd(536): inferring latch(es) for signal or variable "thread2", which holds its previous value in one or more paths through the process File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 536
+Warning (10873): Using initial value X (don't care) for net "debug_q" at eightthirtytwo_cpu.vhd(52) File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 52
+Warning (10873): Using initial value X (don't care) for net "regfile2.flag_cond" at eightthirtytwo_cpu.vhd(94) File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 94
+Warning (10873): Using initial value X (don't care) for net "debug_req" at eightthirtytwo_cpu.vhd(53) File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 53
+Warning (10873): Using initial value X (don't care) for net "debug_wr" at eightthirtytwo_cpu.vhd(54) File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 54
+Info (10041): Inferred latch for "thread2.setpc" at eightthirtytwo_cpu.vhd(536) File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 536
+Info (12128): Elaborating entity "eightthirtytwo_fetchloadstore" for hierarchy "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_fetchloadstore:\genlsfnodual:fetchloadstore" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 329
+Warning (10036): Verilog HDL or VHDL warning at eightthirtytwo_fetchloadstore.vhd(94): object "opcodebuffer2_valid" assigned a value but never read File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd Line: 94
+Warning (10036): Verilog HDL or VHDL warning at eightthirtytwo_fetchloadstore.vhd(101): object "fetch2_word" assigned a value but never read File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd Line: 101
+Warning (10873): Using initial value X (don't care) for net "opcode2" at eightthirtytwo_fetchloadstore.vhd(53) File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd Line: 53
+Warning (10873): Using initial value X (don't care) for net "opcode2_valid" at eightthirtytwo_fetchloadstore.vhd(54) File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd Line: 54
+Info (12128): Elaborating entity "eightthirtytwo_aligner_le" for hierarchy "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_fetchloadstore:\genlsfnodual:fetchloadstore|eightthirtytwo_aligner_le:\align_le:aligner" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd Line: 521
+Info (12128): Elaborating entity "eightthirtytwo_decode" for hierarchy "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_decode:decoder" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 376
+Info (12128): Elaborating entity "eightthirtytwo_alu" for hierarchy "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_alu:alu" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 401
+Info (12128): Elaborating entity "eightthirtytwo_shifter" for hierarchy "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_alu:alu|eightthirtytwo_shifter:shifter" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd Line: 229
+Info (12128): Elaborating entity "eightthirtytwo_hazard" for hierarchy "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_hazard:hazard1" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd Line: 442
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13049): Converted tri-state buffer "vic20_mist:guest|user_io:user_io|SPI_MISO" feeding internal logic into a wire File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 35
+Warning (276027): Inferred dual-clock RAM node "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams67|ram_s_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Warning (276027): Inferred dual-clock RAM node "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams45|ram_s_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Warning (276027): Inferred dual-clock RAM node "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x8:rams0|ram_s_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Warning (276027): Inferred dual-clock RAM node "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x4:col_ram|ram_s_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Warning (276027): Inferred dual-clock RAM node "vic20_mist:guest|mist_video:mist_video|osd:osd|osd_buffer_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "vic20_mist:guest|c1541_sd:c1541_sd|gcr_floppy:floppy|gcr_lut" is uninferred due to inappropriate RAM size File: /home/user/VIC20_MiST/c1541/gcr_floppy.vhd Line: 75
+Info (19000): Inferred 11 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|VIC20:VIC20|gen_rom:char_rom|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 12
+        Info (286033): Parameter NUMWORDS_A set to 4096
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 12
+        Info (286033): Parameter NUMWORDS_B set to 4096
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to ../roms/CHARACTERS.HEX
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams67|ram_s_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 11
+        Info (286033): Parameter NUMWORDS_B set to 2048
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/VIC20_neptuno.ram0_ram_conf_2048x8_ca13cc37.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams45|ram_s_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 11
+        Info (286033): Parameter NUMWORDS_B set to 2048
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/VIC20_neptuno.ram0_ram_conf_2048x8_ca13813e.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x8:rams0|ram_s_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 10
+        Info (286033): Parameter NUMWORDS_B set to 1024
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/VIC20_neptuno.ram0_ram_conf_1024x8_d05211fc.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x4:col_ram|ram_s_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 4
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter WIDTH_B set to 4
+        Info (286033): Parameter WIDTHAD_B set to 10
+        Info (286033): Parameter NUMWORDS_B set to 1024
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/VIC20_neptuno.ram0_ram_conf_1024x4_2080cf69.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|mist_video:mist_video|osd:osd|osd_buffer_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 11
+        Info (286033): Parameter NUMWORDS_B set to 2048
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|gen_rom:rom_inst|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 14
+        Info (286033): Parameter NUMWORDS_A set to 16384
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 14
+        Info (286033): Parameter NUMWORDS_B set to 16384
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to ../roms/325302-1_901229-03.hex
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|mist_video:mist_video|scandoubler:scandoubler|sd_buffer_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 12
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter WIDTH_B set to 12
+        Info (286033): Parameter WIDTHAD_B set to 11
+        Info (286033): Parameter NUMWORDS_B set to 2048
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "substitute_mcu:controller|controller_rom:rom|controller_rom2:rom2|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to SINGLE_PORT
+        Info (286033): Parameter WIDTH_A set to 32
+        Info (286033): Parameter WIDTHAD_A set to 10
+        Info (286033): Parameter NUMWORDS_A set to 1024
+        Info (286033): Parameter WIDTH_BYTEENA_A set to 4
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/VIC20_neptuno.ram0_controller_rom2_f950ebce.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "substitute_mcu:controller|controller_rom:rom|controller_rom1:rom1|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to SINGLE_PORT
+        Info (286033): Parameter WIDTH_A set to 32
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter WIDTH_BYTEENA_A set to 4
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/VIC20_neptuno.ram0_controller_rom1_abf1d3d7.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "vic20_mist:guest|c1541_sd:c1541_sd|track_buffer_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to SINGLE_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 13
+        Info (286033): Parameter NUMWORDS_A set to 8192
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter READ_DURING_WRITE_MODE_PORT_A set to OLD_DATA
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (278001): Inferred 3 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_alu:alu|Mult0" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd Line: 124
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:audio_RC_lp_NTSC|Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/vhdl/synopsys/ieee/syn_arit.vhd Line: 651
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/vhdl/synopsys/ieee/syn_arit.vhd Line: 651
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|gen_rom:char_rom|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|VIC20:VIC20|gen_rom:char_rom|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "12"
+    Info (12134): Parameter "NUMWORDS_A" = "4096"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "12"
+    Info (12134): Parameter "NUMWORDS_B" = "4096"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "../roms/CHARACTERS.HEX"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_mmf1.tdf
+    Info (12023): Found entity 1: altsyncram_mmf1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_mmf1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams67|altsyncram:ram_s_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams67|altsyncram:ram_s_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "11"
+    Info (12134): Parameter "NUMWORDS_B" = "2048"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/VIC20_neptuno.ram0_ram_conf_2048x8_ca13cc37.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_hnj1.tdf
+    Info (12023): Found entity 1: altsyncram_hnj1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_hnj1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams45|altsyncram:ram_s_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|VIC20:VIC20|ram_conf_2048x8:rams45|altsyncram:ram_s_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "11"
+    Info (12134): Parameter "NUMWORDS_B" = "2048"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/VIC20_neptuno.ram0_ram_conf_2048x8_ca13813e.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2mj1.tdf
+    Info (12023): Found entity 1: altsyncram_2mj1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_2mj1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x8:rams0|altsyncram:ram_s_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x8:rams0|altsyncram:ram_s_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "10"
+    Info (12134): Parameter "NUMWORDS_B" = "1024"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/VIC20_neptuno.ram0_ram_conf_1024x8_d05211fc.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8lj1.tdf
+    Info (12023): Found entity 1: altsyncram_8lj1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_8lj1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x4:col_ram|altsyncram:ram_s_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|VIC20:VIC20|ram_conf_1024x4:col_ram|altsyncram:ram_s_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "4"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "WIDTH_B" = "4"
+    Info (12134): Parameter "WIDTHAD_B" = "10"
+    Info (12134): Parameter "NUMWORDS_B" = "1024"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/VIC20_neptuno.ram0_ram_conf_1024x4_2080cf69.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ojj1.tdf
+    Info (12023): Found entity 1: altsyncram_ojj1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_ojj1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|mist_video:mist_video|osd:osd|altsyncram:osd_buffer_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|mist_video:mist_video|osd:osd|altsyncram:osd_buffer_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "11"
+    Info (12134): Parameter "NUMWORDS_B" = "2048"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_dle1.tdf
+    Info (12023): Found entity 1: altsyncram_dle1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_dle1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|gen_rom:rom_inst|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|gen_rom:rom_inst|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "14"
+    Info (12134): Parameter "NUMWORDS_A" = "16384"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "14"
+    Info (12134): Parameter "NUMWORDS_B" = "16384"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "../roms/325302-1_901229-03.hex"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_h9g1.tdf
+    Info (12023): Found entity 1: altsyncram_h9g1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_h9g1.tdf Line: 33
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_jsa.tdf
+    Info (12023): Found entity 1: decode_jsa File: /home/user/VIC20_MiST/neptuno/db/decode_jsa.tdf Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_c8a.tdf
+    Info (12023): Found entity 1: decode_c8a File: /home/user/VIC20_MiST/neptuno/db/decode_c8a.tdf Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_3nb.tdf
+    Info (12023): Found entity 1: mux_3nb File: /home/user/VIC20_MiST/neptuno/db/mux_3nb.tdf Line: 22
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|mist_video:mist_video|scandoubler:scandoubler|altsyncram:sd_buffer_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|mist_video:mist_video|scandoubler:scandoubler|altsyncram:sd_buffer_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "12"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "WIDTH_B" = "12"
+    Info (12134): Parameter "WIDTHAD_B" = "11"
+    Info (12134): Parameter "NUMWORDS_B" = "2048"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_c2e1.tdf
+    Info (12023): Found entity 1: altsyncram_c2e1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_c2e1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "substitute_mcu:controller|controller_rom:rom|controller_rom2:rom2|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "substitute_mcu:controller|controller_rom:rom|controller_rom2:rom2|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "SINGLE_PORT"
+    Info (12134): Parameter "WIDTH_A" = "32"
+    Info (12134): Parameter "WIDTHAD_A" = "10"
+    Info (12134): Parameter "NUMWORDS_A" = "1024"
+    Info (12134): Parameter "WIDTH_BYTEENA_A" = "4"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/VIC20_neptuno.ram0_controller_rom2_f950ebce.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_m7d1.tdf
+    Info (12023): Found entity 1: altsyncram_m7d1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_m7d1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "substitute_mcu:controller|controller_rom:rom|controller_rom1:rom1|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "substitute_mcu:controller|controller_rom:rom|controller_rom1:rom1|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "SINGLE_PORT"
+    Info (12134): Parameter "WIDTH_A" = "32"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "WIDTH_BYTEENA_A" = "4"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/VIC20_neptuno.ram0_controller_rom1_abf1d3d7.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_n7d1.tdf
+    Info (12023): Found entity 1: altsyncram_n7d1 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_n7d1.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|c1541_sd:c1541_sd|altsyncram:track_buffer_rtl_0"
+Info (12133): Instantiated megafunction "vic20_mist:guest|c1541_sd:c1541_sd|altsyncram:track_buffer_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "SINGLE_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "13"
+    Info (12134): Parameter "NUMWORDS_A" = "8192"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "READ_DURING_WRITE_MODE_PORT_A" = "OLD_DATA"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_hf81.tdf
+    Info (12023): Found entity 1: altsyncram_hf81 File: /home/user/VIC20_MiST/neptuno/db/altsyncram_hf81.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_alu:alu|lpm_mult:Mult0" File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd Line: 124
+Info (12133): Instantiated megafunction "substitute_mcu:controller|eightthirtytwo_cpu:cpu|eightthirtytwo_alu:alu|lpm_mult:Mult0" with the following parameter: File: /home/user/VIC20_MiST/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd Line: 124
+    Info (12134): Parameter "LPM_WIDTHA" = "33"
+    Info (12134): Parameter "LPM_WIDTHB" = "33"
+    Info (12134): Parameter "LPM_WIDTHP" = "66"
+    Info (12134): Parameter "LPM_WIDTHR" = "66"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_86t.tdf
+    Info (12023): Found entity 1: mult_86t File: /home/user/VIC20_MiST/neptuno/db/mult_86t.tdf Line: 30
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:audio_RC_lp_NTSC|lpm_mult:Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/vhdl/synopsys/ieee/syn_arit.vhd Line: 651
+Info (12133): Instantiated megafunction "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:audio_RC_lp_NTSC|lpm_mult:Mult0" with the following parameter: File: /opt/intelFPGA_lite/17.1/quartus/libraries/vhdl/synopsys/ieee/syn_arit.vhd Line: 651
+    Info (12134): Parameter "LPM_WIDTHA" = "6"
+    Info (12134): Parameter "LPM_WIDTHB" = "17"
+    Info (12134): Parameter "LPM_WIDTHP" = "23"
+    Info (12134): Parameter "LPM_WIDTHR" = "23"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_78t.tdf
+    Info (12023): Found entity 1: mult_78t File: /home/user/VIC20_MiST/neptuno/db/mult_78t.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/vhdl/synopsys/ieee/syn_arit.vhd Line: 651
+Info (12133): Instantiated megafunction "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0" with the following parameter: File: /opt/intelFPGA_lite/17.1/quartus/libraries/vhdl/synopsys/ieee/syn_arit.vhd Line: 651
+    Info (12134): Parameter "LPM_WIDTHA" = "7"
+    Info (12134): Parameter "LPM_WIDTHB" = "7"
+    Info (12134): Parameter "LPM_WIDTHP" = "14"
+    Info (12134): Parameter "LPM_WIDTHR" = "14"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12131): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0|multcore:mult_core", which is child of megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf Line: 308
+Info (12131): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder", which is child of megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/multcore.tdf Line: 228
+Info (12131): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]", which is child of megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 115
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_bkh.tdf
+    Info (12023): Found entity 1: add_sub_bkh File: /home/user/VIC20_MiST/neptuno/db/add_sub_bkh.tdf Line: 22
+Info (12131): Elaborated megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0|altshift:external_latency_ffs", which is child of megafunction instantiation "vic20_mist:guest|VIC20:VIC20|rc_filter_1o:intrinsic_RC_lp_PAL|lpm_mult:Mult0" File: /opt/intelFPGA_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf Line: 351
+Warning (12241): 10 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13014): Ignored 207 buffer(s)
+    Info (13019): Ignored 207 SOFT buffer(s)
+Info (13000): Registers with preset signals will power-up high File: /home/user/VIC20_MiST/sigma_delta_dac.v Line: 8
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "DRAM_BA[0]" is stuck at GND File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 15
+    Warning (13410): Pin "DRAM_BA[1]" is stuck at GND File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 15
+    Warning (13410): Pin "joyP7_o" is stuck at VCC File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 40
+    Warning (13410): Pin "stm_rst_o" is stuck at GND File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 52
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register vic20_mist:guest|c1541_sd:c1541_sd|change_timer[31] will power up to Low File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 279
+    Critical Warning (18010): Register vic20_mist:guest|c1541_sd:c1541_sd|change_timer[0] will power up to Low File: /home/user/VIC20_MiST/c1541/c1541_sd.vhd Line: 279
+Info (17049): 160 registers lost all their fanouts during netlist optimizations.
+Info (17017): Removed the following redundant logic cells
+    Info (17048): Logic cell "vic20_mist:guest|mist_video:mist_video|osd:osd|v_osd_start[5]~18"
+    Info (17048): Logic cell "vic20_mist:guest|mist_video:mist_video|osd:osd|v_osd_start[4]~20"
+    Info (17048): Logic cell "vic20_mist:guest|mist_video:mist_video|osd:osd|v_osd_start[3]~22"
+    Info (17048): Logic cell "vic20_mist:guest|mist_video:mist_video|osd:osd|v_osd_start[2]~24"
+    Info (17048): Logic cell "vic20_mist:guest|mist_video:mist_video|osd:osd|v_osd_start[1]~26"
+    Info (17048): Logic cell "vic20_mist:guest|mist_video:mist_video|osd:osd|v_osd_start[0]~28"
+Info (17016): Found the following redundant logic cells in design
+    Info (17048): Logic cell "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|cuda_combout_wire[0]" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 393
+    Info (17048): Logic cell "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|cuda_combout_wire[1]" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 408
+    Info (17048): Logic cell "vic20_mist:guest|pll_reconfig:pll_reconfig_inst|pll_reconfig_pllrcfg_fj11:pll_reconfig_pllrcfg_fj11_component|cuda_combout_wire[2]" File: /home/user/VIC20_MiST/neptuno/db/pll_reconfig.v Line: 378
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[2]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[1]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[3]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[0]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[5]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[6]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[7]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+    Info (17048): Logic cell "vic20_mist:guest|user_io:user_io|serial_out_byte[4]" File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 281
+Info (144001): Generated suppressed messages file /home/user/VIC20_MiST/neptuno/output_files/VIC20_neptuno.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 2 node(s), including 0 DDIO, 2 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "stm_tx_i" File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 51
+Info (21057): Implemented 11649 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 57 output pins
+    Info (21060): Implemented 20 bidirectional pins
+    Info (21061): Implemented 11392 logic cells
+    Info (21064): Implemented 163 RAM segments
+    Info (21065): Implemented 2 PLLs
+    Info (21062): Implemented 10 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 54 warnings
+    Info: Peak virtual memory: 1146 megabytes
+    Info: Processing ended: Tue Nov 30 14:54:20 2021
+    Info: Elapsed time: 00:01:16
+    Info: Total CPU time (on all processors): 00:00:58
+Info: *******************************************************************
+Info: Running Quartus Prime Fitter
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Tue Nov 30 14:54:21 2021
+Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off VIC20_neptuno -c VIC20_neptuno
+Info: qfit2_default_script.tcl version: #3
+Info: Project  = VIC20_neptuno
+Info: Revision = VIC20_neptuno
+Info (20029): Only one processor detected - disabling parallel compilation
+Info (119006): Selected device EP4CE55F23C8 for design "VIC20_neptuno"
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (15535): Implemented PLL "vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component|pll_vic20_altpll:auto_generated|pll1" as Cyclone IV E PLL type File: /home/user/VIC20_MiST/neptuno/db/pll_vic20_altpll.v Line: 66
+    Info (15099): Implementing clock multiplication of 83, clock division of 117, and phase shift of 0 degrees (0 ps) for vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component|pll_vic20_altpll:auto_generated|wire_pll1_clk[0] port File: /home/user/VIC20_MiST/neptuno/db/pll_vic20_altpll.v Line: 66
+Info (15535): Implemented PLL "vic20_mist:guest|pll27:pll|altpll:altpll_component|pll27_altpll:auto_generated|pll1" as Cyclone IV E PLL type File: /home/user/VIC20_MiST/neptuno/db/pll27_altpll.v Line: 50
+    Info (15099): Implementing clock multiplication of 16, clock division of 25, and phase shift of 0 degrees (0 ps) for vic20_mist:guest|pll27:pll|altpll:altpll_component|pll27_altpll:auto_generated|wire_pll1_clk[0] port File: /home/user/VIC20_MiST/neptuno/db/pll27_altpll.v Line: 50
+Info (171004): Fitter is performing a Standard Fit compilation using maximum Fitter effort to optimize design performance
+Warning (292013): Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature.
+Info (176444): Device migration not selected. If you intend to use device migration later, you may need to change the pin assignments as they may be incompatible with other devices
+    Info (176445): Device EP4CE15F23C8 is compatible
+    Info (176445): Device EP4CE40F23C8 is compatible
+    Info (176445): Device EP4CE30F23C8 is compatible
+    Info (176445): Device EP4CE75F23C8 is compatible
+    Info (176445): Device EP4CE115F23C8 is compatible
+Info (169124): Fitter converted 1 user pins into dedicated programming pins
+    Info (169125): Pin ~ALTERA_DCLK~ is reserved at location K2
+Info (169141): DATA[0] dual-purpose pin not reserved
+Info (12825): Data[1]/ASDO dual-purpose pin not reserved
+Info (12825): nCSO dual-purpose pin not reserved
+Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
+Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
+Critical Warning (176598): PLL "vic20_mist:guest|pll27:pll|altpll:altpll_component|pll27_altpll:auto_generated|pll1" input clock inclk[0] is not fully compensated because it is fed by a remote clock pin "Pin_T2" File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 297
+Info (332104): Reading SDC File: '../DeMiSTify/Board/neptuno/constraints.sdc'
+Info (332110): Deriving PLL clocks
+    Info (332110): create_generated_clock -source {guest|pll|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 25 -multiply_by 16 -duty_cycle 50.00 -name {guest|pll|altpll_component|auto_generated|pll1|clk[0]} {guest|pll|altpll_component|auto_generated|pll1|clk[0]}
+    Info (332110): create_generated_clock -source {guest|pll_vic20|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 117 -multiply_by 83 -duty_cycle 50.00 -name {guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0]} {guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0]}
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at constraints.sdc(22): altera_reserved_tdi could not be matched with a port File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332174): Ignored filter at constraints.sdc(22): altera_reserved_tck could not be matched with a clock File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332049): Ignored set_input_delay at constraints.sdc(22): Argument <targets> is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+    Info (332050): set_input_delay -clock altera_reserved_tck -clock_fall 3 altera_reserved_tdi File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332049): Ignored set_input_delay at constraints.sdc(22): Argument -clock is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332174): Ignored filter at constraints.sdc(23): altera_reserved_tms could not be matched with a port File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+Warning (332049): Ignored set_input_delay at constraints.sdc(23): Argument <targets> is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+    Info (332050): set_input_delay -clock altera_reserved_tck -clock_fall 3 altera_reserved_tms File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+Warning (332049): Ignored set_input_delay at constraints.sdc(23): Argument -clock is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+Warning (332174): Ignored filter at constraints.sdc(24): altera_reserved_tdo could not be matched with a port File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+Warning (332049): Ignored set_output_delay at constraints.sdc(24): Argument <targets> is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+    Info (332050): set_output_delay -clock altera_reserved_tck 3 altera_reserved_tdo File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+Warning (332049): Ignored set_output_delay at constraints.sdc(24): Argument -clock is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+Info (332104): Reading SDC File: '../vic20.sdc'
+Warning (332174): Ignored filter at vic20.sdc(28): UART_TXD could not be matched with a clock or keeper File: /home/user/VIC20_MiST/vic20.sdc Line: 28
+Warning (332174): Ignored filter at vic20.sdc(29): UART_RXD could not be matched with a clock or keeper File: /home/user/VIC20_MiST/vic20.sdc Line: 29
+Info (332104): Reading SDC File: '../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_multicycles.sdc'
+Warning (332060): Node: audio_top:audio_i2s|tcount[4] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register audio_top:audio_i2s|dac_if:dac|sreg[15] is being clocked by audio_top:audio_i2s|tcount[4]
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332129): Detected timing requirements -- optimizing circuit to achieve only the specified requirements
+Info (332111): Found 5 clocks
+    Info (332111):   Period   Clock Name
+    Info (332111): ======== ============
+    Info (332111):   20.000       clk_50
+    Info (332111):   28.192 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0]
+    Info (332111):   31.250 guest|pll|altpll_component|auto_generated|pll1|clk[0]
+    Info (332111):   28.192     sdramclk
+    Info (332111):  320.000       spiclk
+Info (176353): Automatically promoted node clock_50_i~input (placed in PIN T2 (CLK2, DIFFCLK_1p)) File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 10
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G4
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node audio_top:audio_i2s|tcount[4] File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 127
+Info (176353): Automatically promoted node vic20_mist:guest|pll27:pll|altpll:altpll_component|pll27_altpll:auto_generated|wire_pll1_clk[0] (placed in counter C0 of PLL_3) File: /home/user/VIC20_MiST/neptuno/db/pll27_altpll.v Line: 92
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G13
+Info (176353): Automatically promoted node vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component|pll_vic20_altpll:auto_generated|wire_pll1_clk[0] (placed in counter C0 of PLL_1) File: /home/user/VIC20_MiST/neptuno/db/pll_vic20_altpll.v Line: 110
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G3
+Info (176353): Automatically promoted node substitute_mcu:controller|spi_controller:spi|sck  File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 60
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node substitute_mcu:controller|spi_controller:spi|sck~0 File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 60
+        Info (176357): Destination node substitute_mcu:controller|spi_controller:spi|mosi~0 File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 38
+        Info (176357): Destination node substitute_mcu:controller|spi_controller:spi|shiftcnt[5]~2 File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 60
+        Info (176357): Destination node substitute_mcu:controller|spi_controller:spi|sd_shift[7]~1 File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 60
+        Info (176357): Destination node substitute_mcu:controller|spi_controller:spi|sd_shift~5 File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 46
+        Info (176357): Destination node sd_sclk_o~output File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 56
+Info (176353): Automatically promoted node audio_top:audio_i2s|tcount[4]  File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 127
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node audio_top:audio_i2s|tcount[4]~12 File: /home/user/VIC20_MiST/neptuno/rtl/audio_i2s.vhd Line: 127
+        Info (176357): Destination node audio_top:audio_i2s|tim_pr~0
+        Info (176357): Destination node I2S_BCLK~output File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 32
+Info (176353): Automatically promoted node vic20_mist:guest|reset  File: /home/user/VIC20_MiST/vic20.sv Line: 119
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node vic20_mist:guest|VIC20:VIC20|VIC20_CLOCKS:u_clocks|O_ENA File: /home/user/VIC20_MiST/vic20/vic20_clocks.vhd Line: 60
+        Info (176357): Destination node vic20_mist:guest|tap_sdram_oe File: /home/user/VIC20_MiST/vic20.sv Line: 573
+        Info (176357): Destination node vic20_mist:guest|p2_hD File: /home/user/VIC20_MiST/vic20.sv Line: 580
+        Info (176357): Destination node vic20_mist:guest|c1541_reset File: /home/user/VIC20_MiST/vic20.sv Line: 120
+        Info (176357): Destination node vic20_mist:guest|keyboard:keyboard|always1~2
+        Info (176357): Destination node vic20_mist:guest|tap_play_addr[6]~43 File: /home/user/VIC20_MiST/vic20.sv Line: 579
+        Info (176357): Destination node vic20_mist:guest|tap_play_addr[6]~44 File: /home/user/VIC20_MiST/vic20.sv Line: 579
+        Info (176357): Destination node vic20_mist:guest|tap_play_addr[6]~71 File: /home/user/VIC20_MiST/vic20.sv Line: 579
+        Info (176357): Destination node vic20_mist:guest|tap_wrreq File: /home/user/VIC20_MiST/vic20.sv Line: 570
+        Info (176357): Destination node vic20_mist:guest|tap_last_addr~0 File: /home/user/VIC20_MiST/vic20.sv Line: 567
+        Info (176358): Non-global destination nodes limited to 10 nodes
+Info (176353): Automatically promoted node substitute_mcu:controller|reset_n  File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 90
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node substitute_mcu:controller|spi_trigger File: /home/user/VIC20_MiST/DeMiSTify/controller/substitute_mcu.vhd Line: 111
+        Info (176357): Destination node substitute_mcu:controller|spi_controller:spi|sd_shift[0] File: /home/user/VIC20_MiST/DeMiSTify/controller/spi_controller.vhd Line: 60
+        Info (176357): Destination node substitute_mcu:controller|interrupt_controller:intcontroller|int File: /home/user/VIC20_MiST/DeMiSTify/controller/interrupt_controller.vhd Line: 30
+        Info (176357): Destination node substitute_mcu:controller|interrupt_controller:intcontroller|pending[0] File: /home/user/VIC20_MiST/DeMiSTify/controller/interrupt_controller.vhd Line: 42
+        Info (176357): Destination node substitute_mcu:controller|interrupt_controller:intcontroller|pending[1] File: /home/user/VIC20_MiST/DeMiSTify/controller/interrupt_controller.vhd Line: 42
+        Info (176357): Destination node substitute_mcu:controller|interrupt_controller:intcontroller|pending[3] File: /home/user/VIC20_MiST/DeMiSTify/controller/interrupt_controller.vhd Line: 42
+        Info (176357): Destination node substitute_mcu:controller|io_ps2_com:mykeyboard|comState.stateWait100 File: /home/user/VIC20_MiST/DeMiSTify/controller/io_ps2_com.vhd Line: 85
+        Info (176357): Destination node substitute_mcu:controller|io_ps2_com:mykeyboard|comState.stateClockAndDataLow File: /home/user/VIC20_MiST/DeMiSTify/controller/io_ps2_com.vhd Line: 85
+        Info (176357): Destination node substitute_mcu:controller|io_ps2_com:mykeyboard|comState.stateWaitClockLow File: /home/user/VIC20_MiST/DeMiSTify/controller/io_ps2_com.vhd Line: 85
+        Info (176357): Destination node substitute_mcu:controller|io_ps2_com:mykeyboard|comState.stateWaitClockHigh File: /home/user/VIC20_MiST/DeMiSTify/controller/io_ps2_com.vhd Line: 85
+        Info (176358): Non-global destination nodes limited to 10 nodes
+Info (176353): Automatically promoted node vic20_mist:guest|VIC20:VIC20|T65:cpu|Res_n_i  File: /home/user/VIC20_MiST/T65/T65.vhd Line: 241
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node vic20_mist:guest|VIC20:VIC20|T65:cpu|Y[0]~0 File: /home/user/VIC20_MiST/T65/T65.vhd Line: 442
+        Info (176357): Destination node vic20_mist:guest|VIC20:VIC20|T65:cpu|IRQ_n_o~0 File: /home/user/VIC20_MiST/T65/T65.vhd Line: 199
+        Info (176357): Destination node vic20_mist:guest|VIC20:VIC20|T65:cpu|NMI_entered~0 File: /home/user/VIC20_MiST/T65/T65.vhd Line: 248
+Info (176353): Automatically promoted node vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|T65:cpu_inst|Res_n_i  File: /home/user/VIC20_MiST/T65/T65.vhd Line: 241
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|T65:cpu_inst|Y[3]~0 File: /home/user/VIC20_MiST/T65/T65.vhd Line: 442
+        Info (176357): Destination node vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|T65:cpu_inst|SO_n_o File: /home/user/VIC20_MiST/T65/T65.vhd Line: 198
+        Info (176357): Destination node vic20_mist:guest|c1541_sd:c1541_sd|c1541_logic:c1541|T65:cpu_inst|IRQ_n_o~2 File: /home/user/VIC20_MiST/T65/T65.vhd Line: 199
+Info (176353): Automatically promoted node vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component|pll_vic20_altpll:auto_generated|locked  File: /home/user/VIC20_MiST/neptuno/db/pll_vic20_altpll.v Line: 46
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node vic20_mist:guest|reset~1 File: /home/user/VIC20_MiST/vic20.sv Line: 119
+        Info (176357): Destination node DRAM_CKE~output File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 13
+Info (176353): Automatically promoted node vic20_mist:guest|user_io:user_io|status[0]  File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 397
+    Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
+    Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
+        Info (176357): Destination node vic20_mist:guest|reset~0 File: /home/user/VIC20_MiST/vic20.sv Line: 119
+        Info (176357): Destination node vic20_mist:guest|user_io:user_io|status[0]~9 File: /home/user/VIC20_MiST/mist-modules/user_io.v Line: 397
+Info (176233): Starting register packing
+Info (176235): Finished register packing
+    Extra Info (176218): Packed 36 registers into blocks of type Embedded multiplier block
+    Extra Info (176220): Created 36 register duplicates
+Warning (15064): PLL "vic20_mist:guest|pll_vic20:pll_vic20|altpll:altpll_component|pll_vic20_altpll:auto_generated|pll1" output port clk[0] feeds output pin "DRAM_CLK~output" via non-dedicated routing -- jitter performance depends on switching rate of other design elements. Use PLL dedicated clock outputs to ensure jitter performance File: /home/user/VIC20_MiST/neptuno/db/pll_vic20_altpll.v Line: 66
+Warning (15705): Ignored locations or region assignments to the following nodes
+    Warning (15706): Node "SPI_DI" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SPI_DO" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SPI_SCK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SPI_SS2" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[0]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[10]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[11]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[12]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[13]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[14]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[15]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[16]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[17]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[18]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[19]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[1]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[2]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[3]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[4]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[5]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[6]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[7]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[8]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_A[9]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_LB" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_OE" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[0]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[10]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[11]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[12]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[13]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[14]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[15]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[1]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[2]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[3]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[4]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[5]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[6]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[7]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[8]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_Q[9]" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_UB" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SRAM_WE" is assigned to location or region, but does not exist in design
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:09
+Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
+Info (170189): Fitter placement preparation operations beginning
+Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:07
+Info (170191): Fitter placement operations beginning
+Info (170137): Fitter placement was successful
+Info (170192): Fitter placement operations ending: elapsed time is 00:01:09
+Info (170193): Fitter routing operations beginning
+Info (170195): Router estimated average interconnect usage is 5% of the available device resources
+    Info (170196): Router estimated peak interconnect usage is 17% of the available device resources in the region that extends from location X22_Y10 to location X32_Y20
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:29
+Info (11888): Total time spent on timing analysis during the Fitter is 12.15 seconds.
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:07
+Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
+Warning (169177): 25 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing Cyclone IV E Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
+    Info (169178): Pin stm_tx_i uses I/O standard 3.3-V LVTTL at J21 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 51
+    Info (169178): Pin DRAM_DQ[0] uses I/O standard 3.3-V LVTTL at AA10 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[1] uses I/O standard 3.3-V LVTTL at AB9 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[2] uses I/O standard 3.3-V LVTTL at AA9 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[3] uses I/O standard 3.3-V LVTTL at AB8 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[4] uses I/O standard 3.3-V LVTTL at AA8 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[5] uses I/O standard 3.3-V LVTTL at AB7 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[6] uses I/O standard 3.3-V LVTTL at AA7 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[7] uses I/O standard 3.3-V LVTTL at AB5 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[8] uses I/O standard 3.3-V LVTTL at Y7 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[9] uses I/O standard 3.3-V LVTTL at W8 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[10] uses I/O standard 3.3-V LVTTL at Y8 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[11] uses I/O standard 3.3-V LVTTL at V9 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[12] uses I/O standard 3.3-V LVTTL at V10 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[13] uses I/O standard 3.3-V LVTTL at Y10 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[14] uses I/O standard 3.3-V LVTTL at W10 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin DRAM_DQ[15] uses I/O standard 3.3-V LVTTL at V11 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 16
+    Info (169178): Pin PS2_KEYBOARD_CLK uses I/O standard 3.3-V LVTTL at N19 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 43
+    Info (169178): Pin PS2_KEYBOARD_DAT uses I/O standard 3.3-V LVTTL at N20 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 44
+    Info (169178): Pin PS2_MOUSE_CLK uses I/O standard 3.3-V LVTTL at C21 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 45
+    Info (169178): Pin PS2_MOUSE_DAT uses I/O standard 3.3-V LVTTL at B21 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 46
+    Info (169178): Pin clock_50_i uses I/O standard 3.3-V LVTTL at T2 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 10
+    Info (169178): Pin AUDIO_INPUT uses I/O standard 3.3-V LVTTL at AA13 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 48
+    Info (169178): Pin JOY_DATA uses I/O standard 3.3-V LVTTL at B19 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 39
+    Info (169178): Pin sd_miso_i uses I/O standard 3.3-V LVTTL at E21 File: /home/user/VIC20_MiST/neptuno/neptuno_top.vhd Line: 58
+Info (144001): Generated suppressed messages file /home/user/VIC20_MiST/neptuno/output_files/VIC20_neptuno.fit.smsg
+Info: Quartus Prime Fitter was successful. 0 errors, 64 warnings
+    Info: Peak virtual memory: 1340 megabytes
+    Info: Processing ended: Tue Nov 30 14:56:36 2021
+    Info: Elapsed time: 00:02:15
+    Info: Total CPU time (on all processors): 00:02:07
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Tue Nov 30 14:56:39 2021
+Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off VIC20_neptuno -c VIC20_neptuno
+Info (115031): Writing out detailed assembly data for power analysis
+Info (115030): Assembler is generating device programming files
+Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 851 megabytes
+    Info: Processing ended: Tue Nov 30 14:56:42 2021
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
+Info (293026): Skipped module Power Analyzer due to the assignment FLOW_ENABLE_POWER_ANALYZER
+Info: *******************************************************************
+Info: Running Quartus Prime TimeQuest Timing Analyzer
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Tue Nov 30 14:56:43 2021
+Info: Command: quartus_sta VIC20_neptuno -c VIC20_neptuno
+Info: qsta_default_script.tcl version: #3
+Info (20029): Only one processor detected - disabling parallel compilation
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Info (332104): Reading SDC File: '../DeMiSTify/Board/neptuno/constraints.sdc'
+Info (332110): Deriving PLL clocks
+    Info (332110): create_generated_clock -source {guest|pll_vic20|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 117 -multiply_by 83 -duty_cycle 50.00 -name {guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0]} {guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0]}
+    Info (332110): create_generated_clock -source {guest|pll|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 25 -multiply_by 16 -duty_cycle 50.00 -name {guest|pll|altpll_component|auto_generated|pll1|clk[0]} {guest|pll|altpll_component|auto_generated|pll1|clk[0]}
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at constraints.sdc(22): altera_reserved_tdi could not be matched with a port File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332174): Ignored filter at constraints.sdc(22): altera_reserved_tck could not be matched with a clock File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332049): Ignored set_input_delay at constraints.sdc(22): Argument <targets> is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+    Info (332050): set_input_delay -clock altera_reserved_tck -clock_fall 3 altera_reserved_tdi File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332049): Ignored set_input_delay at constraints.sdc(22): Argument -clock is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 22
+Warning (332174): Ignored filter at constraints.sdc(23): altera_reserved_tms could not be matched with a port File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+Warning (332049): Ignored set_input_delay at constraints.sdc(23): Argument <targets> is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+    Info (332050): set_input_delay -clock altera_reserved_tck -clock_fall 3 altera_reserved_tms File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+Warning (332049): Ignored set_input_delay at constraints.sdc(23): Argument -clock is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 23
+Warning (332174): Ignored filter at constraints.sdc(24): altera_reserved_tdo could not be matched with a port File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+Warning (332049): Ignored set_output_delay at constraints.sdc(24): Argument <targets> is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+    Info (332050): set_output_delay -clock altera_reserved_tck 3 altera_reserved_tdo File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+Warning (332049): Ignored set_output_delay at constraints.sdc(24): Argument -clock is not an object ID File: /home/user/VIC20_MiST/DeMiSTify/Board/neptuno/constraints.sdc Line: 24
+Info (332104): Reading SDC File: '../vic20.sdc'
+Warning (332174): Ignored filter at vic20.sdc(28): UART_TXD could not be matched with a clock or keeper File: /home/user/VIC20_MiST/vic20.sdc Line: 28
+Warning (332174): Ignored filter at vic20.sdc(29): UART_RXD could not be matched with a clock or keeper File: /home/user/VIC20_MiST/vic20.sdc Line: 29
+Info (332104): Reading SDC File: '../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_multicycles.sdc'
+Warning (332060): Node: audio_top:audio_i2s|tcount[4] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register audio_top:audio_i2s|dac_if:dac|sreg[15] is being clocked by audio_top:audio_i2s|tcount[4]
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1200mV 85C Model
+Info (332146): Worst-case setup slack is 2.795
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.795               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     6.109               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     7.983               0.000 sdramclk 
+    Info (332119):    10.876               0.000 clk_50 
+    Info (332119):    12.688               0.000 spiclk 
+Info (332146): Worst-case hold slack is 0.407
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.407               0.000 spiclk 
+    Info (332119):     0.422               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.430               0.000 clk_50 
+    Info (332119):     0.447               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    14.283               0.000 sdramclk 
+Info (332146): Worst-case recovery slack is 15.438
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    15.438               0.000 clk_50 
+    Info (332119):    16.072               0.000 spiclk 
+    Info (332119):    23.170               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    26.488               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+Info (332146): Worst-case removal slack is 1.545
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     1.545               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     1.576               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     2.217               0.000 spiclk 
+    Info (332119):     3.847               0.000 clk_50 
+Info (332146): Worst-case minimum pulse width slack is 9.438
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.438               0.000 clk_50 
+    Info (332119):    13.755               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    14.533               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    23.711               0.000 sdramclk 
+    Info (332119):   159.710               0.000 spiclk 
+Info (332114): Report Metastability: Found 9 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 9
+    Info (332114): Shortest Synchronizer Chain: 2 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 48.349 ns
+Info: Analyzing Slow 1200mV 0C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Warning (332060): Node: audio_top:audio_i2s|tcount[4] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register audio_top:audio_i2s|dac_if:dac|sreg[15] is being clocked by audio_top:audio_i2s|tcount[4]
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332146): Worst-case setup slack is 3.245
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     3.245               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     6.729               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     8.134               0.000 sdramclk 
+    Info (332119):    11.399               0.000 clk_50 
+    Info (332119):    12.742               0.000 spiclk 
+Info (332146): Worst-case hold slack is 0.377
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.377               0.000 spiclk 
+    Info (332119):     0.378               0.000 clk_50 
+    Info (332119):     0.381               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.396               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    14.160               0.000 sdramclk 
+Info (332146): Worst-case recovery slack is 15.815
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    15.815               0.000 clk_50 
+    Info (332119):    15.954               0.000 spiclk 
+    Info (332119):    23.566               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    26.881               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+Info (332146): Worst-case removal slack is 1.389
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     1.389               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     1.421               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     1.987               0.000 spiclk 
+    Info (332119):     3.431               0.000 clk_50 
+Info (332146): Worst-case minimum pulse width slack is 9.456
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.456               0.000 clk_50 
+    Info (332119):    13.741               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    14.543               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    23.711               0.000 sdramclk 
+    Info (332119):   159.584               0.000 spiclk 
+Info (332114): Report Metastability: Found 9 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 9
+    Info (332114): Shortest Synchronizer Chain: 2 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 48.754 ns
+Info: Analyzing Fast 1200mV 0C Model
+Warning (332060): Node: audio_top:audio_i2s|tcount[4] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register audio_top:audio_i2s|dac_if:dac|sreg[15] is being clocked by audio_top:audio_i2s|tcount[4]
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
+Info (332146): Worst-case setup slack is 4.731
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     4.731               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    10.172               0.000 sdramclk 
+    Info (332119):    11.698               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    15.991               0.000 clk_50 
+    Info (332119):    16.380               0.000 spiclk 
+Info (332146): Worst-case hold slack is 0.137
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.137               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.154               0.000 spiclk 
+    Info (332119):     0.165               0.000 clk_50 
+    Info (332119):     0.183               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    13.629               0.000 sdramclk 
+Info (332146): Worst-case recovery slack is 17.854
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    17.854               0.000 clk_50 
+    Info (332119):    18.165               0.000 spiclk 
+    Info (332119):    25.822               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    28.935               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+Info (332146): Worst-case removal slack is 0.649
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.649               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.662               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.830               0.000 spiclk 
+    Info (332119):     1.755               0.000 clk_50 
+Info (332146): Worst-case minimum pulse width slack is 9.203
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     9.203               0.000 clk_50 
+    Info (332119):    13.845               0.000 guest|pll_vic20|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    14.595               0.000 guest|pll|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    24.192               0.000 sdramclk 
+    Info (332119):   159.634               0.000 spiclk 
+Info (332114): Report Metastability: Found 9 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 9
+    Info (332114): Shortest Synchronizer Chain: 2 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 52.876 ns
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 15 warnings
+    Info: Peak virtual memory: 941 megabytes
+    Info: Processing ended: Tue Nov 30 14:56:50 2021
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:07
+Info (293000): Quartus Prime Full Compilation was successful. 0 errors, 133 warnings
+Info (23030): Evaluation of Tcl script ..//DeMiSTify/Scripts/compile.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 133 warnings
+    Info: Peak virtual memory: 801 megabytes
+    Info: Processing ended: Tue Nov 30 14:56:51 2021
+    Info: Elapsed time: 00:04:01
+    Info: Total CPU time (on all processors): 00:03:20

@@ -3,7 +3,7 @@
 module bbc_mist_top(
 
   // clock inputs
-  input wire [1:0] 	CLOCK_27, // 27 MHz
+  input wire  	CLOCK_27, // 27 MHz
   
   // LED outputs
   output wire	LED, // LED Yellow
@@ -39,7 +39,9 @@ module bbc_mist_top(
   input          SPI_SCK,
   input          SPI_SS2,    // data_io
   input          SPI_SS3,    // OSD
-  input          CONF_DATA0  // SPI_SS for user_io
+  input          CONF_DATA0,  // SPI_SS for user_io
+  output [15:0]  DAC_L,
+  output [15:0]  DAC_R
 );
 
 assign LED = ~loader_active;
@@ -105,7 +107,7 @@ wire        ps2_dat;
 assign SDRAM_CLK = clk_48m;
 
 clockgen CLOCKS(
-	.inclk0	(CLOCK_27[0]),
+	.inclk0	(CLOCK_27),
 	.c0		(clk_48m),
 	.locked	(pll_ready)  // pll locked output
 );
@@ -364,7 +366,7 @@ bbc BBC(
 
 	.AUDIO_L	( coreaud_l     ),
 	.AUDIO_R	( coreaud_r     ),
-
+	
 	// FDC connection
 	.img_mounted    ( img_mounted[1] ),
 	.img_size       ( img_size       ),
@@ -467,6 +469,9 @@ audio	AUDIO	(
 	.audio_l     ( AUDIO_L    ),
 	.audio_r     ( AUDIO_R    )
 );
+
+assign DAC_L = coreaud_l;
+assign DAC_R = coreaud_r;
 
 mist_video #(.COLOR_DEPTH(1), .SD_HCNT_WIDTH(10), .SYNC_AND(1)) mist_video (
 	.clk_sys     ( clk_48m    ),

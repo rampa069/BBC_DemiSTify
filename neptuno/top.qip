@@ -1,0 +1,5 @@
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) "neptuno_top.vhd"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "pll27.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "pll_vic20.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "rom_reconfig_pal.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "rom_reconfig_ntsc.qip"]

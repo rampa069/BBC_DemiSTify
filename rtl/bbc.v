@@ -186,6 +186,7 @@ wire    keyb_out;
 wire    keyb_int; 
 wire    keyb_break;
 reg     keyb_reset;
+wire    keyb_dip;
 
 // internal reset signals
 wire    reset_n = ~RESET_I & ~keyb_reset;
@@ -274,6 +275,7 @@ reg      [3:0] floppy_drive;
 reg      floppy_side;
 reg      floppy_density;
 reg      floppy_reset;
+wire 		floppy_motor;
 
 // MMC
 // SDCLK is driven from either PB1 or CB1 depending on the SR Mode
