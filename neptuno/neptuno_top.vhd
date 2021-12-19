@@ -2,6 +2,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+library work;
+use work.demistify_config_pkg.all;
+
 -- -----------------------------------------------------------------------
 
 entity neptuno_top is
@@ -112,8 +115,6 @@ architecture RTL of neptuno_top is
 	signal rs232_rxd : std_logic;
 	signal rs232_txd : std_logic;
 
-
-	
 -- IO
 
 	signal joya : std_logic_vector(7 downto 0);
@@ -164,6 +165,7 @@ COMPONENT  bbc_mist_top
 
 	);
 END COMPONENT;
+
 component audio_top is
 Port ( 	
 		clk_50MHz : in STD_LOGIC; -- system clock (50 MHz)
@@ -318,7 +320,6 @@ guest: COMPONENT  bbc_mist_top
 		SPI_SS2	=> spi_ss2,
 		SPI_SS3 => spi_ss3,
 --		SPI_SS4	=> spi_ss4,
-		
 		CONF_DATA0 => conf_data0,
 
 		VGA_HS => vga_hsync,

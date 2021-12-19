@@ -1,33 +1,27 @@
-set_global_assignment -name SDC_FILE ../DeMiSTify/Board/neptuno/constraints.sdc
-set_global_assignment -name VERILOG_FILE rtl/joydecoder.v
-set_global_assignment -name VHDL_FILE rtl/audio_i2s.vhd
-set_global_assignment -name QIP_FILE ../DeMiSTify/controller/controller.qip
-set_global_assignment -name VHDL_FILE ../demistify_config_pkg.vhd
-set_global_assignment -name VHDL_FILE ../firmware/controller_rom1_byte.vhd
-set_global_assignment -name VHDL_FILE ../firmware/controller_rom2_byte.vhd
-set_global_assignment -name VERILOG_FILE ../fpga/rtl/sigma_delta_dac.v
-set_global_assignment -name VERILOG_FILE ../fpga/rtl/audio.v
-set_global_assignment -name VERILOG_FILE ../rtl/adc.v
-set_global_assignment -name VHDL_FILE ../rtl/rtc.vhd
-set_global_assignment -name VERILOG_FILE ../rtl/ps2_intf.v
-set_global_assignment -name VERILOG_FILE ../rtl/vidproc.v
-set_global_assignment -name VERILOG_FILE ../rtl/keyboard.v
-set_global_assignment -name VERILOG_FILE ../rtl/clocks.v
-set_global_assignment -name VERILOG_FILE ../rtl/address_decode.v
-set_global_assignment -name VERILOG_FILE ../rtl/bbc.v
-set_global_assignment -name VHDL_FILE ../rtl/mc6845.vhd
-set_global_assignment -name VHDL_FILE ../rtl/via6522.vhd
-set_global_assignment -name VHDL_FILE ../rtl/saa5050/saa5050_rom_dual_port.vhd
-set_global_assignment -name VHDL_FILE ../rtl/saa5050/saa5050.vhd
-set_global_assignment -name QIP_FILE "../rtl/sn76489-1.0/sn76489.qip"
-set_global_assignment -name QIP_FILE ../rtl/T65/T65.qip
-set_global_assignment -name VHDL_FILE ../rtl/AlanD/R65Cx2.vhd
-set_global_assignment -name VERILOG_FILE "../rtl/fdc1772-verilator/floppy.v"
-set_global_assignment -name VERILOG_FILE "../rtl/fdc1772-verilator/fdc1772.v"
-set_global_assignment -name SDC_FILE ../fpga/mist/bbc_mist.sdc
-set_global_assignment -name SYSTEMVERILOG_FILE ../fpga/mist/bbc_mist_top.sv
-set_global_assignment -name VERILOG_FILE "../fpga/mist/mist-modules/sd_card.v"
-set_global_assignment -name QIP_FILE "../fpga/mist/mist-modules/mist.qip"
-set_global_assignment -name VERILOG_FILE ../fpga/mist/sdram.v
-set_global_assignment -name VERILOG_FILE clockgen.v
-set_global_assignment -name CDF_FILE output_files/bbc_mist_top.cdf
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/adc.v]
+set_global_assignment -name VHDL_FILE    [file join $::quartus(qip_path) rtl/rtc.vhd]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/ps2_intf.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/vidproc.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/keyboard.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/clocks.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/address_decode.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/bbc.v]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) rtl/mc6845.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) rtl/via6522.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) rtl/saa5050/saa5050_rom_dual_port.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) rtl/saa5050/saa5050.vhd]
+set_global_assignment -name QIP_FILE  [file join $::quartus(qip_path) rtl/sn76489-1.0/sn76489.qip]
+set_global_assignment -name QIP_FILE  [file join $::quartus(qip_path) rtl/T65/T65.qip]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) rtl/AlanD/R65Cx2.vhd]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/fdc1772-verilator/floppy.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) rtl/fdc1772-verilator/fdc1772.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) fpga/rtl/sigma_delta_dac.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) fpga/rtl/audio.v]
+set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) fpga/mist/bbc_mist.sdc]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) fpga/mist/bbc_mist_top.sv]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) fpga/mist/mist-modules/sd_card.v]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) fpga/mist/mist-modules/mist.qip]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) fpga/mist/sdram.v]
+
+
+

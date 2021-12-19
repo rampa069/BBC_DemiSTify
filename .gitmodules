@@ -9,4 +9,4 @@
 	url = https://github.com/mist-devel/T65.git
 [submodule "DeMiSTify"]
 	path = DeMiSTify
-	url = https://github.com/robinsonb5/DeMiSTify.git
+	url = https://github.com/somhi/DeMiSTify.git

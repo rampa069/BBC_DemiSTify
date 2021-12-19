@@ -18,13 +18,13 @@
 #
 # Quartus Prime
 # Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-# Date created = 19:55:37  December 19, 2021
+# Date created = 23:45:49  December 19, 2021
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "17.1"
-DATE = "19:55:37  December 19, 2021"
+DATE = "23:45:49  December 19, 2021"
 
 # Revisions
 
-PROJECT_REVISION = "BBC_neptuno"
+PROJECT_REVISION = "BBC_deca"

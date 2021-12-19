@@ -7,6 +7,7 @@ char *autoboot()
 {
     char *result=0;
     diskimg_mount(bootvhd_name,0);
-    LoadROM(bootrom_name);
+	if(!LoadROM(bootrom_name))
+		result="ROM loading failed";
     return(result);
 }
