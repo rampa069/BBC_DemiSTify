@@ -40,7 +40,7 @@ v0.3 cleared constraints
 (Note that sof/svf files are already included in /deca/output_files/)
 
 ```sh
-git clonehttps://github.com/somhi/BBC_DemiSTify
+git clone https://github.com/somhi/BBC_DemiSTify
 cd BBC_DemiSTify
 #Do a first make (will finish in error) but it will download missing submodules 
 make
