@@ -61,19 +61,19 @@ entity deca_top is
 		SD_CMD_DIR           	: OUT   STD_LOGIC := '1';  
 		SD_D0_DIR            	: OUT   STD_LOGIC := '0';  
 		SD_D123_DIR            : OUT   STD_LOGIC;
-		-- HDMI-TX  DECA 
-		HDMI_I2C_SCL  		: INOUT STD_LOGIC; 		          		
-		HDMI_I2C_SDA  		: INOUT STD_LOGIC; 		          		
-		HDMI_I2S      		: INOUT STD_LOGIC_VECTOR(3 downto 0);		     	
-		HDMI_LRCLK    		: INOUT STD_LOGIC; 		          		
-		HDMI_MCLK     		: INOUT STD_LOGIC;		          		
-		HDMI_SCLK     		: INOUT STD_LOGIC; 		          		
-		HDMI_TX_CLK   		: OUT	STD_LOGIC;	          		
-		HDMI_TX_D     		: OUT	STD_LOGIC_VECTOR(23 downto 0);	    		
-		HDMI_TX_DE    		: OUT   STD_LOGIC;		          		 
-		HDMI_TX_HS    		: OUT	STD_LOGIC;	          		
-		HDMI_TX_INT   		: IN    STD_LOGIC;		          		
-		HDMI_TX_VS    		: OUT   STD_LOGIC;         
+		-- -- HDMI-TX  DECA 
+		-- HDMI_I2C_SCL  		: INOUT STD_LOGIC; 		          		
+		-- HDMI_I2C_SDA  		: INOUT STD_LOGIC; 		          		
+		-- HDMI_I2S      		: INOUT STD_LOGIC_VECTOR(3 downto 0);		     	
+		-- HDMI_LRCLK    		: INOUT STD_LOGIC; 		          		
+		-- HDMI_MCLK     		: INOUT STD_LOGIC;		          		
+		-- HDMI_SCLK     		: INOUT STD_LOGIC; 		          		
+		-- HDMI_TX_CLK   		: OUT	STD_LOGIC;	          		
+		-- HDMI_TX_D     		: OUT	STD_LOGIC_VECTOR(23 downto 0);	    		
+		-- HDMI_TX_DE    		: OUT   STD_LOGIC;		          		 
+		-- HDMI_TX_HS    		: OUT	STD_LOGIC;	          		
+		-- HDMI_TX_INT   		: IN    STD_LOGIC;		          		
+		-- HDMI_TX_VS    		: OUT   STD_LOGIC;         
         -- AUDIO CODEC  DECA 
 		AUDIO_GPIO_MFP5  	: INOUT STD_LOGIC;
 		AUDIO_MISO_MFP4  	: IN    STD_LOGIC;
@@ -142,48 +142,6 @@ architecture RTL of deca_top is
 	signal joyd : std_logic_vector(7 downto 0);
 
 
-	
-COMPONENT  bbc_mist_top
-	PORT
-	(
-		CLOCK_27 :	IN STD_LOGIC_VECTOR(1 downto 0);
-		--RESET_N :   IN std_logic;
-		SDRAM_DQ		:	 INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-		SDRAM_A		:	 OUT STD_LOGIC_VECTOR(12 DOWNTO 0);
-		SDRAM_DQML		:	 OUT STD_LOGIC;
-		SDRAM_DQMH		:	 OUT STD_LOGIC;
-		SDRAM_nWE		:	 OUT STD_LOGIC;
-		SDRAM_nCAS		:	 OUT STD_LOGIC;
-		SDRAM_nRAS		:	 OUT STD_LOGIC;
-		SDRAM_nCS		:	 OUT STD_LOGIC;
-		SDRAM_BA		:	 OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-		SDRAM_CLK		:	 OUT STD_LOGIC;
-		SDRAM_CKE		:	 OUT STD_LOGIC;
-		-- UART
---		UART_TX    :   OUT STD_LOGIC;
---		UART_RX    :   IN STD_LOGIC;
-		SPI_DO		:	 OUT STD_LOGIC;
---		SPI_SD_DI	:	 IN STD_LOGIC;
-		SPI_DI		:	 IN STD_LOGIC;
-		SPI_SCK		:	 IN STD_LOGIC;
-		SPI_SS2		:	 IN STD_LOGIC;
-		SPI_SS3		:	 IN STD_LOGIC;
---		SPI_SS4		:	 IN STD_LOGIC;
-		CONF_DATA0		:	 IN STD_LOGIC;
-		VGA_HS		:	 OUT STD_LOGIC;
-		VGA_VS		:	 OUT STD_LOGIC;
-		VGA_R		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		VGA_G		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		VGA_B		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		AUDIO_L  : out std_logic;
-		AUDIO_R  : out std_logic;
-		LED      : out std_logic;
-			DAC_L    : out std_logic_vector(15 downto 0);
-        	DAC_R    : out std_logic_vector(15 downto 0)
-
-	);
-END COMPONENT;
-
 
 component AUDIO_SPI_CTL_RD
     port (
@@ -215,33 +173,32 @@ end component;
 signal  dac_l : std_logic_vector(15 downto 0);
 signal  dac_r : std_logic_vector(15 downto 0);
 
-
--- HDMI
 signal i2s_Mck_o : std_logic;
 signal i2s_Sck_o : std_logic;
 signal i2s_Lr_o : std_logic;
 signal i2s_D_o : std_logic;
 
-component I2C_HDMI_Config
-    port (
-    iCLK : in std_logic;
-    iRST_N : in std_logic;
-    I2C_SCLK : out std_logic;
-    I2C_SDAT : inout std_logic;
-    HDMI_TX_INT : in std_logic
-  );
-end component;
+-- HDMI
+-- component I2C_HDMI_Config
+--     port (
+--     iCLK : in std_logic;
+--     iRST_N : in std_logic;
+--     I2C_SCLK : out std_logic;
+--     I2C_SDAT : inout std_logic;
+--     HDMI_TX_INT : in std_logic
+--   );
+-- end component;
 
-component pll2
-    port (
-    inclk0 : in STD_LOGIC;
-    c0 : out STD_LOGIC;
-    locked : out STD_LOGIC
-  );
-end component;
+-- component pll2
+--     port (
+--     inclk0 : in STD_LOGIC;
+--     c0 : out STD_LOGIC;
+--     locked : out STD_LOGIC
+--   );
+-- end component;
 
-signal vga_clk :  std_logic;
-signal vga_blank  :  std_logic;
+-- signal vga_clk :  std_logic;
+-- signal vga_blank  :  std_logic;
 
 begin
 
