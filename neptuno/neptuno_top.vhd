@@ -2,6 +2,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+library work;
+use work.demistify_config_pkg.all;
+
 -- -----------------------------------------------------------------------
 
 entity neptuno_top is
@@ -64,21 +67,16 @@ architecture RTL of neptuno_top is
    constant reset_cycles : integer := 131071;
 	
 -- System clocks
-
 	signal locked : std_logic;
 	signal reset_n : std_logic;
 
-
-
 -- SPI signals
-
 	signal sd_clk : std_logic;
 	signal sd_cs : std_logic;
 	signal sd_mosi : std_logic;
 	signal sd_miso : std_logic;
 	
 -- internal SPI signals
-	
 	signal spi_toguest : std_logic;
 	signal spi_fromguest : std_logic;
 	signal spi_ss2 : std_logic;
@@ -112,58 +110,16 @@ architecture RTL of neptuno_top is
 	signal rs232_rxd : std_logic;
 	signal rs232_txd : std_logic;
 
-
-	
 -- IO
-
 	signal joya : std_logic_vector(7 downto 0);
 	signal joyb : std_logic_vector(7 downto 0);
 	signal joyc : std_logic_vector(7 downto 0);
 	signal joyd : std_logic_vector(7 downto 0);
 
-   signal  DAC_L : std_logic_vector(15 downto 0);
-   signal  DAC_R : std_logic_vector(15 downto 0);
+    signal  DAC_L : std_logic_vector(15 downto 0);
+    signal  DAC_R : std_logic_vector(15 downto 0);
 	
-COMPONENT  bbc_mist_top
-	PORT
-	(
-		CLOCK_27 :	IN STD_LOGIC_VECTOR(1 downto 0);
-		--RESET_N :   IN std_logic;
-		SDRAM_DQ		:	 INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-		SDRAM_A		:	 OUT STD_LOGIC_VECTOR(12 DOWNTO 0);
-		SDRAM_DQML		:	 OUT STD_LOGIC;
-		SDRAM_DQMH		:	 OUT STD_LOGIC;
-		SDRAM_nWE		:	 OUT STD_LOGIC;
-		SDRAM_nCAS		:	 OUT STD_LOGIC;
-		SDRAM_nRAS		:	 OUT STD_LOGIC;
-		SDRAM_nCS		:	 OUT STD_LOGIC;
-		SDRAM_BA		:	 OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-		SDRAM_CLK		:	 OUT STD_LOGIC;
-		SDRAM_CKE		:	 OUT STD_LOGIC;
-		-- UART
---		UART_TX    :   OUT STD_LOGIC;
---		UART_RX    :   IN STD_LOGIC;
-		SPI_DO		:	 OUT STD_LOGIC;
---		SPI_SD_DI	:	 IN STD_LOGIC;
-		SPI_DI		:	 IN STD_LOGIC;
-		SPI_SCK		:	 IN STD_LOGIC;
-		SPI_SS2		:	 IN STD_LOGIC;
-		SPI_SS3		:	 IN STD_LOGIC;
---		SPI_SS4		:	 IN STD_LOGIC;
-		CONF_DATA0		:	 IN STD_LOGIC;
-		VGA_HS		:	 OUT STD_LOGIC;
-		VGA_VS		:	 OUT STD_LOGIC;
-		VGA_R		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		VGA_G		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		VGA_B		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		AUDIO_L  : out std_logic;
-		AUDIO_R  : out std_logic;
-		LED      : out std_logic;
-		DAC_L    : out std_logic_vector(15 downto 0);
-      DAC_R    : out std_logic_vector(15 downto 0)
 
-	);
-END COMPONENT;
 component audio_top is
 Port ( 	
 		clk_50MHz : in STD_LOGIC; -- system clock (50 MHz)
@@ -218,16 +174,12 @@ begin
 
 
 -- SPI
-
 sd_cs_n_o<=sd_cs;
 sd_mosi_o<=sd_mosi;
 sd_miso<=sd_miso_i;
 sd_sclk_o<=sd_clk;
 
-
-
 -- External devices tied to GPIOs
-
 ps2_mouse_dat_in<=ps2_mouse_dat;
 ps2_mouse_dat <= '0' when ps2_mouse_dat_out='0' else 'Z';
 ps2_mouse_clk_in<=ps2_mouse_clk;
@@ -239,25 +191,19 @@ ps2_keyboard_clk_in<=ps2_keyboard_clk;
 ps2_keyboard_clk <= '0' when ps2_keyboard_clk_out='0' else 'Z';
 	
 
-
 joya<="11" & joy1fire2 & joy1fire1 & joy1right & joy1left & joy1down & joy1up;
 joyb<="11" & joy2fire2 & joy2fire1 & joy2right & joy2left & joy2down & joy2up;
 
 stm_rst_o <= '0';
 
---process(clk_sys)
---begin
---	if rising_edge(clk_sys) then
-		VGA_R<=vga_red(7 downto 2);
-		VGA_G<=vga_green(7 downto 2);
-		VGA_B<=vga_blue(7 downto 2);
-		VGA_HS<=vga_hsync;
-		VGA_VS<=vga_vsync;
---	end if;
---end process;
+VGA_R<=vga_red(7 downto 2);
+VGA_G<=vga_green(7 downto 2);
+VGA_B<=vga_blue(7 downto 2);
+VGA_HS<=vga_hsync;
+VGA_VS<=vga_vsync;
+
 
 -- I2S audio
-	
 audio_i2s: entity work.audio_top
 port map(
 	clk_50MHz => clock_50_i,
@@ -269,7 +215,7 @@ port map(
 	R_data    => std_logic_vector(DAC_R)
 );		
 
-	-- JOYSTICKS
+-- JOYSTICKS
 joy: joydecoder
 	  port map (
 		clk				=> clock_50_i,
@@ -290,6 +236,7 @@ joy: joydecoder
 		joy2fire2		=> joy2fire2
 	);
 	
+
 guest: COMPONENT  bbc_mist_top
 	PORT map
 	(
@@ -318,7 +265,6 @@ guest: COMPONENT  bbc_mist_top
 		SPI_SS2	=> spi_ss2,
 		SPI_SS3 => spi_ss3,
 --		SPI_SS4	=> spi_ss4,
-		
 		CONF_DATA0 => conf_data0,
 
 		VGA_HS => vga_hsync,
@@ -332,6 +278,7 @@ guest: COMPONENT  bbc_mist_top
 		DAC_L   => DAC_L,
 		DAC_R   => DAC_R
 );
+
 
 -- Pass internal signals to external SPI interface
 sd_clk <= spi_clk_int;
