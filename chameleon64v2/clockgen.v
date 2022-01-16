@@ -37,15 +37,24 @@
 `timescale 1 ps / 1 ps
 // synopsys translate_on
 module clockgen (
+	areset,
 	inclk0,
 	c0,
 	c1,
 	locked);
 
+	input	  areset;
 	input	  inclk0;
 	output	  c0;
 	output	  c1;
 	output	  locked;
+`ifndef ALTERA_RESERVED_QIS
+// synopsys translate_off
+`endif
+	tri0	  areset;
+`ifndef ALTERA_RESERVED_QIS
+// synopsys translate_on
+`endif
 
 	wire [4:0] sub_wire0;
 	wire  sub_wire3;
@@ -59,11 +68,11 @@ module clockgen (
 	wire [1:0] sub_wire5 = {sub_wire6, sub_wire4};
 
 	altpll	altpll_component (
+				.areset (areset),
 				.inclk (sub_wire5),
 				.clk (sub_wire0),
 				.locked (sub_wire3),
 				.activeclock (),
-				.areset (1'b0),
 				.clkbad (),
 				.clkena ({6{1'b1}}),
 				.clkloss (),
@@ -108,13 +117,13 @@ module clockgen (
 		altpll_component.clk1_phase_shift = "-1500",
 		altpll_component.compensate_clock = "CLK0",
 		altpll_component.inclk0_input_frequency = 20000,
-		altpll_component.intended_device_family = "MAX 10",
+		altpll_component.intended_device_family = "Cyclone 10 LP",
 		altpll_component.lpm_hint = "CBX_MODULE_PREFIX=clockgen",
 		altpll_component.lpm_type = "altpll",
 		altpll_component.operation_mode = "NORMAL",
 		altpll_component.pll_type = "AUTO",
 		altpll_component.port_activeclock = "PORT_UNUSED",
-		altpll_component.port_areset = "PORT_UNUSED",
+		altpll_component.port_areset = "PORT_USED",
 		altpll_component.port_clkbad0 = "PORT_UNUSED",
 		altpll_component.port_clkbad1 = "PORT_UNUSED",
 		altpll_component.port_clkloss = "PORT_UNUSED",
@@ -198,14 +207,14 @@ endmodule
 // Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
 // Retrieval info: PRIVATE: INCLK1_FREQ_UNIT_CHANGED STRING "1"
 // Retrieval info: PRIVATE: INCLK1_FREQ_UNIT_COMBO STRING "MHz"
-// Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "MAX 10"
+// Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone 10 LP"
 // Retrieval info: PRIVATE: INT_FEEDBACK__MODE_RADIO STRING "1"
 // Retrieval info: PRIVATE: LOCKED_OUTPUT_CHECK STRING "1"
 // Retrieval info: PRIVATE: LONG_SCAN_RADIO STRING "1"
 // Retrieval info: PRIVATE: LVDS_MODE_DATA_RATE STRING "Not Available"
 // Retrieval info: PRIVATE: LVDS_MODE_DATA_RATE_DIRTY NUMERIC "0"
 // Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT0 STRING "deg"
-// Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT1 STRING "ps"
+// Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT1 STRING "deg"
 // Retrieval info: PRIVATE: MIG_DEVICE_SPEED_GRADE STRING "Any"
 // Retrieval info: PRIVATE: MIRROR_CLK0 STRING "0"
 // Retrieval info: PRIVATE: MIRROR_CLK1 STRING "0"
@@ -226,7 +235,7 @@ endmodule
 // Retrieval info: PRIVATE: PHASE_SHIFT_UNIT0 STRING "deg"
 // Retrieval info: PRIVATE: PHASE_SHIFT_UNIT1 STRING "ns"
 // Retrieval info: PRIVATE: PLL_ADVANCED_PARAM_CHECK STRING "0"
-// Retrieval info: PRIVATE: PLL_ARESET_CHECK STRING "0"
+// Retrieval info: PRIVATE: PLL_ARESET_CHECK STRING "1"
 // Retrieval info: PRIVATE: PLL_AUTOPLL_CHECK NUMERIC "1"
 // Retrieval info: PRIVATE: PLL_ENHPLL_CHECK NUMERIC "0"
 // Retrieval info: PRIVATE: PLL_FASTPLL_CHECK NUMERIC "0"
@@ -235,7 +244,7 @@ endmodule
 // Retrieval info: PRIVATE: PLL_PFDENA_CHECK STRING "0"
 // Retrieval info: PRIVATE: PLL_TARGET_HARCOPY_CHECK NUMERIC "0"
 // Retrieval info: PRIVATE: PRIMARY_CLK_COMBO STRING "inclk0"
-// Retrieval info: PRIVATE: RECONFIG_FILE STRING "clk.mif"
+// Retrieval info: PRIVATE: RECONFIG_FILE STRING "clockgen.mif"
 // Retrieval info: PRIVATE: SACN_INPUTS_CHECK STRING "0"
 // Retrieval info: PRIVATE: SCAN_FEATURE_ENABLED STRING "1"
 // Retrieval info: PRIVATE: SELF_RESET_LOCK_LOSS STRING "0"
@@ -248,9 +257,6 @@ endmodule
 // Retrieval info: PRIVATE: SRC_SYNCH_COMP_RADIO STRING "0"
 // Retrieval info: PRIVATE: STICKY_CLK0 STRING "1"
 // Retrieval info: PRIVATE: STICKY_CLK1 STRING "1"
-// Retrieval info: PRIVATE: STICKY_CLK2 STRING "0"
-// Retrieval info: PRIVATE: STICKY_CLK3 STRING "0"
-// Retrieval info: PRIVATE: STICKY_CLK4 STRING "0"
 // Retrieval info: PRIVATE: SWITCHOVER_COUNT_EDIT NUMERIC "1"
 // Retrieval info: PRIVATE: SWITCHOVER_FEATURE_ENABLED STRING "1"
 // Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
@@ -272,12 +278,12 @@ endmodule
 // Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "-1500"
 // Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
 // Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
-// Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "MAX 10"
+// Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone 10 LP"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
 // Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
 // Retrieval info: CONSTANT: PLL_TYPE STRING "AUTO"
 // Retrieval info: CONSTANT: PORT_ACTIVECLOCK STRING "PORT_UNUSED"
-// Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_UNUSED"
+// Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_USED"
 // Retrieval info: CONSTANT: PORT_CLKBAD0 STRING "PORT_UNUSED"
 // Retrieval info: CONSTANT: PORT_CLKBAD1 STRING "PORT_UNUSED"
 // Retrieval info: CONSTANT: PORT_CLKLOSS STRING "PORT_UNUSED"
@@ -320,10 +326,12 @@ endmodule
 // Retrieval info: CONSTANT: SELF_RESET_ON_LOSS_LOCK STRING "OFF"
 // Retrieval info: CONSTANT: WIDTH_CLOCK NUMERIC "5"
 // Retrieval info: USED_PORT: @clk 0 0 5 0 OUTPUT_CLK_EXT VCC "@clk[4..0]"
+// Retrieval info: USED_PORT: areset 0 0 0 0 INPUT GND "areset"
 // Retrieval info: USED_PORT: c0 0 0 0 0 OUTPUT_CLK_EXT VCC "c0"
 // Retrieval info: USED_PORT: c1 0 0 0 0 OUTPUT_CLK_EXT VCC "c1"
 // Retrieval info: USED_PORT: inclk0 0 0 0 0 INPUT_CLK_EXT GND "inclk0"
 // Retrieval info: USED_PORT: locked 0 0 0 0 OUTPUT GND "locked"
+// Retrieval info: CONNECT: @areset 0 0 0 0 areset 0 0 0 0
 // Retrieval info: CONNECT: @inclk 0 0 1 1 GND 0 0 0 0
 // Retrieval info: CONNECT: @inclk 0 0 1 0 inclk0 0 0 0 0
 // Retrieval info: CONNECT: c0 0 0 0 0 @clk 0 0 1 0
@@ -335,6 +343,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL clockgen.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL clockgen.bsf FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL clockgen_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL clockgen_bb.v FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL clockgen_bb.v TRUE
 // Retrieval info: LIB_FILE: altera_mf
 // Retrieval info: CBX_MODULE_PREFIX: ON

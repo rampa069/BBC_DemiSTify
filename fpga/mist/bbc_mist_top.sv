@@ -31,10 +31,10 @@ module bbc_mist_top(
    output [1:0]    SDRAM_BA,       // SDRAM Bank Address
    output          SDRAM_CLK,      // SDRAM Clock
    output          SDRAM_CKE,      // SDRAM Clock Enable
-
+`ifdef DEMISTIFY
   output [15:0]  DAC_L,
   output [15:0]  DAC_R,
-
+`endif
   // SPI
   output         SPI_DO,
   input          SPI_DI,
@@ -105,12 +105,13 @@ wire        ps2_dat;
 
 // the top file should generate the correct clocks for the machine
 
-assign SDRAM_CLK = clk_48m;
+// assign SDRAM_CLK = clk_48m;
 
 clockgen CLOCKS(
 
    .inclk0	(CLOCK_27[0]),
 	.c0		(clk_48m),
+	.c1		(SDRAM_CLK),
 	.locked	(pll_ready)  // pll locked output
 );
 
