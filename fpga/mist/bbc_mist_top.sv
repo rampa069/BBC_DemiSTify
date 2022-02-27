@@ -32,8 +32,18 @@ module bbc_mist_top(
    output          SDRAM_CLK,      // SDRAM Clock
    output          SDRAM_CKE,      // SDRAM Clock Enable
 `ifdef DEMISTIFY
-  output [15:0]  DAC_L,
-  output [15:0]  DAC_R,
+  output [15:0]   DAC_L,
+  output [15:0]   DAC_R,
+
+  output          HDMI_CLK,  // Direct HDMI
+
+  output 		  VGA_BLANK,	 // HDMI
+  output		  VGA_CLK,
+  output  [5:0]   vga_x_r,
+  output  [5:0]   vga_x_g,
+  output  [5:0]   vga_x_b,
+  output 		  vga_x_hs,
+  output 		  vga_x_vs,
 `endif
   // SPI
   output         SPI_DO,
@@ -107,13 +117,23 @@ wire        ps2_dat;
 
 // assign SDRAM_CLK = clk_48m;
 
+`ifdef DEMISTIFY_ATLAS_CYC
 clockgen CLOCKS(
-
-   .inclk0	(CLOCK_27[0]),
+    .inclk0	(CLOCK_27[0]),
+	.c0		(clk_48m),
+	.c1		(SDRAM_CLK),
+	.c2     (HDMI_CLK),
+	.locked	(pll_ready)  // pll locked output
+);
+`else
+clockgen CLOCKS(
+    .inclk0	(CLOCK_27[0]),
 	.c0		(clk_48m),
 	.c1		(SDRAM_CLK),
 	.locked	(pll_ready)  // pll locked output
 );
+`endif
+
 
 // conections between user_io (implementing the SPI communication 
 // to the io controller) and the legacy 
@@ -478,6 +498,99 @@ assign DAC_L = coreaud_l;
 assign DAC_R = coreaud_r;
 `endif
 
+
+`ifdef DEMISTIFY
+parameter OSD_X_OFFSET = 10'd0;
+parameter OSD_Y_OFFSET = 10'd0;
+parameter OSD_COLOR    = 3'd4;
+parameter OSD_AUTO_CE = 1'b1;
+
+wire [5:0] osd_r_o;
+wire [5:0] osd_g_o;
+wire [5:0] osd_b_o;
+wire ce_x1;
+wire vga_de_o;
+
+osd #(OSD_X_OFFSET, OSD_Y_OFFSET, OSD_COLOR, OSD_AUTO_CE) osd
+(
+	.clk_sys ( clk_48m     ),
+	.rotate  ( 2'b00   ),		// Rotate OSD [0] - rotate [1] - left or right
+	.ce      ( ce_x1   ),		// clk_sys/4
+	.SPI_DI  ( SPI_DI  ),
+	.SPI_SCK ( SPI_SCK ),
+	.SPI_SS3 ( SPI_SS3 ),
+	.R_in    ( {6{core_r}} ),
+	.G_in    ( {6{core_g}} ),
+	.B_in    ( {6{core_b}} ),
+	.HSync   ( ~core_hs  ),
+	.VSync   ( ~core_vs  ),
+	.R_out   ( osd_r_o ),
+	.G_out   ( osd_g_o ),
+	.B_out   ( osd_b_o )
+);
+
+// Without OSD
+// assign vga_x_r  = {R_O, R_O[3:2]};
+// assign vga_x_g  = {G_O, G_O[3:2]};
+// assign vga_x_b  = {B_O, B_O[3:2]};
+
+// OSD output
+assign vga_x_r  = osd_r_o;
+assign vga_x_g  = osd_g_o;
+assign vga_x_b  = osd_b_o;
+assign vga_x_hs =  ~core_hs;
+assign vga_x_vs =  ~core_vs;
+
+assign VGA_CLK = clk_48m;   //clk_48m;  core_clken
+assign VGA_BLANK  = ~video_de; 
+
+`endif
+
+`ifdef DEMISTIFY_HDMI
+mist_video2 #(.COLOR_DEPTH(1), .SD_HCNT_WIDTH(10), .SYNC_AND(1)) mist_video (
+	.clk_sys     ( clk_48m    ),
+
+	// OSD SPI interface
+	.SPI_SCK     ( SPI_SCK    ),
+	.SPI_SS3     ( SPI_SS3    ),
+	.SPI_DI      ( SPI_DI     ),
+
+	// scanlines (00-none 01-25% 10-50% 11-75%)
+	.scanlines   ( scanlines  ),
+
+	// non-scandoubled pixel clock divider 0 - clk_sys/4, 1 - clk_sys/2
+	.ce_divider  ( 1'b0       ),
+
+	// 0 = HVSync 31KHz, 1 = CSync 15KHz
+	.scandoubler_disable ( scandoubler_disable ),
+	// disable csync without scandoubler
+	.no_csync    ( no_csync   ),
+	// YPbPr always uses composite sync
+	.ypbpr       ( ypbpr      ),
+	// Rotate OSD [0] - rotate [1] - left or right
+	.rotate      ( 2'b00      ),
+	// composite-like blending
+	.blend       ( 1'b0       ),
+
+	// video in
+	.R           ( core_r     ),
+	.G           ( core_g     ),
+	.B           ( core_b     ),
+
+	.HSync       ( ~core_hs   ),
+	.VSync       ( ~core_vs   ),
+
+	// MiST video output signals
+	.VGA_R       ( VGA_R      ),
+	.VGA_G       ( VGA_G      ),
+	.VGA_B       ( VGA_B      ),
+	.VGA_VS      ( VGA_VS     ),
+	.VGA_HS      ( VGA_HS     ),
+
+	.ce_x1_o	 ( ce_x1	  )
+);
+
+`else
 mist_video #(.COLOR_DEPTH(1), .SD_HCNT_WIDTH(10), .SYNC_AND(1)) mist_video (
 	.clk_sys     ( clk_48m    ),
 
@@ -517,6 +630,9 @@ mist_video #(.COLOR_DEPTH(1), .SD_HCNT_WIDTH(10), .SYNC_AND(1)) mist_video (
 	.VGA_B       ( VGA_B      ),
 	.VGA_VS      ( VGA_VS     ),
 	.VGA_HS      ( VGA_HS     )
+
 );
+
+`endif
 
 endmodule // bbc_mist_top

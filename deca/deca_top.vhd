@@ -62,18 +62,18 @@ entity deca_top is
 		SD_D0_DIR            	: OUT   STD_LOGIC := '0';  
 		SD_D123_DIR            : OUT   STD_LOGIC;
 		-- -- HDMI-TX  DECA 
-		-- HDMI_I2C_SCL  		: INOUT STD_LOGIC; 		          		
-		-- HDMI_I2C_SDA  		: INOUT STD_LOGIC; 		          		
-		-- HDMI_I2S      		: INOUT STD_LOGIC_VECTOR(3 downto 0);		     	
-		-- HDMI_LRCLK    		: INOUT STD_LOGIC; 		          		
-		-- HDMI_MCLK     		: INOUT STD_LOGIC;		          		
-		-- HDMI_SCLK     		: INOUT STD_LOGIC; 		          		
-		-- HDMI_TX_CLK   		: OUT	STD_LOGIC;	          		
-		-- HDMI_TX_D     		: OUT	STD_LOGIC_VECTOR(23 downto 0);	    		
-		-- HDMI_TX_DE    		: OUT   STD_LOGIC;		          		 
-		-- HDMI_TX_HS    		: OUT	STD_LOGIC;	          		
-		-- HDMI_TX_INT   		: IN    STD_LOGIC;		          		
-		-- HDMI_TX_VS    		: OUT   STD_LOGIC;         
+		HDMI_I2C_SCL  		: INOUT STD_LOGIC; 		          		
+		HDMI_I2C_SDA  		: INOUT STD_LOGIC; 		          		
+		HDMI_I2S      		: INOUT STD_LOGIC_VECTOR(3 downto 0);		     	
+		HDMI_LRCLK    		: INOUT STD_LOGIC; 		          		
+		HDMI_MCLK     		: INOUT STD_LOGIC;		          		
+		HDMI_SCLK     		: INOUT STD_LOGIC; 		          		
+		HDMI_TX_CLK   		: OUT	STD_LOGIC;	          		
+		HDMI_TX_D     		: OUT	STD_LOGIC_VECTOR(23 downto 0);	    		
+		HDMI_TX_DE    		: OUT   STD_LOGIC;		          		 
+		HDMI_TX_HS    		: OUT	STD_LOGIC;	          		
+		HDMI_TX_INT   		: IN    STD_LOGIC;		          		
+		HDMI_TX_VS    		: OUT   STD_LOGIC;         
         -- AUDIO CODEC  DECA 
 		AUDIO_GPIO_MFP5  	: INOUT STD_LOGIC;
 		AUDIO_MISO_MFP4  	: IN    STD_LOGIC;
@@ -179,26 +179,26 @@ signal i2s_Lr_o : std_logic;
 signal i2s_D_o : std_logic;
 
 -- HDMI
--- component I2C_HDMI_Config
---     port (
---     iCLK : in std_logic;
---     iRST_N : in std_logic;
---     I2C_SCLK : out std_logic;
---     I2C_SDAT : inout std_logic;
---     HDMI_TX_INT : in std_logic
---   );
--- end component;
+component I2C_HDMI_Config
+    port (
+    iCLK : in std_logic;
+    iRST_N : in std_logic;
+    I2C_SCLK : out std_logic;
+    I2C_SDAT : inout std_logic;
+    HDMI_TX_INT : in std_logic
+  );
+end component;
 
--- component pll2
---     port (
---     inclk0 : in STD_LOGIC;
---     c0 : out STD_LOGIC;
---     locked : out STD_LOGIC
---   );
--- end component;
+component pll2
+    port (
+    inclk0 : in STD_LOGIC;
+    c0 : out STD_LOGIC;
+    locked : out STD_LOGIC
+  );
+end component;
 
--- signal vga_clk :  std_logic;
--- signal vga_blank  :  std_logic;
+signal vga_clk :  std_logic;
+signal vga_blank  :  std_logic;
 
 begin
 
@@ -281,36 +281,36 @@ I2S_LR  <= i2s_Lr_o;
 I2S_D   <= i2s_D_o;
 
 
--- -- HDMI CONFIG    
--- I2C_HDMI_Config_inst : I2C_HDMI_Config
--- port map (
--- 	iCLK => MAX10_CLK1_50,      
--- 	iRST_N =>  reset_n,       --reset_n, KEY(0)
--- 	I2C_SCLK => HDMI_I2C_SCL,
--- 	I2C_SDAT => HDMI_I2C_SDA,
--- 	HDMI_TX_INT => HDMI_TX_INT
--- );
+-- HDMI CONFIG    
+I2C_HDMI_Config_inst : I2C_HDMI_Config
+port map (
+	iCLK => MAX10_CLK1_50,      
+	iRST_N =>  reset_n,       --reset_n, KEY(0)
+	I2C_SCLK => HDMI_I2C_SCL,
+	I2C_SDAT => HDMI_I2C_SDA,
+	HDMI_TX_INT => HDMI_TX_INT
+);
 
--- -- -- PLL2
--- -- pll2_inst : pll2
--- -- port map (
--- --	inclk0		=> MAX10_CLK1_50,
--- --	c0		=> vga_clk		
--- --	locked		=> open
--- -- );
+-- PLL2
+pll2_inst : pll2
+port map (
+	inclk0		=> MAX10_CLK1_50,
+	c0			=> vga_clk,		
+	locked		=> open
+);
 
--- --  HDMI VIDEO   
--- HDMI_TX_CLK <= vga_clk;	
--- HDMI_TX_DE  <= not vga_blank;
--- HDMI_TX_HS  <= vga_hsync;
--- HDMI_TX_VS  <= vga_vsync;
--- HDMI_TX_D   <= vga_red(7 downto 2)&vga_red(7 downto 6)&vga_green(7 downto 2)&vga_green(7 downto 6)&vga_blue(7 downto 2)&vga_blue(7 downto 6);
+--  HDMI VIDEO   
+HDMI_TX_CLK <= vga_clk;	
+HDMI_TX_DE  <= not vga_blank;
+HDMI_TX_HS  <= vga_hsync;
+HDMI_TX_VS  <= vga_vsync;
+HDMI_TX_D   <= vga_red(7 downto 2)&vga_red(7 downto 6)&vga_green(7 downto 2)&vga_green(7 downto 6)&vga_blue(7 downto 2)&vga_blue(7 downto 6);
 
--- --  HDMI AUDIO   
--- HDMI_MCLK   <= i2s_Mck_o;
--- HDMI_SCLK   <= i2s_Sck_o;    -- lr*2*16
--- HDMI_LRCLK  <= i2s_Lr_o;   
--- HDMI_I2S(0) <= i2s_D_o;
+--  HDMI AUDIO   
+HDMI_MCLK   <= i2s_Mck_o;
+HDMI_SCLK   <= i2s_Sck_o;    -- lr*2*16
+HDMI_LRCLK  <= i2s_Lr_o;   
+HDMI_I2S(0) <= i2s_D_o;
 
 
 
@@ -349,8 +349,8 @@ guest: COMPONENT  bbc_mist_top
 		VGA_R => vga_red(7 downto 2),
 		VGA_G => vga_green(7 downto 2),
 		VGA_B => vga_blue(7 downto 2),
---	             VGA_BLANK => vga_blank,
---	             VGA_CLK => vga_clk
+	             VGA_BLANK => vga_blank,
+--	             VGA_CLK => vga_clk,
         --AUDIO
 		AUDIO_L => sigma_l,
 		AUDIO_R => sigma_r,
