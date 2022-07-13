@@ -8,6 +8,8 @@ Special thanks to Alastair M. Robinson creator of [DeMiSTify](https://github.com
 
 **Only for VGA output and 3 pins old Mister SDRAM at the moment.**
 
+**Now compatible with [Deca Retro Cape 2](https://github.com/somhi/DECA_retro_cape_2)** (new location for 3 pins of old SDRAM modules). Otherwise see pinout below to connect everything through GPIOs.
+
 **Features for Deca board:**
 
 * ~~HDMI video output (special resolution will not work on all LCD monitors)~~
@@ -49,9 +51,6 @@ cd DeMiSTify
 cp site.template site.mk
 #Edit site.mk and add your own PATHs to Quartus (Q18)
 gedit site.mk
-#[DECA ONLY]Copy mofified deca_pins.tcl file to Demistify folder (MODIFICATION FOR 3 PINS SDRAM. THIS IS A TEMPORARY FIX)
-cd ../deca
-cp deca_pins.tcl_copy_to_demistify_board_deca ../DeMiSTify/Board/deca/deca_pins.tcl 
 #Go back to root folder and do a make with board target (deca, neptuno, uareloaded, atlas_cyc). If not specified it will compile for all targets.
 cd ..
 make BOARD=deca
